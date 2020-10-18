@@ -1,0 +1,1373 @@
+
+#创建商品表
+create table goods(
+	id int not null PRIMARY key auto_increment,
+	good_name varchar(20),
+	small_type int,
+	type int,
+	price int,
+	introduc varchar(100),
+	index_img varchar(100),
+	introduc_img varchar(100),
+	FOREIGN key(small_type) REFERENCES c_small_type(id),
+	FOREIGN key(type) REFERENCES c_type(id)
+);
+
+#创建首页轮播图片表
+create table index_banner(
+	good_id int,
+	img_url varchar(100),
+	FOREIGN key(good_id) REFERENCES goods(id)
+);
+
+#创建用户表
+create table c_user(
+	user_id int not null PRIMARY key auto_increment,
+	user_name varchar(20) not null unique,
+	user_password varchar(13) not null,
+	user_email varchar(20)
+);
+
+#创建品牌动态表
+create table c_dynamic(
+	d_title varchar(30),
+	d_content varchar(200),
+	d_year varchar(6),
+	d_time varchar(10)
+);
+
+#创建生产经营资质表
+create table c_qual(
+	id int not null PRIMARY key auto_increment,
+	site varchar(20),
+	license varchar(30),
+	address varchar(100),
+	legal_person varchar(5)
+);
+
+#创建购物车表
+create table c_cart(
+	user_name varchar(20),
+	good_id int,
+	FOREIGN key(user_name) REFERENCES c_user(user_name),
+	FOREIGN key(good_id) REFERENCES goods(id)
+);
+
+#创建商品相册表
+create table good_gallery(
+	good_id int not null,
+	image_url varchar(100),
+	FOREIGN key(good_id) REFERENCES goods(id)
+);
+
+#创建商品大类型表
+create table c_type(
+	id int not null PRIMARY key auto_increment,
+	type_name varchar(10)
+);
+
+#创建商品小类型表
+create table c_small_type(
+	id int not null PRIMARY key auto_increment,
+	b_id int,
+	s_type_name varchar(20),
+	FOREIGN key(b_id) REFERENCES c_type(id)
+);
+
+#创建商品规格表
+create table good_specifications(
+	good_s_id int not null,
+	specification varchar(10),
+	s_price int,
+	FOREIGN key(good_s_id) REFERENCES goods(id)
+);
+
+insert into good_specifications values(1,"2磅",188);
+
+#设置图片路径全局变量
+set @localPath="http://localhost:8080/cake/";
+
+insert into good_gallery values(1,CONCAT(@localPath,"images/cakes/strawberry/index.jpg"));
+
+#创建省份表
+create table Provincial(pid int,Provincial varchar(50),primary key (pid));
+
+#创建城市表
+create table City(cid int not null,city varchar(50) primary key,pid int, foreign key(pid) references Provincial(pid));
+
+#插入省份数据
+insert into Provincial values(1,'北京');
+insert into Provincial values(2,'天津');
+insert into Provincial values(3,'上海');
+insert into Provincial values(4,'重庆市');
+insert into Provincial values(5,'河北省');
+insert into Provincial values(6,'山西省');
+insert into Provincial values(7,'台湾省');
+insert into Provincial values(8,'辽宁省');
+insert into Provincial values(9,'吉林省');
+insert into Provincial values(10,'黑龙江省');
+insert into Provincial values(11,'江苏省');
+insert into Provincial values(12,'浙江省');
+insert into Provincial values(13,'安徽省');
+insert into Provincial values(14,'福建省');
+insert into Provincial values(15,'江西省');
+insert into Provincial values(16,'山东省');
+insert into Provincial values(17,'河南省');
+insert into Provincial values(18,'湖北省');
+insert into Provincial values(19,'湖南省');
+insert into Provincial values(20,'广东省');
+insert into Provincial values(21,'甘肃省');
+insert into Provincial values(22,'四川省');
+insert into Provincial values(23,'贵州省');
+insert into Provincial values(24,'海南省');
+insert into Provincial values(25,'云南省');
+insert into Provincial values(26,'青海省');
+insert into Provincial values(27,'陕西省');
+insert into Provincial values(28,'广西壮族自治区');
+insert into Provincial values(29,'西藏自治区');
+insert into Provincial values(30,'宁夏回族自治区');
+insert into Provincial values(31,'新疆维吾尔自治区');
+insert into Provincial values(32,'内蒙古自治区');
+insert into Provincial values(33,'澳门特别行政区');
+insert into Provincial values(34,'香港特别行政区');
+
+#插入城市数据
+#插入各个省的城市数据
+#4个直辖市
+insert into City values(1,'北京市',1);
+insert into City values(1,'天津市',2);
+insert into City values(1,'上海市',3);
+insert into City values(1,'重庆市',4);
+#select * from City where pid=4
+#----------------------------------------------------------------
+#--5河北省 11个地级市
+insert into City values(1,'石家庄市',5);
+insert into City values(2,'唐山市',5);
+insert into City values(3,'秦皇岛市',5);
+insert into City values(4,'邯郸市',5);
+insert into City values(5,'邢台市',5);
+insert into City values(6,'保定市',5);
+insert into City values(7,'张家口市',5);
+insert into City values(8,'承德市',5);
+insert into City values(9,'沧州市',5);
+insert into City values(10,'廊坊市',5);
+insert into City values(11,'衡水市',5);
+#--select * from City where pid=5 order by cid
+#----------------------------------------------------------------
+#--6山西省 11个城市
+insert into City values(1,'太原市',6);
+insert into City values(2,'大同市',6);
+insert into City values(3,'阳泉市',6);
+insert into City values(4,'长治市',6);
+insert into City values(5,'晋城市',6);
+insert into City values(6,'朔州市',6);
+insert into City values(7,'晋中市',6);
+insert into City values(8,'运城市',6);
+insert into City values(9,'忻州市',6);
+insert into City values(10,'临汾市',6);
+insert into City values(11,'吕梁市',6);
+#--select * from City where pid=6 order by cid
+#----------------------------------------------------------------
+#--7台湾省(台湾本岛和澎湖共设7市、16县，其中台北市和高雄市为“院辖市”，直属“行政院”，其余属台湾省；市下设区，县下设市（县辖市）、镇、乡，合称区市镇乡。)
+insert into City values(1,'台北市',7);
+insert into City values(2,'高雄市',7);
+insert into City values(3,'基隆市',7);
+insert into City values(4,'台中市',7);
+insert into City values(5,'台南市',7);
+insert into City values(6,'新竹市',7);
+insert into City values(7,'嘉义市',7);
+insert into City values(8,'台北县',7);
+insert into City values(9,'宜兰县',7);
+insert into City values(10,'桃园县',7);
+insert into City values(11,'新竹县',7);
+insert into City values(12,'苗栗县',7);
+insert into City values(13,'台中县',7);
+insert into City values(14,'彰化县',7);
+insert into City values(15,'南投县',7);
+insert into City values(16,'云林县',7);
+insert into City values(17,'嘉义县',7);
+insert into City values(18,'台南县',7);
+insert into City values(19,'高雄县',7);
+insert into City values(20,'屏东县',7);
+insert into City values(21,'澎湖县',7);
+insert into City values(22,'台东县',7);
+insert into City values(23,'花莲县',7);
+#--select * from City where pid=7 order by cid
+#----------------------------------------------------------------
+#--8辽宁省 14个地级市
+insert into City values(1,'沈阳市',8);
+insert into City values(2,'大连市',8);
+insert into City values(3,'鞍山市',8);
+insert into City values(4,'抚顺市',8);
+insert into City values(5,'本溪市',8);
+insert into City values(6,'丹东市',8);
+insert into City values(7,'锦州市',8);
+insert into City values(8,'营口市',8);
+insert into City values(9,'阜新市',8);
+insert into City values(10,'辽阳市',8);
+insert into City values(11,'盘锦市',8);
+insert into City values(12,'铁岭市',8);
+insert into City values(13,'朝阳市',8);
+insert into City values(14,'葫芦岛市',8);
+#--select * from City where pid=8 order by cid
+#----------------------------------------------------------------
+#--9吉林省(2006年，辖：8个地级市、1个自治州；20个市辖区、20个县级市、17个县、3个自治县。)
+insert into City values(1,'长春市',9);
+insert into City values(2,'吉林市',9);
+insert into City values(3,'四平市',9);
+insert into City values(4,'辽源市',9);
+insert into City values(5,'通化市',9);
+insert into City values(6,'白山市',9);
+insert into City values(7,'松原市',9);
+insert into City values(8,'白城市',9);
+insert into City values(9,'延边朝鲜族自治州',9);
+#--select * from City where pid=9 order by cid
+#----------------------------------------------------------------
+#--10黑龙江省(2006年，辖：12地级市、1地区；64市辖区、18县级市、45县、1自治县)
+insert into City values(1,'哈尔滨市',10);
+insert into City values(2,'齐齐哈尔市',10);
+insert into City values(3,'鹤 岗 市',10);
+insert into City values(4,'双鸭山市',10);
+insert into City values(5,'鸡 西 市',10);
+insert into City values(6,'大 庆 市',10);
+insert into City values(7,'伊 春 市',10);
+insert into City values(8,'牡丹江市',10);
+insert into City values(9,'佳木斯市',10);
+insert into City values(10,'七台河市',10);
+insert into City values(11,'黑 河 市',10);
+insert into City values(12,'绥 化 市',10);
+insert into City values(13,'大兴安岭地区',10);
+#--select * from City where pid=10 order by cid
+#----------------------------------------------------------------
+#--11江苏省(2005年辖：13个地级市；54个市辖区、27个县级市、25个县)
+insert into City values(1,'南京市',11);
+insert into City values(2,'无锡市',11);
+insert into City values(3,'徐州市',11);
+insert into City values(4,'常州市',11);
+insert into City values(5,'苏州市',11);
+insert into City values(6,'南通市',11);
+insert into City values(7,'连云港市',11);
+insert into City values(8,'淮安市',11);
+insert into City values(9,'盐城市',11);
+insert into City values(10,'扬州市',11);
+insert into City values(11,'镇江市',11);
+insert into City values(12,'泰州市',11);
+insert into City values(13,'宿迁市',11);
+#--select * from City where pid=11 order by cid
+#----------------------------------------------------------------
+#--12浙江省(2006年，辖：11个地级市；32个市辖区、22个县级市、35个县、1个自治县。)
+insert into City values(1,'杭州市',12);
+insert into City values(2,'宁波市',12);
+insert into City values(3,'温州市',12);
+insert into City values(4,'嘉兴市',12);
+insert into City values(5,'湖州市',12);
+insert into City values(6,'绍兴市',12);
+insert into City values(7,'金华市',12);
+insert into City values(8,'衢州市',12);
+insert into City values(9,'舟山市',12);
+insert into City values(10,'台州市',12);
+insert into City values(11,'丽水市',12);
+#--select * from City where pid=12 order by cid
+#----------------------------------------------------------------
+#--13安徽省(2005年辖：17个地级市；44个市辖区、5县个级市、56个县。)
+insert into City values(1,'合肥市',13);
+insert into City values(2,'芜湖市',13);
+insert into City values(3,'蚌埠市',13);
+insert into City values(4,'淮南市',13);
+insert into City values(5,'马鞍山市',13);
+insert into City values(6,'淮北市',13);
+insert into City values(7,'铜陵市',13);
+insert into City values(8,'安庆市',13);
+insert into City values(9,'黄山市',13);
+insert into City values(10,'滁州市',13);
+insert into City values(11,'阜阳市',13);
+insert into City values(12,'宿州市',13);
+insert into City values(13,'巢湖市',13);
+insert into City values(14,'六安市',13);
+insert into City values(15,'亳州市',13);
+insert into City values(16,'池州市',13);
+insert into City values(17,'宣城市',13);
+#--select * from City where pid=13 order by cid
+#----------------------------------------------------------------
+#--14福建省(2006年辖：9个地级市；26个市辖区、14个县级市、45个县。)
+insert into City values(1,'福州市',14);
+insert into City values(2,'厦门市',14);
+insert into City values(3,'莆田市',14);
+insert into City values(4,'三明市',14);
+insert into City values(5,'泉州市',14);
+insert into City values(6,'漳州市',14);
+insert into City values(7,'南平市',14);
+insert into City values(8,'龙岩市',14);
+insert into City values(9,'宁德市',14);
+#--select * from City where pid=14 order by cid
+#----------------------------------------------------------------
+#--15江西省(2006年全省辖：11个地级市；19个市辖区、10个县级市、70个县。)
+insert into City values(1,'南昌市',15);
+insert into City values(2,'景德镇市',15);
+insert into City values(3,'萍乡市',15);
+insert into City values(4,'九江市',15);
+insert into City values(5,'新余市',15);
+insert into City values(6,'鹰潭市',15);
+insert into City values(7,'赣州市',15);
+insert into City values(8,'吉安市',15);
+insert into City values(9,'宜春市',15);
+insert into City values(10,'抚州市',15);
+insert into City values(11,'上饶市',15);
+#--select * from City where pid=15 order by cid
+#----------------------------------------------------------------
+#--16山东省(2005年，辖：17个地级市；49个市辖区、31个县级市、60个县。)
+insert into City values(1,'济南市',16);
+insert into City values(2,'青岛市',16);
+insert into City values(3,'淄博市',16);
+insert into City values(4,'枣庄市',16);
+insert into City values(5,'东营市',16);
+insert into City values(6,'烟台市',16);
+insert into City values(7,'潍坊市',16);
+insert into City values(8,'济宁市',16);
+insert into City values(9,'泰安市',16);
+insert into City values(10,'威海市',16);
+insert into City values(11,'日照市',16);
+insert into City values(12,'莱芜市',16);
+insert into City values(13,'临沂市',16);
+insert into City values(14,'德州市',16);
+insert into City values(15,'聊城市',16);
+insert into City values(16,'滨州市',16);
+insert into City values(17,'菏泽市',16);
+#--select * from City where pid=16 order by cid
+#----------------------------------------------------------------
+#--17河南省 17个地级市
+insert into City values(1,'郑州市',17);
+insert into City values(2,'开封市',17);
+insert into City values(3,'洛阳市',17);
+insert into City values(4,'平顶山市',17);
+insert into City values(5,'安阳市',17);
+insert into City values(6,'鹤壁市',17);
+insert into City values(7,'新乡市',17);
+insert into City values(8,'焦作市',17);
+insert into City values(9,'濮阳市',17);
+insert into City values(10,'许昌市',17);
+insert into City values(11,'漯河市',17);
+insert into City values(12,'三门峡市',17);
+insert into City values(13,'南阳市',17);
+insert into City values(14,'商丘市',17);
+insert into City values(15,'信阳市',17);
+insert into City values(16,'周口市',17);
+insert into City values(17,'驻马店市',17);
+insert into City values(18,'济源市',17);
+#--select * from City where pid=17 order by cid
+#----------------------------------------------------------------
+#--18湖北省（截至2005年12月31日，全省辖13个地级单位（12个地级市、1个自治州）；102县级单位（38个市辖区、24个县级市、37个县、2个自治县、1个林区），共有1220个乡级单位（277个街道、733个镇、210个乡）。）
+insert into City values(1,'武汉市',18);
+insert into City values(2,'黄石市',18);
+insert into City values(3,'十堰市',18);
+insert into City values(4,'荆州市',18);
+insert into City values(5,'宜昌市',18);
+insert into City values(6,'襄樊市',18);
+insert into City values(7,'鄂州市',18);
+insert into City values(8,'荆门市',18);
+insert into City values(9,'孝感市',18);
+insert into City values(10,'黄冈市',18);
+insert into City values(11,'咸宁市',18);
+insert into City values(12,'随州市',18);
+insert into City values(13,'仙桃市',18);
+insert into City values(14,'天门市',18);
+insert into City values(15,'潜江市',18);
+insert into City values(16,'神农架林区',18);
+insert into City values(17,'恩施土家族苗族自治州',18);
+#--select * from City where pid=18 order by cid
+#----------------------------------------------------------------
+#--19湖南省（2005年辖：13个地级市、1个自治州；34个市辖区、16个县级市、65个县、7个自治县。）
+insert into City values(1,'长沙市',19);
+insert into City values(2,'株洲市',19);
+insert into City values(3,'湘潭市',19);
+insert into City values(4,'衡阳市',19);
+insert into City values(5,'邵阳市',19);
+insert into City values(6,'岳阳市',19);
+insert into City values(7,'常德市',19);
+insert into City values(8,'张家界市',19);
+insert into City values(9,'益阳市',19);
+insert into City values(10,'郴州市',19);
+insert into City values(11,'永州市',19);
+insert into City values(12,'怀化市',19);
+insert into City values(13,'娄底市',19);
+insert into City values(14,'湘西土家族苗族自治州',19);
+#--select * from City where pid=19 order by cid
+#----------------------------------------------------------------
+#--20广东省（截至2005年12月31日，广东省辖：21个地级市，54个市辖区、23个县级市、41个县、3个自治县，429个街道办事处、1145个镇、4个乡、7个民族乡。）
+insert into City values(1,'广州市',20);
+insert into City values(2,'深圳市',20);
+insert into City values(3,'珠海市',20);
+insert into City values(4,'汕头市',20);
+insert into City values(5,'韶关市',20);
+insert into City values(6,'佛山市',20);
+insert into City values(7,'江门市',20);
+insert into City values(8,'湛江市',20);
+insert into City values(9,'茂名市',20);
+insert into City values(10,'肇庆市',20);
+insert into City values(11,'惠州市',20);
+insert into City values(12,'梅州市',20);
+insert into City values(13,'汕尾市',20);
+insert into City values(14,'河源市',20);
+insert into City values(15,'阳江市',20);
+insert into City values(16,'清远市',20);
+insert into City values(17,'东莞市',20);
+insert into City values(18,'中山市',20);
+insert into City values(19,'潮州市',20);
+insert into City values(20,'揭阳市',20);
+insert into City values(21,'云浮市',20);
+#--select * from City where pid=20 order by cid
+#----------------------------------------------------------------
+#--21甘肃省 12个地级市、2个自治州
+insert into City values(1,'兰州市',21);
+insert into City values(2,'金昌市',21);
+insert into City values(3,'白银市',21);
+insert into City values(4,'天水市',21);
+insert into City values(5,'嘉峪关市',21);
+insert into City values(6,'武威市',21);
+insert into City values(7,'张掖市',21);
+insert into City values(8,'平凉市',21);
+insert into City values(9,'酒泉市',21);
+insert into City values(10,'庆阳市',21);
+insert into City values(11,'定西市',21);
+insert into City values(12,'陇南市',21);
+insert into City values(13,'临夏回族自治州',21);
+insert into City values(14,'甘南藏族自治州',21);
+#--select * from City where pid=21 order by cid
+#----------------------------------------------------------------
+#--22四川省18个地级市、3个自治州
+insert into City values(1,'成都市',22);
+insert into City values(2,'自贡市',22);
+insert into City values(3,'攀枝花市',22);
+insert into City values(4,'泸州市',22);
+insert into City values(5,'德阳市',22);
+insert into City values(6,'绵阳市',22);
+insert into City values(7,'广元市',22);
+insert into City values(8,'遂宁市',22);
+insert into City values(9,'内江市',22);
+insert into City values(10,'乐山市',22);
+insert into City values(11,'南充市',22);
+insert into City values(12,'眉山市',22);
+insert into City values(13,'宜宾市',22);
+insert into City values(14,'广安市',22);
+insert into City values(15,'达州市',22);
+insert into City values(16,'雅安市',22);
+insert into City values(17,'巴中市',22);
+insert into City values(18,'资阳市',22);
+insert into City values(19,'阿坝藏族羌族自治州',22);
+insert into City values(20,'甘孜藏族自治州',22);
+insert into City values(21,'凉山彝族自治州',22);
+#--select * from City where pid=22 order by cid
+#----------------------------------------------------------------
+#--23贵州省(2006年辖：4个地级市、2个地区、3个自治州；10个市辖区、9个县级市、56个县、11个自治县、2个特区。)
+insert into City values(1,'贵阳市',23);
+insert into City values(2,'六盘水市',23);
+insert into City values(3,'遵义市',23);
+insert into City values(4,'安顺市',23);
+insert into City values(5,'铜仁地区',23);
+insert into City values(6,'毕节地区',23);
+insert into City values(7,'黔西南布依族苗族自治州',23);
+insert into City values(8,'黔东南苗族侗族自治州',23);
+insert into City values(9,'黔南布依族苗族自治州',23);
+#--select * from City where pid=23 order by cid
+#----------------------------------------------------------------
+#--24海南省全省有2个地级市，6个县级市，4个县，6个民族自治县，4个市辖区，1个办事处（西南中沙群岛办事处 ，县级）。)
+insert into City values(1,'海口市',24);
+insert into City values(2,'三亚市',24);
+insert into City values(3,'五指山市',24);
+insert into City values(4,'琼海市',24);
+insert into City values(5,'儋州市',24);
+insert into City values(6,'文昌市',24);
+insert into City values(7,'万宁市',24);
+insert into City values(8,'东方市',24);
+insert into City values(9,'澄迈县',24);
+insert into City values(10,'定安县',24);
+insert into City values(11,'屯昌县',24);
+insert into City values(12,'临高县',24);
+insert into City values(13,'白沙黎族自治县',24);
+insert into City values(14,'昌江黎族自治县',24);
+insert into City values(15,'乐东黎族自治县',24);
+insert into City values(16,'陵水黎族自治县',24);
+insert into City values(17,'保亭黎族苗族自治县',24);
+insert into City values(18,'琼中黎族苗族自治县',24);
+#--select * from City where pid=24 order by cid
+#----------------------------------------------------------------
+#--25云南省(2006年辖：8个地级市、8个自治州；12个市辖区、9个县级市、79个县、29个自治县。)
+insert into City values(1,'昆明市',25);
+insert into City values(2,'曲靖市',25);
+insert into City values(3,'玉溪市',25);
+insert into City values(4,'保山市',25);
+insert into City values(5,'昭通市',25);
+insert into City values(6,'丽江市',25);
+insert into City values(7,'思茅市',25);
+insert into City values(8,'临沧市',25);
+insert into City values(9,'文山壮族苗族自治州',25);
+insert into City values(10,'红河哈尼族彝族自治州',25);
+insert into City values(11,'西双版纳傣族自治州',25);
+insert into City values(12,'楚雄彝族自治州',25);
+insert into City values(13,'大理白族自治州',25);
+insert into City values(14,'德宏傣族景颇族自治州',25);
+insert into City values(15,'怒江傈傈族自治州',25);
+insert into City values(16,'迪庆藏族自治州',25);
+#--select * from City where pid=25 order by cid
+#----------------------------------------------------------------
+#--26青海省(2006年辖：1个地级市、1个地区、6个自治州；4个市辖区、2个县级市、30个县、7个自治县。)
+insert into City values(1,'西宁市',26);
+insert into City values(2,'海东地区',26);
+insert into City values(3,'海北藏族自治州',26);
+insert into City values(4,'黄南藏族自治州',26);
+insert into City values(5,'海南藏族自治州',26);
+insert into City values(6,'果洛藏族自治州',26);
+insert into City values(7,'玉树藏族自治州',26);
+insert into City values(8,'海西蒙古族藏族自治州',26);
+#--select * from City where pid=26 order by cid
+#----------------------------------------------------------------
+#--27陕西省(2006年辖：10个地级市；24个市辖区、3个县级市、80个县。)
+insert into City values(1,'西安市',27);
+insert into City values(2,'铜川市',27);
+insert into City values(3,'宝鸡市',27);
+insert into City values(4,'咸阳市',27);
+insert into City values(5,'渭南市',27);
+insert into City values(6,'延安市',27);
+insert into City values(7,'汉中市',27);
+insert into City values(8,'榆林市',27);
+insert into City values(9,'安康市',27);
+insert into City values(10,'商洛市',27);
+#--select * from City where pid=27 order by cid
+#----------------------------------------------------------------
+#--28广西壮族自治区(2005年辖：14个地级市；34个市辖区、7个县级市、56个县、12个自治县。)
+insert into City values(1,'南宁市',28);
+insert into City values(2,'柳州市',28);
+insert into City values(3,'桂林市',28);
+insert into City values(4,'梧州市',28);
+insert into City values(5,'北海市',28);
+insert into City values(6,'防城港市',28);
+insert into City values(7,'钦州市',28);
+insert into City values(8,'贵港市',28);
+insert into City values(9,'玉林市',28);
+insert into City values(10,'百色市',28);
+insert into City values(11,'贺州市',28);
+insert into City values(12,'河池市',28);
+insert into City values(13,'来宾市',28);
+insert into City values(14,'崇左市',28);
+#--select * from City where pid=28 order by cid
+#----------------------------------------------------------------
+#--29西藏自治区(2005年辖：1个地级市、6个地区；1个市辖区、1个县级市、71个县。)
+insert into City values(1,'拉萨市',29);
+insert into City values(2,'那曲地区',29);
+insert into City values(3,'昌都地区',29);
+insert into City values(4,'山南地区',29);
+insert into City values(5,'日喀则地区',29);
+insert into City values(6,'阿里地区',29);
+insert into City values(7,'林芝地区',29);
+#--select * from City where pid=29 order by cid
+#----------------------------------------------------------------
+#--30宁夏回族自治区
+insert into City values(1,'银川市',30);
+insert into City values(2,'石嘴山市',30);
+insert into City values(3,'吴忠市',30);
+insert into City values(4,'固原市',30);
+insert into City values(5,'中卫市',30);
+#--select * from City where pid=30 order by cid
+#----------------------------------------------------------------
+#--31新疆维吾尔自治区(2005年辖：2个地级市、7个地区、5个自治州；11个市辖区、20个县级市、62个县、6个自治县)
+insert into City values(1,'乌鲁木齐市',31);
+insert into City values(2,'克拉玛依市',31);
+insert into City values(3,'石河子市　',31);
+insert into City values(4,'阿拉尔市',31);
+insert into City values(5,'图木舒克市',31);
+insert into City values(6,'五家渠市',31);
+insert into City values(7,'吐鲁番市',31);
+insert into City values(8,'阿克苏市',31);
+insert into City values(9,'喀什市',31);
+insert into City values(10,'哈密市',31);
+insert into City values(11,'和田市',31);
+insert into City values(12,'阿图什市',31);
+insert into City values(13,'库尔勒市',31);
+insert into City values(14,'昌吉市　',31);
+insert into City values(15,'阜康市',31);
+insert into City values(16,'米泉市',31);
+insert into City values(17,'博乐市',31);
+insert into City values(18,'伊宁市',31);
+insert into City values(19,'奎屯市',31);
+insert into City values(20,'塔城市',31);
+insert into City values(21,'乌苏市',31);
+insert into City values(22,'阿勒泰市',31);
+#--select * from City where pid=31 order by cid
+#----------------------------------------------------------------
+#--32内蒙古自治区(2006年，辖：9个地级市、3个盟；21个市辖区、11个县级市、17个县、49个旗、3个自治旗。)
+insert into City values(1,'呼和浩特市',32);
+insert into City values(2,'包头市',32);
+insert into City values(3,'乌海市',32);
+insert into City values(4,'赤峰市',32);
+insert into City values(5,'通辽市',32);
+insert into City values(6,'鄂尔多斯市',32);
+insert into City values(7,'呼伦贝尔市',32);
+insert into City values(8,'巴彦淖尔市',32);
+insert into City values(9,'乌兰察布市',32);
+insert into City values(10,'锡林郭勒盟',32);
+insert into City values(11,'兴安盟',32);
+insert into City values(12,'阿拉善盟',32);
+#--select * from City where pid=32 order by 
+#----------------------------------------------------------------
+#--33澳门特别行政区
+insert into City values(1,'澳门特别行政区',33);
+#--select * from City where pid=33 order by cid
+#----------------------------------------------------------------
+#--34香港特别行政区
+insert into City values(1,'香港特别行政区',34);
+
+#####一次性添加数据
+#1.c_type表插入数据
+insert into c_type values(null,"蛋糕"),(null,"下午茶"),(null,"手信");
+#2.c_small_type表插入数据
+insert into c_small_type values(null,1,"鲜果蛋糕"),
+															 (null,1,"芝士慕斯蛋糕"),
+															 (null,1,"混合型蛋糕"),
+															 (null,1,"多层蛋糕"),
+															 (null,1,"栗子巧克力蛋糕"),
+															 (null,1,"节日蛋糕"),
+															 (null,2,"下午茶系列"),
+															 (null,3,"全国包邮");
+#3.c_dynamic表插入数据
+insert into c_dynamic values("幸福西饼荣获第五届深圳餐饮风云榜“最佳连锁外卖餐厅”","5月26日，由深圳广播电影电视集团、清华大学深圳研究生院、深圳市烹饪协会、深圳市饭店业协会主办，深圳广电优秀餐饮栏目《食客准备》承办的----第五届深圳餐饮风云榜在深圳广电集团大楼正式揭榜。","2017","07-25");
+insert into c_dynamic values("搭“幸福专列”享受小幸福，幸福西饼接地气的营销不过时","自7月12日起，幸福西饼“幸福专列”已在深圳地铁7号线正式上线。","2017","07-25");
+insert into c_dynamic values("幸福西饼助跑2017兰州国际马拉松赛","幸福西饼助跑2017兰州国际马拉松赛","2017","07-29");
+insert into c_dynamic values("幸福西饼与粉丝共度年会—2017迈向新里程","幸福西饼会","2017","07-31");
+insert into c_dynamic values("感恩广大粉丝支持，幸福西饼送出“双11”重磅福利","作为国内知名O2O蛋糕品牌之一的幸福西饼，“双11”期间不仅销售成绩喜人，庆祝的方式也是别具一格。","2017","11-27");
+insert into c_dynamic values("15201——2018年我们不忘初心、砥砺前行、迎接新挑战！","2018年1月12-14日，幸福西饼2018年年度经营规划会议暨2018头部城市签约仪式在厦门坤城汤岸温泉度假村召开。","2018","01-20");
+insert into c_dynamic values("助力抗击疫情","2020年2月4日，幸福商场通过深圳市青少年发展基金会向武汉市慈善会、深圳市慈善会共捐赠100万元人民币用于新型冠状病毒疫情防控工作。各个城市纷纷积极参与防控志愿工作，捐赠物资、善款，履行社会责任。","2020","03-05");
+insert into c_dynamic values("携手古天乐，探索新未来","2020年3月，签约古天乐为品牌形象代言人，并推出代言人定制系列蛋糕——幸福先生。","2020","03-05");
+
+#4.c_qual表插入数据
+insert into c_qual values(null,"幸福商城","深圳市幸福商城科技股份有限公司","深圳市盐田区沙头角街道田心社区沙盐路3018号盐田现代产业服务中心（一期）A座13D-3","袁火洪");
+insert into c_qual values(null,"厦门前埔商城","厦门市思明区刘枝花蛋糕店","厦门市思明区会展南二路536、538","刘枝花");
+insert into c_qual values(null,"重庆市开州幸福西饼站","幸福西饼（开州店）","重庆是开州区镇东街道镇东社区北环路1445号门市","冉启美");
+insert into c_qual values(null,"张家界配送站","张家界幸福西饼食品有限公司","湖南省张家界市永定区官黎坪鲤鱼池大庸路中心北巷3号","黎修华");
+insert into c_qual values(null,"眉山配送","东坡区麦香隆蛋糕店","四川省眉山市东坡区圣丰农产品批发市场一期B区13栋二楼1号","方惠国");
+insert into c_qual values(null,"南充配送站","南充市顺庆区明创商行","南充市顺庆区迎凤路3号3幢（嘉亿纺织厂内）","范远明");
+insert into c_qual values(null,"百色商城","百色市右江区幸宏福西饼店","百色市右江区城北一路16号星光大道7#楼第三层第C5号铺","黄文标");
+insert into c_qual values(null,"绵阳配送站","绵阳高新区富贵蛋糕店","四川省绵阳市高新区虹阳路9号绵阳市通友塑胶有限公司1栋2楼","彭子荣");
+insert into c_qual values(null,"攀枝花市仁和区建胜蛋糕店","攀枝花市仁和区建胜蛋糕店","攀枝花市仁和区迤沙拉大道555号8幢8号","李昌胜");
+insert into c_qual values(null,"重庆市长寿配送站","长寿区高高在尚糕点坊","重庆 重庆市 长寿区 长寿古镇E区8栋1-6","刘小娅");
+insert into c_qual values(null,"常德配送站","常德常德柳叶湖旅游度假区金凤川紫幸福西饼店","常德柳叶湖旅游度假区七里桥街道戴家岗社区金凤川紫小区3-06栋106号","陆婧");
+insert into c_qual values(null,"石家庄裕华配送中心","裕华区千层烘焙坊","河北省 石家庄市 裕华区 石家庄市裕华区仓兴路25号院","谢海燕");
+insert into c_qual values(null,"长安配送站","长安和畅烘焙坊","河北省 石家庄市 长安区 跃进路与金山街交叉口北边院内西北角","谢海燕");
+insert into c_qual values(null,"重庆市永川配送站","幸福西饼（永川店）","重庆市永川区兴南路298号1号楼2层20号","殷丽");
+insert into c_qual values(null,"桑植配送站","张家界幸福西饼食品有限公司桑植分公司","湖南省桑植县醴源镇和平街（梅尼超市斜对面）","石林");
+insert into c_qual values(null,"黄岛配送站","黄岛区幸福叁陆伍蛋糕店","山东省 青岛市 黄岛区 昆仑山南路79号天和小区南侧网点","张永刚");
+insert into c_qual values(null,"青岛配送中心","市北区墨行壹佰烘焙工作室","山东省 青岛市 市北区 青岛市北区合肥路街道同德路82号夹岭沟小区1号","耿磊");
+insert into c_qual values(null,"西宁站","西宁城西区奇之缘烘焙坊","青海省西宁市城西区盐港湖巷13号","俞顺");
+insert into c_qual values(null,"重庆市万州北滨兰亭配送站","幸福西饼（万州北滨兰亭店）","重庆市万州区石坪柱5号一层23号","李统钧");
+insert into c_qual values(null,"株洲配送站","芦淞区星福西饼商行","湖南省株洲市芦淞区古大桥村寺岭组罗帆私宅","严虎");
+insert into c_qual values(null,"长沙环保路站点","长沙市雨花区环喜糕点店","长沙市雨花区环保科技园达荣楼107号","肖涛");
+insert into c_qual values(null,"重庆涪陵配送站","涪陵区诺心蛋糕店","重庆市涪陵区荔枝乌江村7组","傅天马");
+insert into c_qual values(null,"渭南站","渭南市临渭区幸福美美蛋糕店","陕西省渭南市临渭区杜桥街道办事处铁二十局社区金水路天斗小区6号楼四楼","陈刚");
+insert into c_qual values(null,"万州厦门大道配送站","幸福西饼（万州厦门大道店）","重庆市万州区火车站商贸城11号楼C区号第一层1-2号","李统钧");
+insert into c_qual values(null,"醴陵配送站","醴陵市星福西饼屋","湖南市株洲市醴陵市阳三石街道泉湖路公路局旁","张智慧");
+insert into c_qual values(null,"长沙世纪城配送站","长沙市开福区福江糕点店","湖南省长沙市开福区芙蓉北路街道金泰路199号湘江世纪城瑞江苑市政道路层","肖涛");
+insert into c_qual values(null,"桂林商城","象山区卡诺尔西饼店","桂林市象山区东安街铁西新区42号7栋1-3铺","袁洁金");
+insert into c_qual values(null,"重庆江津配送站","江津区天淳食品加工坊","重庆市江津区德感工业园区东江路555号（金桥食品产业园C幢负1至层）","郑双江");
+insert into c_qual values(null,"长沙浏阳河配送站","长沙市芙蓉区深福蛋糕店","浏阳河配送站：长沙芙蓉区浏阳河路鑫科明珠十一栋4号","赵铁军");
+insert into c_qual values(null,"湘潭配送站","湘潭市雨湖区利顿唯尔蛋糕店	","湘潭市雨湖区中山街道民主西路经贸中心综合楼2号门面","韩广宁");
+insert into c_qual values(null,"永州配送站","永州市冷水滩区多滋味西饼屋","湖南省永州市冷水滩区凤凰园九巍大道与陶源路交汇处2号楼","文仓");
+insert into c_qual values(null,"长沙城西配送中心","长沙市望城区喜海蛋糕店","河西配送站：湖南省长沙市望城区月亮岛街道玫瑰园商业街10-12栋111","余晨");
+insert into c_qual values(null,"益阳配送站","益阳市赫山区幸福西饼店","益阳市赫山区龙岭工业园石头铺安置区","林伟");
+insert into c_qual values(null,"西充配送站","幸福西饼 西充店","四川省南充市西充县晋城镇天宝路109号附1号","任斌");
+insert into c_qual values(null,"邵阳","邵阳市大祥区幸福西饼邵阳店","湖南省邵阳市大祥区城南街道神滩社区13组","马海涛");
+insert into c_qual values(null,"衡阳配送站","衡阳市幸福小时光商贸发展有限公司","衡阳市蒸湘区光辉街互助小区46栋一楼","罗静");
+insert into c_qual values(null,"经济开发区幸福西饼店（怀化）","怀化幸福添添食品有限公司","湖南省怀化市怀化湖南小商品加工工业园B2栋308房","丁永琦");
+insert into c_qual values(null,"娄底配送站","娄底市经济技术开发区幸福源西饼加工店	","娄底市经济技术开发区西坪路创新大厦1楼（华南煤机中小企业服务中心）","廖飞");
+insert into c_qual values(null,"宁乡玉潭配送站","宁乡鑫喜糕点店","湖南省宁乡市玉潭街道新城社区新宜路169号","黄鑫");
+insert into c_qual values(null,"郴州配送站","郴州市北湖区龙女幸福西饼店","郴州市北湖区下湄桥街道龙女商业街（铜坑湖村6组）","刘立平");
+insert into c_qual values(null,"延安配送站","宝塔区巩氏烘焙坊","陕西省延安市宝塔区黄蒿湾鑫鑫家园9号楼a栋二层","巩涛");
+insert into c_qual values(null,"浏阳配送站","浏阳市集里开国西点店","浏阳市集里神仙坳社区大塘路189-191号","刘开国");
+insert into c_qual values(null,"榆林配送站","幸福西饼榆林店","陕西省榆林市横山区白界镇伟业新天地6号楼2层转角北","申民涛");
+insert into c_qual values(null,"毕节配送站","七星关区味臻蛋糕店","贵州省毕节市七星关区三板桥街道草海大道湖南商会B1栋4、5、6号商铺","韩中芬");
+insert into c_qual values(null,"玉林商城","玉林市玉州区初见西饼经营部","玉林市玉州区光明路35号","朱必先");
+
+truncate table goods;
+
+#####后序持续添加数据
+#1.goods插入数据
+#蛋糕系列
+insert into goods values(null,"莓莓红宝石",1,1,188,"灼灼繁华红宝石，莓莓白雪映成趣莓",CONCAT(@localPath,"images/cakes/strawberry/index.jpg"),CONCAT(@localPath,"images/cakes/strawberry/details/1.jpg"));
+insert into goods values(null,"水镜红宝石",1,1,198,"秋日尚飨红宝石，冰封水镜环翠云",CONCAT(@localPath,"images/cakes/Mirror/index.jpg"),CONCAT(@localPath,"images/cakes/Mirror/details/1.jpg"));
+insert into goods values(null,"【芒果季】暖阳芒芒",1,1,198,"新鲜芒果汁甜如蜜，满满一口阳光味道！",CONCAT(@localPath,"images\cakes\Warming\index.jpg"),CONCAT(@localPath,"images/cakes/Warming/details/1.jpg"));
+insert into goods values(null,"快乐鹿比",1,1,208,"快乐鹿比 儿童蛋糕",CONCAT(@localPath,"images/cakes/DeerThan/index.jpg"),CONCAT(@localPath,"images/cakes/DeerThan/details/1.jpg"));
+insert into goods values(null,"雪天鹅",1,1,198,"绵密奶油与榴莲果肉层层交叠，给味蕾来一场“轻雪般”的丝滑触感~",CONCAT(@localPath,"images/cakes/SnowSwan/index.jpg"),CONCAT(@localPath,"images/cakes/SnowSwan/details/1.jpg"));
+insert into goods values(null,"幸福先生【F先生】",1,1,228,"幸福先生【F先生】",CONCAT(@localPath,"images/cakes/Mr.F/index.jpg"),CONCAT(@localPath,"images/cakes/Mr.F/details/1.jpg"));
+insert into goods values(null,"幸福先生【Z先生】",1,1,228,"幸福先生【Z先生】",CONCAT(@localPath,"images/cakes/Mr.Z/index.jpg"),CONCAT(@localPath,"images/cakes/Mr.Z/details/1.jpg"));
+insert into goods values(null,"幸福先生【H先生】",1,1,228,"幸福先生【H先生】",CONCAT(@localPath,"images/cakes/Mr.H/index.jpg"),CONCAT(@localPath,"images/cakes/Mr.H/details/1.jpg"));
+insert into goods values(null,"草莓可丽多",1,1,208,"软糯千层手工煎制，新鲜草莓酸甜怡人",CONCAT(@localPath,"images/cakes/StrawberryLily/index.jpg"),CONCAT(@localPath,"images/cakes/StrawberryLily/details/1.jpg"));
+insert into goods values(null,"榴莲可丽多",1,1,218,"千层可丽饼 x 甜美草莓，搭配绵软蛋糕胚，温润细腻，风味绵长！",CONCAT(@localPath,"images/cakes/Durian/index.jpg"),CONCAT(@localPath,"images/cakes/Durian/index.jpg"));
+insert into goods values(null,"鲜芒可丽多",1,1,198,"手工千层皮&花漾鲜果，细腻Q滑，香醇曼妙！",CONCAT(@localPath,"images/cakes/Fresh/index.jpg"),CONCAT(@localPath,"images/cakes/Fresh/details/1.webp"));
+insert into goods values(null,"福寿临门",1,1,198,"双星贺寿颂福，拳拳孝心幸福陪伴",CONCAT(@localPath,"images/cakes/FushouLinmen/index.jpg"),CONCAT(@localPath,"images/cakes/FushouLinmen/details/1.jpg"));
+insert into goods values(null,"帅气满满",1,1,228,"男生款绅士蛋糕-鲜切芒果草莓铺满，清香浓郁",CONCAT(@localPath,"images/cakes/Handsome/index.jpg"),CONCAT(@localPath,"images/cakes/Handsome/details/1.webp"));
+insert into goods values(null,"榴莲季-戚风榴芒多",1,1,198,"闻香而动的榴莲芒果，訇然大开的快感！",CONCAT(@localPath,"images/cakes/QifengDurian/index.jpg"),CONCAT(@localPath,"images/cakes/QifengDurian/details/1.jpg"));
+insert into goods values(null,"花团锦簇 12磅---提前5小时预约配送",1,1,888,"欢聚时刻，花果相伴  庆典大蛋糕，庆祝文字可自定义",CONCAT(@localPath,"images/cakes/ElegantStyle/index.jpg"),CONCAT(@localPath,"images/cakes/ElegantStyle/details/1.jpg"));
+insert into goods values(null,"锦绣繁花 12磅---提前5小时预约配送",1,1,888,"",CONCAT(@localPath,"images/cakes/Samite/index.jpg"),CONCAT(@localPath,"images/cakes/Samite/details/1.jpg"));
+insert into goods values(null,"海盐脆脆芒芒",1,1,168,"暖黄淋面格外撩人，香软戚风入口蓬松!",CONCAT(@localPath,"images/cakes/SeaSalt/index.jpg"),CONCAT(@localPath,"images/cakes/SeaSalt/details/1.jpg"));
+insert into goods values(null,"6磅森林果乐",1,1,468,"6磅森林果乐",CONCAT(@localPath,"images/cakes/ForestFruit/index.jpg"),CONCAT(@localPath,"images/cakes/ForestFruit/details/1.jpg"));
+insert into goods values(null,"小猪佩奇",1,1,298,"小猪佩奇，正版授权儿童蛋糕",CONCAT(@localPath,"images/cakes/PeppaPig/index.jpg"),CONCAT(@localPath,"images/cakes/PeppaPig/details/1.jpg"));
+insert into goods values(null,"小猪乔治",1,1,298,"小猪乔治，正版授权儿童蛋糕",CONCAT(@localPath,"images/cakes/LittleGeorge/index.jpg"),CONCAT(@localPath,"images/cakes/LittleGeorge/details/1.jpg"));
+insert into goods values(null,"情意满满",1,1,238,"情意满满",CONCAT(@localPath,"images/cakes/Emotion/index.jpg"),CONCAT(@localPath,"images/cakes/Emotion/details/1.jpg"));
+insert into goods values(null,"雪山之恋",1,1,158,"雪山之恋",CONCAT(@localPath,"images/cakes/MountainLove/index.jpg"),CONCAT(@localPath,"images/cakes/MountainLove/details/1.jpg"));
+insert into goods values(null,"果果小熊",1,1,598,"相符小熊陪你，揭开美味谜底",CONCAT(@localPath,"images/cakes/FruitBear/index.jpg"),CONCAT(@localPath,"images/cakes/FruitBear/details/1.jpg"));
+insert into goods values(null,"草莓迷宫",1,1,368,"草莓迷宫",CONCAT(@localPath,"images/cakes/StrawberryMaze/index.jpg"),CONCAT(@localPath,"images/cakes/StrawberryMaze/details/1.jpg"));
+insert into goods values(null,"唇唇欲动",1,1,598,"轻启殷红心意，馨享双莓甜蜜",CONCAT(@localPath,"images/cakes/LipsSoul/index.jpg"),CONCAT(@localPath,"images/cakes/LipsSoul/details/1.jpg"));
+insert into goods values(null,"单恋黑森林",5,1,198,"单恋黑森林",CONCAT(@localPath,"images/cakes/BlackForest/index.jpg"),CONCAT(@localPath,"images/cakes/BlackForest/details/1.jpg"));
+insert into goods values(null,"汪汪队之阿奇（戚风款）",3,1,198,"汪汪队之阿奇（戚风款）",CONCAT(@localPath,"images/cakes/ArchieWoof/index.jpg"),CONCAT(@localPath,"images/cakes/ArchieWoof/details/1.jpg"));
+insert into goods values(null,"汪汪队之天天（戚风款）",3,1,228,"汪汪队之天天（戚风款）",CONCAT(@localPath,"images/cakes/WoofTeam/index.jpg"),CONCAT(@localPath,"images/cakes/WoofTeam/details/1.jpg"));
+insert into goods values(null,"海绵宝宝沙滩",1,1,298,"海绵宝宝沙滩",CONCAT(@localPath,"images/cakes/SpongeBob/index.jpg"),CONCAT(@localPath,"images/cakes/SpongeBob/details/1.jpg"));
+insert into goods values(null,"爱探险的朵拉",1,1,298,"爱探险的朵拉",CONCAT(@localPath,"images/cakes/Adventurer/index.jpg"),CONCAT(@localPath,"images/cakes/Adventurer/details/1.jpg"));
+insert into goods values(null,"三层寿比南山",4,1,999,"福如东海，寿比南山",CONCAT(@localPath,"images/cakes/Three-year/index.jpg"),CONCAT(@localPath,"images/cakes/Three-year/details/1.jpg"));
+insert into goods values(null,"香颂",1,1,168,"草莓慕斯将融未融，爱的味道不言而明",CONCAT(@localPath,"images/cakes/Fragrance/index.jpg"),CONCAT(@localPath,"images/cakes/Fragrance/details/1.jpg"));
+insert into goods values(null,"芒果茫茫蛋糕",1,1,198,"芒果慕斯加原味蛋糕夹层，表面铺满了金灿灿的新鲜芒果，浓郁的芒果香气",CONCAT(@localPath,"images/cakes/Mango/index.jpg"),CONCAT(@localPath,"images/cakes/Mango/details/1.jpg"));
+insert into goods values(null,"提拉米苏",2,1,198,"提拉米苏",CONCAT(@localPath,"images/cakes/Tiramisu/index.jpg"),CONCAT(@localPath,"images/cakes/Tiramisu/details/1.jpg"));
+insert into goods values(null,"全心全意	",1,1,158,"全心全意	",CONCAT(@localPath,"images/cakes/Wholeheartedly/index.jpg"),CONCAT(@localPath,"images/cakes/Wholeheartedly/details/1.jpg"));
+insert into goods values(null,"两情相悦	",3,1,198,"两情相悦	",CONCAT(@localPath,"images/cakes/Resonance/index.jpg"),CONCAT(@localPath,"images/cakes/Resonance/details/1.jpg"));
+insert into goods values(null,"盛放鲜果",1,1,208,"盛放鲜果",CONCAT(@localPath,"images/cakes/FreshFruit/index.jpg"),CONCAT(@localPath,"images/cakes/FreshFruit/details/1.jpg"));
+insert into goods values(null,"步步高升",4,1,999,"前程远大福满门，四季常青步步升。我们一直在努力，因为憧憬成功。",CONCAT(@localPath,"images/cakes/AttainEminence/index.jpg"),CONCAT(@localPath,"images/cakes/AttainEminence/details/1.jpg"));
+insert into goods values(null,"鹏程万里---提前7小时预约配送",4,1,1599,"大鹏一朝同风起，扶摇直上九万里。",CONCAT(@localPath,"images/cakes/BrilliantProspects/index.jpg"),CONCAT(@localPath,"images/cakes/BrilliantProspects/details/1.jpg"));
+insert into goods values(null,"浪漫果纷",1,1,168,"在浪漫的季节，邂逅缤纷的鲜果",CONCAT(@localPath,"images/cakes/RomanticFruit/index.jpg"),CONCAT(@localPath,"images/cakes/RomanticFruit/details/1.jpg"));
+insert into goods values(null,"寿比南山",4,1,218,"寿比南山",CONCAT(@localPath,"images/cakes/Longevity/index.jpg"),CONCAT(@localPath,"images/cakes/Longevity/details/1.jpg"));
+insert into goods values(null," 榴芒双拼",1,1,198,"当你在纠结于榴莲香雪或芒果茫茫时，我们为您推出一款特别的榴芒双拼。",CONCAT(@localPath,"images/cakes/DoubleSpell/index.jpg"),CONCAT(@localPath,"images/cakes/DoubleSpell/details/1.jpg"));
+insert into goods values(null,"榴莲香雪	",1,1,198,"醇香泰国金枕榴莲",CONCAT(@localPath,"images/cakes/DurianIncense/index.jpg"),CONCAT(@localPath,"images/cakes/DurianIncense/details/1.jpg"));
+insert into goods values(null,"四重奏蛋糕",3,1,208,"四重奏",CONCAT(@localPath,"images/cakes/Quarte	t/index.jpg"),CONCAT(@localPath,"images/cakes/Quartet/details/1.jpg"));
+insert into goods values(null,"鲜果嘉年华",1,1,.218,"鲜果嘉年华",CONCAT(@localPath,"images/cakes/FruitCarnival/index.jpg"),CONCAT(@localPath,"images/cakes/FruitCarnival/details/1.webp"));
+insert into goods values(null,"森林果乐",1,1,198,"森林果乐",CONCAT(@localPath,"images/cakes/Forest_Fruit/index.jpg"),CONCAT(@localPath,"images/cakes/Forest_Fruit/details/1.jpg"));
+#下午茶系列
+insert into goods values(null,"红宝石黑巧巧	",7,2,129,"红宝石黑巧巧	",CONCAT(@localPath,"images/AfternoonTea/RubyBlack/index.jpg"),CONCAT(@localPath,"images/AfternoonTea/RubyBlack/details/1.jpg"));
+insert into goods values(null,"芒果千层（6英寸）",7,2,129,"大颗果肉沁甜多汁，层层香软入口丝滑",CONCAT(@localPath,"images/AfternoonTea/MangoLayer/index.jpg"),CONCAT(@localPath,"images/AfternoonTea/MangoLayer/details/1.jpg"));
+insert into goods values(null,"【芒果季】冰语琥珀",7,2,129,"甜润多汁鲜芒与清凉薄荷的结合",CONCAT(@localPath,"images/AfternoonTea/IceAmber/index.jpg"),CONCAT(@localPath,"images/AfternoonTea/IceAmber/details/1.jpg"));
+insert into goods values(null,"【哈密瓜季】清风玉露",7,2,129,"清风拂玉露，时令蜜瓜甜",CONCAT(@localPath,"images/AfternoonTea/ClearWindJade/index.jpg"),CONCAT(@localPath,"images/AfternoonTea/ClearWindJade/details/1.jpg"));
+insert into goods values(null,"泰式下午茶",7,2,199,"泰新鲜，泰幸福；慢享清风沉醉的下午茶时光~",CONCAT(@localPath,"images/AfternoonTea/ThaiAfternoonTea/index.jpg"),CONCAT(@localPath,"images/AfternoonTea/ThaiAfternoonTea/details/1.jpg"));
+insert into goods values(null,"鲜莓拿破仑",7,2,129,"法式起酥层层酥脆	，新鲜草莓清新甜美",CONCAT(@localPath,"images/AfternoonTea/Fresh Berry/index.jpg"),CONCAT(@localPath,"images/AfternoonTea/Fresh Berry/details/1.jpg"));
+insert into goods values(null,"手工现煎草莓千层",7,2,149,"纤薄柔嫩，入口即化",CONCAT(@localPath,"images/AfternoonTea/Hand - Fried/index.jpg"),CONCAT(@localPath,"images/AfternoonTea/Hand - Fried/details/1.jpg"));
+insert into goods values(null,"依恋",7,2,149,"蓝莓or芒果果酱的舌尖梦境，一口沉醉 ~",CONCAT(@localPath,"images/AfternoonTea/Attachment/index.jpg"),CONCAT(@localPath,"images/AfternoonTea/Attachment/details/1.webp"));
+insert into goods values(null,"烈焰莓莓",7,2,139,"初尝是亲吻初雪的微凉，回味是馥郁与清甜的交织",CONCAT(@localPath,"images/AfternoonTea/FlameBlackberry/index.jpg"),CONCAT(@localPath,"images/AfternoonTea/FlameBlackberry/details/1.jpg"));
+insert into goods values(null,"甜心芒芒",7,2,139,"脚步与味蕾同时抵达中南亚，鲜切果肉层层叠加",CONCAT(@localPath,"images/AfternoonTea/Sweetheart/index.jpg"),CONCAT(@localPath,"images/AfternoonTea/Sweetheart/details/1.jpg"));
+insert into goods values(null,"幸福甜品台-白色优雅",7,2,1299,"盛宴定制，花样甜品仪式加满，适合29-45人~",CONCAT(@localPath,"images/AfternoonTea/HappinessDessert/index.jpg"),CONCAT(@localPath,"images/AfternoonTea/HappinessDessert/details/1.jpg"));
+insert into goods values(null,"幸福甜品台-绿色清新",7,2,1299,"盛宴定制，花样甜品仪式加满，适合29-45人~",CONCAT(@localPath,"images/AfternoonTea/Table - Green/index.jpg"),CONCAT(@localPath,"images/AfternoonTea/Table - Green/details/1.jpg"));
+insert into goods values(null,"圆形现煎榴芒双拼千层",7,2,159,"圆形现煎榴芒双拼千层",CONCAT(@localPath,"images/AfternoonTea/Circular/index.jpg"),CONCAT(@localPath,"images/AfternoonTea/Circular/details/1.jpg"));
+insert into goods values(null,"可心蓝莓",7,2,139," 可心蓝莓",CONCAT(@localPath,"images/AfternoonTea/Blueberry/index.jpg"),CONCAT(@localPath,"images/AfternoonTea/Blueberry/details/1.webp"));
+insert into goods values(null,"圆形现煎皮芒果千层",7,2,149,"手工自煎皮，美味值得尝~",CONCAT(@localPath,"/images/AfternoonTea/RoundFreshly/index.jpg"),CONCAT(@localPath,"images/AfternoonTea/RoundFreshly/details/1.jpg"));
+insert into goods values(null,"圆形现煎皮榴莲千层",7,2,149,"手工自煎皮，美味值得尝",CONCAT(@localPath,"images/AfternoonTea/DurianQianceng/index.jpg"),CONCAT(@localPath,"images/AfternoonTea/DurianQianceng/details/1.jpg"));
+insert into goods values(null,"花镜",7,2,159,"六味臻享，轻焙芝士 & 精研慕斯的丝滑",CONCAT(@localPath,"images/AfternoonTea/ConvexGlass/index.jpg"),CONCAT(@localPath,"images/AfternoonTea/ConvexGlass/details/1.jpg"));
+insert into goods values(null,"英式下午茶",7,2,198,"情迷英格兰风雅，午后把茶言欢。钟敲四下，一切为下午茶停下。省去高额旅费",CONCAT(@localPath,"images/AfternoonTea/EnglishAfternoonTea/index.jpg"),CONCAT(@localPath,"images/AfternoonTea/EnglishAfternoonTea/details/1.jpg"));
+insert into goods values(null,"雪顶榴心",7,2,129,"温暖的午后，来一份浓郁的榴莲，一杯红茶，有个美好的下午茶时光。",CONCAT(@localPath,"images/AfternoonTea/Pomegranate/index.jpg"),CONCAT(@localPath,"images/AfternoonTea/Pomegranate/details/1.jpg"));
+insert into goods values(null,"芒果拿破仑",7,2,109,"绵密的奶油与香甜的芒果邂逅，举世无双",CONCAT(@localPath,"images/AfternoonTea/MangoNapoleon/index.jpg"),CONCAT(@localPath,"images/AfternoonTea/MangoNapoleon/index.jpg"));
+insert into goods values(null,"幸福茶油酥",8,3,39,"幸福茶油酥",CONCAT(@localPath,"images/Souvenir/HappinessTea/index.jpg"),CONCAT(@localPath,"images/Souvenir/HappinessTea/details/1.jpg"));
+insert into goods values(null,"榴莲饼",8,3,39,"专为榴莲控打造的榴莲饼",CONCAT(@localPath,"images/Souvenir/DurianCake/index.png"),CONCAT(@localPath,"images/Souvenir/DurianCake/details/1.jpg"));
+insert into goods values(null,"幸福大礼盒",8,3,188,"幸福大礼盒",CONCAT(@localPath,"images/Souvenir/HappinessGift/index.png"),CONCAT(@localPath,"images/Souvenir/HappinessGift/details/1.jpg"));
+insert into goods values(null,"什锦糖瓜",8,3,38,"什锦糖瓜",CONCAT(@localPath,"images/Souvenir/AssortedTangGua/index.png"),CONCAT(@localPath,"images/Souvenir/AssortedTangGua/details/1.jpg"));
+insert into goods values(null,"海鲜饼",8,3,69,"海鲜饼",CONCAT(@localPath,"images/Souvenir/SeafoodPie/index.png"),CONCAT(@localPath,"images/Souvenir/SeafoodPie/details/1.jpg"));
+insert into goods values(null,"桂圆酥",8,3,49,"桂圆酥",CONCAT(@localPath,"images/Souvenir/LonganCake/index.png"),CONCAT(@localPath,"images/Souvenir/LonganCake/details/1.jpg"));
+insert into goods values(null,"绿豆饼",8,3,39,"绿豆饼",CONCAT(@localPath,"images/Souvenir/GreenBean/index.png"),CONCAT(@localPath,"images/Souvenir/GreenBean/details/1.jpg"));
+insert into goods values(null,"脆糖瓜",8,3,68,"脆糖瓜",CONCAT(@localPath,"images/Souvenir/CrispyTangGua/index.png"),CONCAT(@localPath,"images/Souvenir/CrispyTangGua/details/1.jpg"));
+insert into goods values(null,"软糖瓜",8,3,68,"软糖瓜",CONCAT(@localPath,"images/Souvenir/JellyMelon/index.png"),CONCAT(@localPath,"images/Souvenir/JellyMelon/details/1.jpg"));
+
+
+#2.good_specifications表添加数据
+#蛋糕系列
+#莓莓红宝石
+insert into good_specifications values(1,"2磅",188);
+#水镜红宝石
+insert into good_specifications values(2,"2磅",198);
+#【芒果季】暖阳芒芒
+insert into good_specifications values(3,"2磅",198);
+insert into good_specifications values(3,"3磅",258);
+insert into good_specifications values(3,"4磅",308);
+#快乐鹿比
+insert into good_specifications values(4,"2磅",208);
+#雪天鹅
+insert into good_specifications values(5,"1.5磅",198);
+#幸福先生【F先生】
+insert into good_specifications values(6,"2磅",288);
+#幸福先生【Z先生】
+insert into good_specifications values(7,"2磅",288);
+#幸福先生【H先生】
+insert into good_specifications values(8,"2磅",288);
+#草莓可丽多
+insert into good_specifications values(9,"2磅",208);
+#榴莲可丽多
+insert into good_specifications values(10,"2磅",218);
+#鲜芒可丽多
+insert into good_specifications values(11,"2磅",198);
+#福寿临门
+insert into good_specifications values(12,"2磅",198);
+insert into good_specifications values(12,"3磅",258);
+insert into good_specifications values(12,"4磅",308);
+#帅气满满
+insert into good_specifications values(13,"2磅",228);
+#榴莲季-戚风榴芒多
+insert into good_specifications values(14,"2磅",198);
+insert into good_specifications values(14,"3磅",268);
+insert into good_specifications values(14,"4磅",328);
+#花团锦簇 12磅---提前5小时预约配送
+insert into good_specifications values(15,"12磅",888);
+#锦绣繁花 12磅---提前5小时预约配送
+insert into good_specifications values(16,"12磅",888);
+#海盐脆脆芒芒
+insert into good_specifications values(17,"1磅",168);
+insert into good_specifications values(17,"2磅",198);
+insert into good_specifications values(17,"3磅",228);
+insert into good_specifications values(17,"4磅",258);
+#6磅森林果乐
+insert into good_specifications values(18,"6磅",468);
+#小猪佩奇
+insert into good_specifications values(19,"2磅",298);
+insert into good_specifications values(19,"6磅",538);
+#小猪乔治
+insert into good_specifications values(20,"2磅",298);
+#情意满满
+insert into good_specifications values(21,"2磅",238);
+#雪山之恋
+insert into good_specifications values(22,"5寸",158);
+#果果小熊
+insert into good_specifications values(23,"3磅",598);
+#草莓迷宫
+insert into good_specifications values(24,"2磅",368);
+#唇唇欲动
+insert into good_specifications values(25,"2磅",598);
+#单恋黑森林
+insert into good_specifications values(26,"2磅",198);
+insert into good_specifications values(26,"3磅",258);
+insert into good_specifications values(26,"4磅",308);
+#汪汪队之阿奇（戚风款）
+insert into good_specifications values(27,"1磅",198);
+insert into good_specifications values(27,"2磅",258);
+insert into good_specifications values(27,"6磅",308);
+#汪汪队之天天（戚风款）
+insert into good_specifications values(28,"1磅",228);
+insert into good_specifications values(28,"2磅",298);
+insert into good_specifications values(28,"6磅",538);
+#海绵宝宝沙滩
+insert into good_specifications values(29,"2磅",298);
+#爱探险的朵拉
+insert into good_specifications values(30,"2磅",298);
+#三层寿比南山
+insert into good_specifications values(31,"15磅",999);
+#香颂
+insert into good_specifications values(32,"1磅",168);
+insert into good_specifications values(32,"2磅",208);
+insert into good_specifications values(32,"3磅",258);
+insert into good_specifications values(32,"4磅",308);
+#芒果茫茫蛋糕
+insert into good_specifications values(33,"2磅",198);
+insert into good_specifications values(33,"3磅",258);
+insert into good_specifications values(33,"4磅",318);
+#提拉米苏
+insert into good_specifications values(34,"2磅",198);
+insert into good_specifications values(34,"3磅",258);
+insert into good_specifications values(34,"4磅",308);
+#全心全意	
+insert into good_specifications values(35,"1磅",158);
+insert into good_specifications values(35,"2磅",198);
+insert into good_specifications values(35,"3磅",258);
+insert into good_specifications values(35,"4磅",298);
+insert into good_specifications values(35,"6磅",468);
+#两情相悦	
+insert into good_specifications values(36,"2磅",198);
+insert into good_specifications values(36,"3磅",268);
+#盛放鲜果
+insert into good_specifications values(37,"2磅",208);
+insert into good_specifications values(37,"3磅",258);
+insert into good_specifications values(37,"4磅",308);
+#步步高升
+insert into good_specifications values(38,"15磅",999);
+#鹏程万里---提前7小时预约配送
+insert into good_specifications values(39,"30磅",1599);
+#浪漫果纷
+insert into good_specifications values(40,"1磅",168);
+insert into good_specifications values(40,"2磅",208);
+insert into good_specifications values(40,"3磅",258);
+insert into good_specifications values(40,"4磅",308);
+insert into good_specifications values(40,"6磅",468);
+#寿比南山
+insert into good_specifications values(41,"2磅",218);
+insert into good_specifications values(41,"3磅",278);
+insert into good_specifications values(41,"4磅",328);
+# 榴芒双拼
+insert into good_specifications values(42,"2磅",198);
+insert into good_specifications values(42,"3磅",258);
+insert into good_specifications values(42,"4磅",318);
+insert into good_specifications values(42,"6磅",468);
+#榴莲香雪	
+insert into good_specifications values(43,"2磅",198);
+insert into good_specifications values(43,"3磅",258);
+insert into good_specifications values(43,"4磅",308);
+#四重奏蛋糕
+insert into good_specifications values(44,"2磅",208);
+insert into good_specifications values(44,"3磅",268);
+insert into good_specifications values(44,"4磅",318);
+insert into good_specifications values(44,"6磅",468);
+#鲜果嘉年华
+insert into good_specifications values(45,"2磅",218);
+insert into good_specifications values(45,"2磅",278);
+#森林果乐
+insert into good_specifications values(46,"2磅",198);
+insert into good_specifications values(46,"3磅",258);
+insert into good_specifications values(46,"4磅",298);
+insert into good_specifications values(46,"8磅",468);
+
+
+#下午茶系列
+#红宝石黑巧巧	
+insert into good_specifications values(47,"1盒",129);
+#芒果千层（6英寸）
+insert into good_specifications values(48,"1盒",129);
+#【芒果季】冰语琥珀
+insert into good_specifications values(49,"1盒",129);
+#【哈密瓜季】清风玉露
+insert into good_specifications values(50,"1盒",129);
+#泰式下午茶
+insert into good_specifications values(51,"1套",199);
+#鲜莓拿破仑
+insert into good_specifications values(52,"1盒",129);
+#手工现煎草莓千层
+insert into good_specifications values(53,"1盒",149);
+#依恋
+insert into good_specifications values(54,"1盒",149);
+#烈焰莓莓
+insert into good_specifications values(55,"1盒",139);
+#甜心芒芒
+insert into good_specifications values(56,"1盒",139);
+#幸福甜品台-白色优雅（免费摆台）（押金300元）
+insert into good_specifications values(57,"1套",1299);
+#幸福甜品台-绿色清新（免费摆台）（押金300元）
+insert into good_specifications values(58,"1套",1299);
+#圆形现煎榴芒双拼千层
+insert into good_specifications values(59,"1盒",159);
+#可心蓝莓
+insert into good_specifications values(60,"1盒",139);
+#圆形现煎皮芒果千层
+insert into good_specifications values(61,"1盒",149);
+#圆形现煎皮榴莲千层
+insert into good_specifications values(62,"1盒",149);
+#花镜
+insert into good_specifications values(63,"1盒",159);
+#英式下午茶
+insert into good_specifications values(64,"1盒",198);
+#雪顶榴心
+insert into good_specifications values(65,"1盒",129);
+#芒果拿破仑
+insert into good_specifications values(66,"1盒",109);
+
+
+
+#手信系列
+#幸福茶油酥
+insert into good_specifications values(67,"200克",39);
+insert into good_specifications values(67,"675克",99);
+#榴莲饼
+insert into good_specifications values(68,"1盒",39);
+#幸福大礼盒
+insert into good_specifications values(69,"1盒",188);
+#什锦糖瓜
+insert into good_specifications values(70,"1包",38);
+insert into good_specifications values(70,"2包",60);
+#海鲜饼
+insert into good_specifications values(71,"12枚",69);
+#桂圆酥
+insert into good_specifications values(72,"6枚",49);
+insert into good_specifications values(72,"9枚",69);
+insert into good_specifications values(72,"12枚",79);
+#绿豆饼
+insert into good_specifications values(73,"6枚",39);
+insert into good_specifications values(73,"6枚",59);
+insert into good_specifications values(73,"6枚",69);
+#脆糖瓜
+insert into good_specifications values(74,"2包",68);
+insert into good_specifications values(74,"3包",88);
+insert into good_specifications values(74,"4包",108);
+#软糖瓜
+insert into good_specifications values(75,"2包",68);
+insert into good_specifications values(75,"3包",88);
+insert into good_specifications values(75,"4包",108);
+
+
+
+
+
+
+
+#3.good_gallery表插入数据
+#蛋糕系列
+#莓莓红宝石
+insert into good_gallery values(1,CONCAT(@localPath,"images/cakes/StrawBerry/banner/1.jpg"));
+insert into good_gallery values(1,CONCAT(@localPath,"images/cakes/StrawBerry/banner/2.jpg"));
+insert into good_gallery values(1,CONCAT(@localPath,"images/cakes/StrawBerry/banner/3.jpg"));
+insert into good_gallery values(1,CONCAT(@localPath,"images/cakes/StrawBerry/banner/4.jpg"));
+#水镜红宝石
+insert into good_gallery values(2,CONCAT(@localPath,"images/cakes/Mirror/banner/1.jpg"));
+insert into good_gallery values(2,CONCAT(@localPath,"images/cakes/Mirror/banner/2.jpg"));
+insert into good_gallery values(2,CONCAT(@localPath,"images/cakes/Mirror/banner/3.jpg"));
+insert into good_gallery values(2,CONCAT(@localPath,"images/cakes/Mirror/banner/4.jpg"));
+#【芒果季】暖阳芒芒
+insert into good_gallery values(3,CONCAT(@localPath,"images/cakes/Warming/banner/1.jpg"));
+insert into good_gallery values(3,CONCAT(@localPath,"images/cakes/Warming/banner/2.jpg"));
+insert into good_gallery values(3,CONCAT(@localPath,"images/cakes/Warming/banner/3.jpg"));
+insert into good_gallery values(3,CONCAT(@localPath,"images/cakes/Warming/banner/4.jpg"));
+#快乐鹿比
+insert into good_gallery values(4,CONCAT(@localPath,"images/cakes/DeerThan/banner/1.jpg"));
+insert into good_gallery values(4,CONCAT(@localPath,"images/cakes/DeerThan/banner/2.jpg"));
+insert into good_gallery values(4,CONCAT(@localPath,"images/cakes/DeerThan/banner/3.jpg"));
+insert into good_gallery values(4,CONCAT(@localPath,"images/cakes/DeerThan/banner/4.jpg"));
+#雪天鹅
+insert into good_gallery values(5,CONCAT(@localPath,"images/cakes/SnowSwan/banner/1.jpg"));
+insert into good_gallery values(5,CONCAT(@localPath,"images/cakes/SnowSwan/banner/2.jpg"));
+insert into good_gallery values(5,CONCAT(@localPath,"images/cakes/SnowSwan/banner/3.jpg"));
+insert into good_gallery values(5,CONCAT(@localPath,"images/cakes/SnowSwan/banner/4.jpg"));
+#幸福先生【F先生】
+insert into good_gallery values(6,CONCAT(@localPath,"images/cakes/Mr.F/banner/1.jpg"));
+insert into good_gallery values(6,CONCAT(@localPath,"images/cakes/Mr.F/banner/2.jpg"));
+insert into good_gallery values(6,CONCAT(@localPath,"images/cakes/Mr.F/banner/3.jpg"));
+insert into good_gallery values(6,CONCAT(@localPath,"images/cakes/Mr.F/banner/4.jpg"));
+#幸福先生【Z先生】
+insert into good_gallery values(7,CONCAT(@localPath,"images/cakes/Mr.Z/banner/1.jpg"));
+insert into good_gallery values(7,CONCAT(@localPath,"images/cakes/Mr.Z/banner/2.jpg"));
+insert into good_gallery values(7,CONCAT(@localPath,"images/cakes/Mr.Z/banner/3.jpg"));
+insert into good_gallery values(7,CONCAT(@localPath,"images/cakes/Mr.Z/banner/4.jpg"));
+#幸福先生【H先生】
+insert into good_gallery values(8,CONCAT(@localPath,"images/cakes/Mr.H/banner/1.jpg"));
+insert into good_gallery values(8,CONCAT(@localPath,"images/cakes/Mr.H/banner/2.jpg"));
+insert into good_gallery values(8,CONCAT(@localPath,"images/cakes/Mr.H/banner/3.jpg"));
+insert into good_gallery values(8,CONCAT(@localPath,"images/cakes/Mr.H/banner/4.jpg"));
+#草莓可丽多
+insert into good_gallery values(9,CONCAT(@localPath,"images/cakes/StrawberryLily/banner/1.jpg"));
+insert into good_gallery values(9,CONCAT(@localPath,"images/cakes/StrawberryLily/banner/2.jpg"));
+insert into good_gallery values(9,CONCAT(@localPath,"images/cakes/StrawberryLily/banner/3.jpg"));
+insert into good_gallery values(9,CONCAT(@localPath,"images/cakes/StrawberryLily/banner/4.jpg"));
+#榴莲可丽多
+insert into good_gallery values(10,CONCAT(@localPath,"images/cakes/Durian/banner/1.jpg"));
+insert into good_gallery values(10,CONCAT(@localPath,"images/cakes/Durian/banner/2.jpg"));
+insert into good_gallery values(10,CONCAT(@localPath,"images/cakes/Durian/banner/3.jpg"));
+insert into good_gallery values(10,CONCAT(@localPath,"images/cakes/Durian/banner/4.jpg"));
+#鲜芒可丽多
+insert into good_gallery values(11,CONCAT(@localPath,"images/cakes/Fresh/banner/1.jpg"));
+insert into good_gallery values(11,CONCAT(@localPath,"images/cakes/Fresh/banner/2.jpg"));
+insert into good_gallery values(11,CONCAT(@localPath,"images/cakes/Fresh/banner/3.jpg"));
+insert into good_gallery values(11,CONCAT(@localPath,"images/cakes/Fresh/banner/4.jpg"));
+#福寿临门
+insert into good_gallery values(12,CONCAT(@localPath,"images/cakes/FushouLinmen/banner/1.jpg"));
+insert into good_gallery values(12,CONCAT(@localPath,"images/cakes/FushouLinmen/banner/2.jpg"));
+insert into good_gallery values(12,CONCAT(@localPath,"images/cakes/FushouLinmen/banner/3.jpg"));
+insert into good_gallery values(12,CONCAT(@localPath,"images/cakes/FushouLinmen/banner/4.jpg"));
+#帅气满满
+insert into good_gallery values(13,CONCAT(@localPath,"images/cakes/Handsome/banner/1.jpg"));
+insert into good_gallery values(13,CONCAT(@localPath,"images/cakes/Handsome/banner/2.jpg"));
+insert into good_gallery values(13,CONCAT(@localPath,"images/cakes/Handsome/banner/3.jpg"));
+insert into good_gallery values(13,CONCAT(@localPath,"images/cakes/Handsome/banner/4.jpg"));
+#榴莲季-戚风榴芒多
+insert into good_gallery values(14,CONCAT(@localPath,"images/cakes/QifengDurian/banner/1.jpg"));
+insert into good_gallery values(14,CONCAT(@localPath,"images/cakes/QifengDurian/banner/2.jpg"));
+insert into good_gallery values(14,CONCAT(@localPath,"images/cakes/QifengDurian/banner/3.jpg"));
+insert into good_gallery values(14,CONCAT(@localPath,"images/cakes/QifengDurian/banner/4.jpg"));
+#花团锦簇 12磅---提前5小时预约配送
+insert into good_gallery values(15,CONCAT(@localPath,"images/cakes/ElegantStyle/banner/1.jpg"));
+insert into good_gallery values(15,CONCAT(@localPath,"images/cakes/ElegantStyle/banner/2.jpg"));
+insert into good_gallery values(15,CONCAT(@localPath,"images/cakes/ElegantStyle/banner/3.jpg"));
+#锦绣繁花 12磅---提前5小时预约配送
+insert into good_gallery values(16,CONCAT(@localPath,"images/cakes/Samite/banner/1.jpg"));
+insert into good_gallery values(16,CONCAT(@localPath,"images/cakes/Samite/banner/2.jpg"));
+insert into good_gallery values(16,CONCAT(@localPath,"images/cakes/Samite/banner/3.jpg"));
+#海盐脆脆芒芒
+insert into good_gallery values(17,CONCAT(@localPath,"images/cakes/SeaSalt/banner/1.jpg"));
+insert into good_gallery values(17,CONCAT(@localPath,"images/cakes/SeaSalt/banner/2.jpg"));
+insert into good_gallery values(17,CONCAT(@localPath,"images/cakes/SeaSalt/banner/3.jpg"));
+#6磅森林果乐
+insert into good_gallery values(18,CONCAT(@localPath,"images/cakes/ForestFruit/banner/1.jpg"));
+insert into good_gallery values(18,CONCAT(@localPath,"images/cakes/ForestFruit/banner/2.jpg"));
+#小猪佩奇
+insert into good_gallery values(19,CONCAT(@localPath,"images/cakes/PeppaPig/banner/1.jpg"));
+insert into good_gallery values(19,CONCAT(@localPath,"images/cakes/PeppaPig/banner/2.jpg"));
+insert into good_gallery values(19,CONCAT(@localPath,"images/cakes/PeppaPig/banner/3.jpg"));
+#小猪乔治
+insert into good_gallery values(20,CONCAT(@localPath,"images/cakes/LittleGeorge/banner/1.jpg"));
+insert into good_gallery values(20,CONCAT(@localPath,"images/cakes/LittleGeorge/banner/2.jpg"));
+insert into good_gallery values(20,CONCAT(@localPath,"images/cakes/LittleGeorge/banner/3.jpg"));
+insert into good_gallery values(20,CONCAT(@localPath,"images/cakes/LittleGeorge/banner/4.jpg"));
+#情意满满
+insert into good_gallery values(21,CONCAT(@localPath,"images/cakes/Emotion/banner/1.jpg"));
+insert into good_gallery values(21,CONCAT(@localPath,"images/cakes/Emotion/banner/2.jpg"));
+insert into good_gallery values(21,CONCAT(@localPath,"images/cakes/Emotion/banner/3.jpg"));
+insert into good_gallery values(21,CONCAT(@localPath,"images/cakes/Emotion/banner/4.jpg"));
+#雪山之恋
+insert into good_gallery values(22,CONCAT(@localPath,"images/cakes/MountainLove/banner/1.jpg"));
+insert into good_gallery values(22,CONCAT(@localPath,"images/cakes/MountainLove/banner/2.jpg"));
+insert into good_gallery values(22,CONCAT(@localPath,"images/cakes/MountainLove/banner/3.jpg"));
+insert into good_gallery values(22,CONCAT(@localPath,"images/cakes/MountainLove/banner/4.jpg"));
+#果果小熊
+insert into good_gallery values(23,CONCAT(@localPath,"images/cakes/FruitBear/banner/1.jpg"));
+insert into good_gallery values(23,CONCAT(@localPath,"images/cakes/FruitBear/banner/2.jpg"));
+insert into good_gallery values(23,CONCAT(@localPath,"images/cakes/FruitBear/banner/3.jpg"));
+insert into good_gallery values(23,CONCAT(@localPath,"images/cakes/FruitBear/banner/4.jpg"));
+#草莓迷宫
+insert into good_gallery values(24,CONCAT(@localPath,"images/cakes/StrawberryMaze/banner/1.jpg"));
+insert into good_gallery values(24,CONCAT(@localPath,"images/cakes/StrawberryMaze/banner/2.jpg"));
+insert into good_gallery values(24,CONCAT(@localPath,"images/cakes/StrawberryMaze/banner/3.jpg"));
+insert into good_gallery values(24,CONCAT(@localPath,"images/cakes/StrawberryMaze/banner/4.jpg"));
+#唇唇欲动
+insert into good_gallery values(25,CONCAT(@localPath,"images/cakes/LipsSoul/banner/1.jpg"));
+insert into good_gallery values(25,CONCAT(@localPath,"images/cakes/LipsSoul/banner/2.jpg"));
+insert into good_gallery values(25,CONCAT(@localPath,"images/cakes/LipsSoul/banner/3.jpg"));
+insert into good_gallery values(25,CONCAT(@localPath,"images/cakes/LipsSoul/banner/4.jpg"));
+#单恋黑森林
+insert into good_gallery values(26,CONCAT(@localPath,"images/cakes/BlackForest/banner/1.jpg"));
+insert into good_gallery values(26,CONCAT(@localPath,"images/cakes/BlackForest/banner/2.jpg"));
+insert into good_gallery values(26,CONCAT(@localPath,"images/cakes/BlackForest/banner/3.jpg"));
+insert into good_gallery values(26,CONCAT(@localPath,"images/cakes/BlackForest/banner/4.jpg"));
+#汪汪队之阿奇（戚风款）
+insert into good_gallery values(27,CONCAT(@localPath,"images/cakes/ArchieWoof/banner/1.jpg"));
+insert into good_gallery values(27,CONCAT(@localPath,"images/cakes/ArchieWoof/banner/2.jpg"));
+insert into good_gallery values(27,CONCAT(@localPath,"images/cakes/ArchieWoof/banner/3.jpg"));
+#汪汪队之天天（戚风款）
+insert into good_gallery values(28,CONCAT(@localPath,"images/cakes/WoofTeam/banner/1.jpg"));
+insert into good_gallery values(28,CONCAT(@localPath,"images/cakes/WoofTeam/banner/2.jpg"));
+insert into good_gallery values(28,CONCAT(@localPath,"images/cakes/WoofTeam/banner/3.jpg"));
+#海绵宝宝沙滩
+insert into good_gallery values(29,CONCAT(@localPath,"images/cakes/SpongeBob/banner/1.jpg"));
+insert into good_gallery values(29,CONCAT(@localPath,"images/cakes/SpongeBob/banner/2.jpg"));
+insert into good_gallery values(29,CONCAT(@localPath,"images/cakes/SpongeBob/banner/3.jpg"));
+insert into good_gallery values(29,CONCAT(@localPath,"images/cakes/SpongeBob/banner/4.jpg"));
+#爱探险的朵拉
+insert into good_gallery values(30,CONCAT(@localPath,"images/cakes/Adventurer/banner/1.jpg"));
+insert into good_gallery values(30,CONCAT(@localPath,"images/cakes/Adventurer/banner/2.jpg"));
+insert into good_gallery values(30,CONCAT(@localPath,"images/cakes/Adventurer/banner/3.jpg"));
+insert into good_gallery values(30,CONCAT(@localPath,"images/cakes/Adventurer/banner/44.jpg"));
+#三层寿比南山
+insert into good_gallery values(31,CONCAT(@localPath,"images/cakes/Three-year/banner/1.jpg"));
+insert into good_gallery values(31,CONCAT(@localPath,"images/cakes/Three-year/banner/2.jpg"));
+insert into good_gallery values(31,CONCAT(@localPath,"images/cakes/Three-year/banner/3.jpg"));
+insert into good_gallery values(31,CONCAT(@localPath,"images/cakes/Three-year/banner/4.jpg"));
+#香颂
+insert into good_gallery values(32,CONCAT(@localPath,"images/cakes/Fragrance/banner/1.jpg"));
+insert into good_gallery values(32,CONCAT(@localPath,"images/cakes/Fragrance/banner/2.jpg"));
+insert into good_gallery values(32,CONCAT(@localPath,"images/cakes/Fragrance/banner/3.jpg"));
+insert into good_gallery values(32,CONCAT(@localPath,"images/cakes/Fragrance/banner/4.jpg"));
+#芒果茫茫蛋糕
+insert into good_gallery values(33,CONCAT(@localPath,"images/cakes/Mango/banner/1.jpg"));
+insert into good_gallery values(33,CONCAT(@localPath,"images/cakes/Mango/banner/2.jpg"));
+insert into good_gallery values(33,CONCAT(@localPath,"images/cakes/Mango/banner/3.jpg"));
+insert into good_gallery values(33,CONCAT(@localPath,"images/cakes/Mango/banner/4.jpg"));
+#提拉米苏
+insert into good_gallery values(34,CONCAT(@localPath,"images/cakes/Tiramisu/banner/1.jpg"));
+insert into good_gallery values(34,CONCAT(@localPath,"images/cakes/Tiramisu/banner/2.jpg"));
+insert into good_gallery values(34,CONCAT(@localPath,"images/cakes/Tiramisu/banner/3.jpg"));
+insert into good_gallery values(34,CONCAT(@localPath,"images/cakes/Tiramisu/banner/4.jpg"));
+#全心全意	
+insert into good_gallery values(35,CONCAT(@localPath,"images/cakes/Wholeheartedly/banner/1.jpg"));
+insert into good_gallery values(35,CONCAT(@localPath,"images/cakes/Wholeheartedly/banner/2.jpg"));
+insert into good_gallery values(35,CONCAT(@localPath,"images/cakes/Wholeheartedly/banner/3.jpg"));
+insert into good_gallery values(35,CONCAT(@localPath,"images/cakes/Wholeheartedly/banner/4.jpg"));
+#两情相悦	
+insert into good_gallery values(36,CONCAT(@localPath,"images/cakes/Resonance/banner/1.jpg"));
+insert into good_gallery values(36,CONCAT(@localPath,"images/cakes/Resonance/banner/2.jpg"));
+insert into good_gallery values(36,CONCAT(@localPath,"images/cakes/Resonance/banner/3.jpg"));
+insert into good_gallery values(36,CONCAT(@localPath,"images/cakes/Resonance/banner/4.jpg"));
+#盛放鲜果
+insert into good_gallery values(37,CONCAT(@localPath,"images/cakes/FreshFruit/banner/1.jpg"));
+insert into good_gallery values(37,CONCAT(@localPath,"images/cakes/FreshFruit/banner/2.jpg"));
+insert into good_gallery values(37,CONCAT(@localPath,"images/cakes/FreshFruit/banner/3.jpg"));
+insert into good_gallery values(37,CONCAT(@localPath,"images/cakes/FreshFruit/banner/4.jpg"));
+#步步高升
+insert into good_gallery values(38,CONCAT(@localPath,"images/cakes/AttainEminence/banner/1.jpg"));
+insert into good_gallery values(38,CONCAT(@localPath,"images/cakes/AttainEminence/banner/2.jpg"));
+insert into good_gallery values(38,CONCAT(@localPath,"images/cakes/AttainEminence/banner/3.jpg"));
+insert into good_gallery values(38,CONCAT(@localPath,"images/cakes/AttainEminence/banner/4.jpg"));
+#鹏程万里---提前7小时预约配送
+insert into good_gallery values(39,CONCAT(@localPath,"images/cakes/BrilliantProspects/banner/1.jpg"));
+insert into good_gallery values(39,CONCAT(@localPath,"images/cakes/BrilliantProspects/banner/2.jpg"));
+insert into good_gallery values(39,CONCAT(@localPath,"images/cakes/BrilliantProspects/banner/3.jpg"));
+insert into good_gallery values(39,CONCAT(@localPath,"images/cakes/BrilliantProspects/banner/4.jpg"));
+#浪漫果纷
+insert into good_gallery values(40,CONCAT(@localPath,"images/cakes/RomanticFruit/banner/1.jpg"));
+insert into good_gallery values(40,CONCAT(@localPath,"images/cakes/RomanticFruit/banner/2.jpg"));
+insert into good_gallery values(40,CONCAT(@localPath,"images/cakes/RomanticFruit/banner/3.jpg"));
+insert into good_gallery values(40,CONCAT(@localPath,"images/cakes/RomanticFruit/banner/4.jpg"));
+#寿比南山
+insert into good_gallery values(41,CONCAT(@localPath,"images/cakes/Longevity/banner/1.jpg"));
+insert into good_gallery values(41,CONCAT(@localPath,"images/cakes/Longevity/banner/2.jpg"));
+insert into good_gallery values(41,CONCAT(@localPath,"images/cakes/Longevity/banner/3.jpg"));
+insert into good_gallery values(41,CONCAT(@localPath,"images/cakes/Longevity/banner/4.jpg"));
+# 榴芒双拼
+insert into good_gallery values(42,CONCAT(@localPath,"web/images/cakes/DoubleSpell/banner/1.jpg"));
+insert into good_gallery values(42,CONCAT(@localPath,"web/images/cakes/DoubleSpell/banner/2.jpg"));
+insert into good_gallery values(42,CONCAT(@localPath,"web/images/cakes/DoubleSpell/banner/3.jpg"));
+insert into good_gallery values(42,CONCAT(@localPath,"web/images/cakes/DoubleSpell/banner/4.jpg"));
+#榴莲香雪	
+insert into good_gallery values(43,CONCAT(@localPath,"images/cakes/DurianIncense/banner/1.jpg"));
+insert into good_gallery values(43,CONCAT(@localPath,"images/cakes/DurianIncense/banner/2.jpg"));
+insert into good_gallery values(43,CONCAT(@localPath,"images/cakes/DurianIncense/banner/3.jpg"));
+insert into good_gallery values(43,CONCAT(@localPath,"images/cakes/DurianIncense/banner/4.jpg"));
+#四重奏蛋糕
+insert into good_gallery values(44,CONCAT(@localPath,"images/cakes/Quartet/banner/1.jpg"));
+insert into good_gallery values(44,CONCAT(@localPath,"images/cakes/Quartet/banner/2.jpg"));
+insert into good_gallery values(44,CONCAT(@localPath,"images/cakes/Quartet/banner/3.jpg"));
+insert into good_gallery values(44,CONCAT(@localPath,"images/cakes/Quartet/banner/4.jpg"));
+#鲜果嘉年华
+insert into good_gallery values(45,CONCAT(@localPath,"images/cakes/FruitCarnival/banner/1.jpg"));
+insert into good_gallery values(45,CONCAT(@localPath,"images/cakes/FruitCarnival/banner/2.jpg"));
+insert into good_gallery values(45,CONCAT(@localPath,"images/cakes/FruitCarnival/banner/3.jpg"));
+insert into good_gallery values(45,CONCAT(@localPath,"images/cakes/FruitCarnival/banner/4.jpg"));
+#森林果乐
+insert into good_gallery values(46,CONCAT(@localPath,"images/cakes/Forest_Fruit/banner/1.jpg"));
+insert into good_gallery values(46,CONCAT(@localPath,"images/cakes/Forest_Fruit/banner/2.jpg"));
+insert into good_gallery values(46,CONCAT(@localPath,"images/cakes/Forest_Fruit/banner/3.jpg"));
+insert into good_gallery values(46,CONCAT(@localPath,"images/cakes/Forest_Fruit/banner/4.jpg"));
+#下午茶系列
+#红宝石黑巧巧	
+insert into good_gallery values(47,CONCAT(@localPath,"images/AfternoonTea/RubyBlack/banner/1.jpg"));
+insert into good_gallery values(47,CONCAT(@localPath,"images/AfternoonTea/RubyBlack/banner/2.jpg"));
+insert into good_gallery values(47,CONCAT(@localPath,"images/AfternoonTea/RubyBlack/banner/3.jpg"));
+insert into good_gallery values(47,CONCAT(@localPath,"images/AfternoonTea/RubyBlack/banner/4.jpg"));
+#芒果千层（6英寸）
+insert into good_gallery values(48,CONCAT(@localPath,"images/AfternoonTea/MangoLayer/banner/1.jpg"));
+insert into good_gallery values(48,CONCAT(@localPath,"images/AfternoonTea/MangoLayer/banner/2.jpg"));
+insert into good_gallery values(48,CONCAT(@localPath,"images/AfternoonTea/MangoLayer/banner/3.jpg"));
+insert into good_gallery values(48,CONCAT(@localPath,"images/AfternoonTea/MangoLayer/banner/4.jpg"));
+#【芒果季】冰语琥珀
+insert into good_gallery values(49,CONCAT(@localPath,"images/AfternoonTea/IceAmber/details/1.jpg"));
+insert into good_gallery values(49,CONCAT(@localPath,"images/AfternoonTea/IceAmber/details/2.jpg"));
+insert into good_gallery values(49,CONCAT(@localPath,"images/AfternoonTea/IceAmber/details/3.jpg"));
+insert into good_gallery values(49,CONCAT(@localPath,"images/AfternoonTea/IceAmber/details/4.jpg"));
+#【哈密瓜季】清风玉露
+insert into good_gallery values(50,CONCAT(@localPath,"images/AfternoonTea/ClearWindJade/banner/1.jpg"));
+insert into good_gallery values(50,CONCAT(@localPath,"images/AfternoonTea/ClearWindJade/banner/2.jpg"));
+insert into good_gallery values(50,CONCAT(@localPath,"images/AfternoonTea/ClearWindJade/banner/3.jpg"));
+insert into good_gallery values(50,CONCAT(@localPath,"images/AfternoonTea/ClearWindJade/banner/4.jpg"));
+#泰式下午茶
+insert into good_gallery values(51,CONCAT(@localPath,"images/AfternoonTea/ThaiAfternoonTea/banner/1.jpg"));
+insert into good_gallery values(51,CONCAT(@localPath,"images/AfternoonTea/ThaiAfternoonTea/banner/2.jpg"));
+insert into good_gallery values(51,CONCAT(@localPath,"images/AfternoonTea/ThaiAfternoonTea/banner/3.jpg"));
+insert into good_gallery values(51,CONCAT(@localPath,"images/AfternoonTea/ThaiAfternoonTea/banner/4.jpg"));
+#鲜莓拿破仑
+insert into good_gallery values(52,CONCAT(@localPath,"images/AfternoonTea/Fresh Berry/banner/1.jpg"));
+insert into good_gallery values(52,CONCAT(@localPath,"images/AfternoonTea/Fresh Berry/banner/2.jpg"));
+insert into good_gallery values(52,CONCAT(@localPath,"images/AfternoonTea/Fresh Berry/banner/3.jpg"));
+insert into good_gallery values(52,CONCAT(@localPath,"images/AfternoonTea/Fresh Berry/banner/4.jpg"));
+#手工现煎草莓千层
+insert into good_gallery values(53,CONCAT(@localPath,"images/AfternoonTea/Hand - Fried/banner/1.jpg"));
+insert into good_gallery values(53,CONCAT(@localPath,"images/AfternoonTea/Hand - Fried/banner/2.jpg"));
+insert into good_gallery values(53,CONCAT(@localPath,"images/AfternoonTea/Hand - Fried/banner/3.jpg"));
+insert into good_gallery values(53,CONCAT(@localPath,"images/AfternoonTea/Hand - Fried/banner/4.jpg"));
+#依恋
+insert into good_gallery values(54,CONCAT(@localPath,"images/AfternoonTea/Attachment/banner/1.jpg"));
+insert into good_gallery values(54,CONCAT(@localPath,"images/AfternoonTea/Attachment/banner/2.jpg"));
+insert into good_gallery values(54,CONCAT(@localPath,"images/AfternoonTea/Attachment/banner/3.jpg"));
+insert into good_gallery values(54,CONCAT(@localPath,"images/AfternoonTea/Attachment/banner/4.jpg"));
+#烈焰莓莓
+insert into good_gallery values(55,CONCAT(@localPath,"images/AfternoonTea/FlameBlackberry/banner/1.jpg"));
+insert into good_gallery values(55,CONCAT(@localPath,"images/AfternoonTea/FlameBlackberry/banner/2.jpg"));
+insert into good_gallery values(55,CONCAT(@localPath,"images/AfternoonTea/FlameBlackberry/banner/3.jpg"));
+insert into good_gallery values(55,CONCAT(@localPath,"images/AfternoonTea/FlameBlackberry/banner/4.jpg"));
+#甜心芒芒
+insert into good_gallery values(56,CONCAT(@localPath,"images/AfternoonTea/Sweetheart/banner/1.jpg"));
+insert into good_gallery values(56,CONCAT(@localPath,"images/AfternoonTea/Sweetheart/banner/2.jpg"));
+insert into good_gallery values(56,CONCAT(@localPath,"images/AfternoonTea/Sweetheart/banner/3.jpg"));
+insert into good_gallery values(56,CONCAT(@localPath,"images/AfternoonTea/Sweetheart/banner/4.jpg"));
+#幸福甜品台-白色优雅（免费摆台）（押金300元）
+insert into good_gallery values(57,CONCAT(@localPath,"images/AfternoonTea/HappinessDessert/banner/1.jpg"));
+insert into good_gallery values(57,CONCAT(@localPath,"images/AfternoonTea/HappinessDessert/banner/2.jpg"));
+#幸福甜品台-绿色清新（免费摆台）（押金300元）
+insert into good_gallery values(58,CONCAT(@localPath,"images/AfternoonTea/Table - Green/banner/1.jpg"));
+insert into good_gallery values(58,CONCAT(@localPath,"images/AfternoonTea/Table - Green/banner/2.jpg"));
+insert into good_gallery values(58,CONCAT(@localPath,"images/AfternoonTea/Table - Green/banner/3.jpg"));
+insert into good_gallery values(58,CONCAT(@localPath,"images/AfternoonTea/Table - Green/banner/4.jpg"));
+#圆形现煎榴芒双拼千层
+insert into good_gallery values(59,CONCAT(@localPath,"images/AfternoonTea/Circular/banner/1.jpg"));
+insert into good_gallery values(59,CONCAT(@localPath,"images/AfternoonTea/Circular/banner/2.jpg"));
+insert into good_gallery values(59,CONCAT(@localPath,"images/AfternoonTea/Circular/banner/3.jpg"));
+insert into good_gallery values(59,CONCAT(@localPath,"images/AfternoonTea/Circular/banner/4.jpg"));
+# 可心蓝莓
+insert into good_gallery values(60,CONCAT(@localPath,"images/AfternoonTea/Blueberry/banner/1.jpg"));
+insert into good_gallery values(60,CONCAT(@localPath,"images/AfternoonTea/Blueberry/banner/2.jpg"));
+insert into good_gallery values(60,CONCAT(@localPath,"images/AfternoonTea/Blueberry/banner/3.jpg"));
+insert into good_gallery values(60,CONCAT(@localPath,"images/AfternoonTea/Blueberry/banner/4.jpg"));
+#圆形现煎皮芒果千层
+insert into good_gallery values(61,CONCAT(@localPath,"images/AfternoonTea/RoundFreshly/banner/1.jpg"));
+insert into good_gallery values(61,CONCAT(@localPath,"images/AfternoonTea/RoundFreshly/banner/2.jpg"));
+insert into good_gallery values(61,CONCAT(@localPath,"images/AfternoonTea/RoundFreshly/banner/3.jpg"));
+insert into good_gallery values(61,CONCAT(@localPath,"images/AfternoonTea/RoundFreshly/banner/4.jpg"));
+#圆形现煎皮榴莲千层
+insert into good_gallery values(62,CONCAT(@localPath,"images/AfternoonTea/DurianQianceng/banner/1.jpg"));
+insert into good_gallery values(62,CONCAT(@localPath,"images/AfternoonTea/DurianQianceng/banner/2.jpg"));
+insert into good_gallery values(62,CONCAT(@localPath,"images/AfternoonTea/DurianQianceng/banner/3.jpg"));
+insert into good_gallery values(62,CONCAT(@localPath,"images/AfternoonTea/DurianQianceng/banner/4.jpg"));
+#花镜
+insert into good_gallery values(63,CONCAT(@localPath,"images/AfternoonTea/ConvexGlass/banner/1.jpg"));
+insert into good_gallery values(63,CONCAT(@localPath,"images/AfternoonTea/ConvexGlass/banner/2.jpg"));
+insert into good_gallery values(63,CONCAT(@localPath,"images/AfternoonTea/ConvexGlass/banner/3.jpg"));
+insert into good_gallery values(63,CONCAT(@localPath,"images/AfternoonTea/ConvexGlass/banner/4.jpg"));
+#英式下午茶
+insert into good_gallery values(64,CONCAT(@localPath,"images/AfternoonTea/EnglishAfternoonTea/banner/1.jpg"));
+insert into good_gallery values(64,CONCAT(@localPath,"images/AfternoonTea/EnglishAfternoonTea/banner/2.jpg"));
+insert into good_gallery values(64,CONCAT(@localPath,"images/AfternoonTea/EnglishAfternoonTea/banner/3.jpg"));
+#雪顶榴心
+insert into good_gallery values(65,CONCAT(@localPath,"images/AfternoonTea/Pomegranate/banner/1.jpg"));
+insert into good_gallery values(65,CONCAT(@localPath,"images/AfternoonTea/Pomegranate/banner/2.jpg"));
+insert into good_gallery values(65,CONCAT(@localPath,"images/AfternoonTea/Pomegranate/banner/3.jpg"));
+insert into good_gallery values(65,CONCAT(@localPath,"images/AfternoonTea/Pomegranate/banner/4.jpg"));
+#芒果拿破仑
+insert into good_gallery values(66,CONCAT(@localPath,"images/AfternoonTea/MangoNapoleon/banner/1.jpg"));
+insert into good_gallery values(66,CONCAT(@localPath,"images/AfternoonTea/MangoNapoleon/banner/2.jpg"));
+insert into good_gallery values(66,CONCAT(@localPath,"images/AfternoonTea/MangoNapoleon/banner/3.jpg"));
+insert into good_gallery values(66,CONCAT(@localPath,"images/AfternoonTea/MangoNapoleon/banner/4.jpg"));
+
+
+#手信系列
+#幸福茶油酥
+insert into good_gallery values(67,CONCAT(@localPath,"images/Souvenir/HappinessTea/banner/1.jpg"));
+insert into good_gallery values(67,CONCAT(@localPath,"images/Souvenir/HappinessTea/banner/2.jpg"));
+insert into good_gallery values(67,CONCAT(@localPath,"images/Souvenir/HappinessTea/banner/3.jpg"));
+insert into good_gallery values(67,CONCAT(@localPath,"images/Souvenir/HappinessTea/banner/4.jpg"));
+#榴莲饼
+insert into good_gallery values(68,CONCAT(@localPath,"images/Souvenir/DurianCake/banner/1.png"));
+insert into good_gallery values(68,CONCAT(@localPath,"images/Souvenir/DurianCake/banner/2.png"));
+insert into good_gallery values(68,CONCAT(@localPath,"images/Souvenir/DurianCake/banner/3.png"));
+insert into good_gallery values(68,CONCAT(@localPath,"images/Souvenir/DurianCake/banner/4.png"));
+#幸福大礼盒
+insert into good_gallery values(69,CONCAT(@localPath,"images/Souvenir/HappinessGift/banner/1.png"));
+insert into good_gallery values(69,CONCAT(@localPath,"images/Souvenir/HappinessGift/banner/2.jpg"));
+insert into good_gallery values(69,CONCAT(@localPath,"images/Souvenir/HappinessGift/banner/3.jpg"));
+#什锦糖瓜
+insert into good_gallery values(70,CONCAT(@localPath,"images/Souvenir/AssortedTangGua/banner/1.png"));
+insert into good_gallery values(70,CONCAT(@localPath,"images/Souvenir/AssortedTangGua/banner/2.jpg"));
+insert into good_gallery values(70,CONCAT(@localPath,"images/Souvenir/AssortedTangGua/banner/3.jpg"));
+#海鲜饼
+insert into good_gallery values(71,CONCAT(@localPath,"images/Souvenir/SeafoodPie/banner/1.png"));
+insert into good_gallery values(71,CONCAT(@localPath,"images/Souvenir/SeafoodPie/banner/2.png"));
+insert into good_gallery values(71,CONCAT(@localPath,"images/Souvenir/SeafoodPie/banner/3.jpg"));
+insert into good_gallery values(71,CONCAT(@localPath,"images/Souvenir/SeafoodPie/banner/4.jpg"));
+#桂圆酥
+insert into good_gallery values(72,CONCAT(@localPath,"images/Souvenir/LonganCake/banner/1.png"));
+insert into good_gallery values(72,CONCAT(@localPath,"images/Souvenir/LonganCake/banner/2.jpg"));
+insert into good_gallery values(72,CONCAT(@localPath,"images/Souvenir/LonganCake/banner/3.jpg"));
+insert into good_gallery values(72,CONCAT(@localPath,"images/Souvenir/LonganCake/banner/4.jpg"));
+#绿豆饼
+insert into good_gallery values(73,CONCAT(@localPath,"images/Souvenir/GreenBean/banner/1.png"));
+insert into good_gallery values(73,CONCAT(@localPath,"images/Souvenir/GreenBean/banner/2.png"));
+insert into good_gallery values(73,CONCAT(@localPath,"images/Souvenir/GreenBean/banner/3.jpg"));
+insert into good_gallery values(73,CONCAT(@localPath,"images/Souvenir/GreenBean/banner/4.jpg"));
+#脆糖瓜
+insert into good_gallery values(74,CONCAT(@localPath,"images/Souvenir/CrispyTangGua/banner/1.png"));
+insert into good_gallery values(74,CONCAT(@localPath,"images/Souvenir/CrispyTangGua/banner/2.png"));
+insert into good_gallery values(74,CONCAT(@localPath,"images/Souvenir/CrispyTangGua/banner/3.jpg"));
+insert into good_gallery values(74,CONCAT(@localPath,"images/Souvenir/CrispyTangGua/banner/4.jpg"));
+#软糖瓜
+insert into good_gallery values(75,CONCAT(@localPath,"images/Souvenir/JellyMelon/banner/1.png"));
+insert into good_gallery values(75,CONCAT(@localPath,"images/Souvenir/JellyMelon/banner/2.png"));
+insert into good_gallery values(75,CONCAT(@localPath,"images/Souvenir/JellyMelon/banner/3.jpg"));
+insert into good_gallery values(75,CONCAT(@localPath,"images/Souvenir/JellyMelon/banner/4.jpg"));
+
+
+
+insert into index_banner values(11,"http://localhost:8080/cake/images/cakes/Fresh/index.jpg"),
+																(18,"http://localhost:8080/cake/images/cakes/ForestFruit/index.jpg"),
+																(55,"http://localhost:8080/cake/images/AfternoonTea/FlameBlackberry/index.jpg"),
+																(62,"http://localhost:8080/cake/images/AfternoonTea/DurianQianceng/index.jpg"),
+																(72,"http://localhost:8080/cake/images/Souvenir/LonganCake/index.png");
+
+
+

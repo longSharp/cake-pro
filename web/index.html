@@ -1,0 +1,424 @@
+<!--
+ * @Author: 龙朝敏
+ * @Date: 2020-10-13 20:35:04
+ * @LastEditTime: 2020-10-18 17:26:39
+ * @LastEditors: Please set LastEditors
+ * @Description: 网站的入口文件
+ * @FilePath: \web\index.html
+-->
+<!DOCTYPE html><!-- 此标签不属于网页的内容. 它是一条指令，告诉浏览器编写页面所用的标记的版本。 -->
+<html lang="zh-CN">
+<!-- 存放网页上所有的内容和信息 -->
+
+<head>
+    <!-- 存储网页上给浏览器或是搜索引擎看的所有信息 -->
+    <meta charset="UTF-8"><!-- meta标签被称为元数据，作用是专门告诉浏览器或是搜索引擎关于网页的一些基本数据 -->
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+    <meta name="Author" content="龙朝敏"><!-- 网页作者 -->
+    <meta name="Keywords" content=""><!-- 网页关键词 -->
+    <meta name="Description" content=""><!-- 网页描述 -->
+    <title>幸福西饼</title><!-- title标签之间存放的是网页的名字 -->
+    <link rel="stylesheet" href="./css/nprogress.css">
+    <link rel="stylesheet" href="./css/resetCss.css">
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_2132364_va5xlwuteg.css">
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+    <div id="contain">
+        <header id="header">
+            <nav class="nav">
+                <div class="content">
+                    <div class="nav-left">
+                        <h1 class="logo">
+                            <a href="#/">
+                                <img src="./static/images/logo_big.png" alt="幸福西饼">
+                            </a>
+                        </h1>
+                        <div class="area">
+                            <div class="name">
+                                <span class="iconfont icon-dingwei"></span>
+                                <span class="conx">北京市</span>
+                            </div>
+                            <div class="point">
+                                <div>
+                                    <span class="text">切换城市</span>
+                                    <div class="panel">
+                                        <div class="search-city">
+                                            <label for="search">搜索城市</label>
+                                            <div class="search-box">
+                                                <i class="iconfont icon-search"></i>
+                                                <input type="text" id="search" placeholder="请输入城市名称">
+                                                <ul></ul>
+                                            </div>
+                                        </div>
+                                        <div class="hot-city">
+                                            <div class="hot-title">热门城市</div>
+                                            <div class="hot-cont">
+                                                <ul>
+                                                    <li>深圳市</li>
+                                                    <li>广州市</li>
+                                                    <li>上海市</li>
+                                                    <li class="hot-active">北京市</li>
+                                                    <li>天津市</li>
+                                                    <li>重庆市</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="select-box">
+                                            <h3>选择区域</h3>
+                                            <div class="select-cont">
+                                                <div class="provins">
+                                                    <div>
+                                                        <span data-provin="1">北京</span>
+                                                        <i
+                                                            class="iconfont icon-zelvxuanzefeiyongdaosanjiaoxingfandui"></i>
+                                                    </div>
+                                                    <ul>
+
+                                                    </ul>
+                                                </div>
+                                                <div class="citys">
+                                                    <div>
+                                                        <span>北京市</span>
+                                                        <i
+                                                            class="iconfont icon-zelvxuanzefeiyongdaosanjiaoxingfandui"></i>
+                                                    </div>
+                                                    <ul></ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            温馨提示：若购买中更换收货城市，可能导致购物车内容均被清空！
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <ul class="nav-list">
+
+                        </ul>
+                    </div>
+                    <div class="icon">
+                        <span class="iconfont icon-search"></span>
+                        <a href=""><span class="iconfont icon-gouwuche"></span></a>
+                        <a href=""><span class="iconfont icon-yonghu"></span></a>
+                    </div>
+                </div>
+                <div class="small-type">
+
+                </div>
+                <div class="search">
+                    <div class="con">
+                        <input type="text">
+                        <span class="iconfont icon-search"></span>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div id="user"></div>
+        <div id="main">
+
+        </div>
+        <footer id="footer"></footer>
+    </div>
+    <script src="./js/jquery-3.2.1.min.js"></script>
+    <script src="./js/nprogress.js"></script>
+    <script src="./js/template-web.js"></script>
+    <script src="./js/router.js"></script>
+    <script id="navList" type="text/html">
+        <li>
+            <a href="#/goods">全部</a>
+        </li>
+        {{each data as value index}}
+        <li data-type="{{value.id}}"><a href="">{{value.type_name}}</a></li>
+        {{/each}}
+        <li><a href="">团购预约</a></li>
+        <li><a href="">关于我们</a></li>
+        <li><a href="">开店咨询</a></li>
+    </script>
+    <script id="footerTemp" type="text/html">
+        <div class="foo">
+            <div class="f1">
+                <div class="foo-list">
+                    <ul>
+                        <li><a href="">品牌动态</a></li>
+                        <li><a href="">生产经营资质</a></li>
+                        <li><a href="">企业合作</a></li>
+                        <li><a href="">发票申请</a></li>
+                        <li><a href="">平台规则</a></li>
+                        <li><a href="">帮助服务</a></li>
+                        <li><a href="">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="contact">
+                    <ul>
+                        <li><a href="">
+                            <span class="iconfont icon-dianhua"></span>
+                            400-999-6666</a></li>
+                        <li><a href="">WEIBO</a></li>
+                        <li><a href="">WECHAT</a></li>
+                        <li><a href="">京东商城</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copy">
+                <ul class="record-txt">
+                    <li>深圳市幸福商城科技股份有限公司</li>
+                    <li>粤ICP备16039394号-6 </li>
+                    <li>京公网安备44030702002399</li>
+                    <li>公司地址：深圳市龙岗区坂田街道布龙339鸿生源工业园A座5楼</li>
+                </ul>
+                <div class="record-img">
+                    <img src="./static/images/icon3.png" alt="">
+                    <img src="./static/images/brand_bottom_large.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </script>
+    <script id="provinal" type="text/html">
+        {{each data value}}
+            <li data-provin="{{value.pid}}">{{value.Provincial}}</li>
+        {{/each}}
+    </script>
+    <script id="city" type="text/html">
+        {{each data value}}
+            <li>{{value.city}}</li>
+        {{/each}}
+    </script>
+    <script id="fuzzyCity" type="text/html">
+        {{each data value}}
+            <li data-type="{{value.pid}}">{{value.city}}</li>
+        {{/each}}
+    </script>
+    <script>
+        $(function () {
+            var baseUrl = "http://localhost:8080/cake";
+
+            /**
+            * @description: 获取一个完整的url
+            * @param url
+            * @return url 完整url 
+            */
+
+            window.getUrl = function (url) {
+                return baseUrl + url;
+            }
+
+            let NP = NProgress;
+            /**
+             * @description: 设置全局的ajax
+             */
+            $.ajaxSetup({
+                beforeSend: function () {
+                    NProgress.start();
+                }
+            });
+            $(document).ajaxSuccess(function () {
+                NProgress.done();
+            });
+
+            /**
+            * @description: 为商品小类型盒子添加元素
+            * @param data 数据  
+            */
+            function addEle(data) {
+                var elements = "";
+                for (let i = 0; i < data.length; i++) {
+                    var ele = "<ul data-type=" + data[i].id + ">";
+                    for (let j = 0; j < data[i].smallType.length; j++) {
+                        var liEle = "<li><a href='' data-type=" + data[i].smallType[j].b_id + " data-typesmall=" + data[i].smallType[j].id + "><img src=" + data[i].smallType[j].type_img + ">" + "<br>" + "<span>" + data[i].smallType[j].s_type_name + "</span>" + "</a><li>";
+                        ele += liEle;
+                    }
+                    ele += "</ul>";
+                    elements += ele;
+                }
+                $(".small-type").append(elements);
+            }
+
+            /**
+             * @description: 初始化网站首页数据
+             */
+            function init() {
+                $.ajax({
+                    url: getUrl("/goods/type"),
+                    type: "GET",
+                    success: function (data) {
+                        data = JSON.parse(data);
+                        var html = template("navList", { data: data });
+                        $("#header .nav-list").html(html);
+                        addEle(data);
+
+                        var toggle = false;
+                        $("#header .nav-list li").mouseover(function () {
+                            if (!($("#header .search").is(".seach-active"))) {
+                                var that = $(this);
+                                if (that.attr("data-type")) {
+                                    $("#header .small-type").addClass("type-active");
+                                    $("#header .small-type ul").hide();
+                                    $("#header .small-type ul").each(function () {
+                                        if ($(this).attr("data-type") == that.attr("data-type")) {
+                                            $(this).show();
+                                            toggle = true;
+                                        }
+                                    });
+                                }
+                            }
+                        }).mouseout(function () {
+                            if (toggle) {
+                                $("#header .small-type").removeClass("type-active");
+                                $("#header .small-type").mouseover(function () {
+                                    $(this).addClass("type-active");
+                                }).mouseout(function () {
+                                    $(this).removeClass("type-active");
+                                });
+                            }
+                        });
+
+                        var flag = true;
+                        $("#header .icon .icon-search").click(function () {
+                            if (flag) {
+                                $("#header .nav div.search").addClass("seach-active");
+                                flag = false;
+                            } else {
+                                $("#header .nav div.search").removeClass("seach-active");
+                                flag = true;
+                            }
+                        });
+
+                    }
+                });
+
+                $.ajax({
+                    url: getUrl("/provin"),
+                    type: "GET",
+                    success: function (data) {
+                        data = JSON.parse(data);
+                        var p = template("provinal", { data: data });
+                        $("#header .panel .select-box .select-cont>div:nth-child(1) ul").html(p);
+                        $.ajax({
+                            url: getUrl("/provin/city"),
+                            type: "GET",
+                            data: {
+                                pid: $("#header .panel .select-box .select-cont>div:nth-child(1)>div>span").attr("data-provin")
+                            },
+                            success: function (cityData) {
+                                cityData = JSON.parse(cityData);
+                                var c = template("city", { data: cityData });
+                                $("#header .panel .select-box .select-cont>div:nth-child(2)>div>span").html(cityData[0].city);
+                                $("#header .panel .select-box .select-cont>div:nth-child(2) ul").html(c);
+                                $(".select-cont>div:nth-child(2) li").on("click", function () {
+                                    $(".select-cont>div:nth-child(2) div span").html($(this).html());
+                                    $("#header .area>.name>span").html($(this).html());
+                                    $(".panel").removeClass("panel-active");
+                                })
+                            }
+                        });
+                        $(".select-cont>div:nth-child(1) li").on("click", function () {
+                            var t = $(this);
+                            $.ajax({
+                                url: getUrl("/provin/city"),
+                                type: "GET",
+                                data: {
+                                    pid: t.attr("data-provin")
+                                },
+                                success: function (cityData) {
+                                    cityData = JSON.parse(cityData);
+                                    var c = template("city", { data: cityData });
+                                    $("#header .panel .select-box .select-cont>div:nth-child(2)>div>span").html(cityData[0].city);
+                                    $("#header .panel .select-box .select-cont>div:nth-child(2) ul").html(c);
+                                    $("#header .panel .select-box .select-cont>div:nth-child(1)  div span").html(t.html());
+                                    
+                                    $(".select-cont>div:nth-child(2) li").on("click", function () {
+                                    $(".select-cont>div:nth-child(2) div span").html($(this).html());
+                                    $("#header .area>.name>span:nth-child(2)").html($(this).html());
+                                    $(".panel").removeClass("panel-active");
+                                })
+                                }
+                            });
+                        })
+                    }
+                });
+
+                $(".search-box input").on("input", function () {
+                    var val = $(".search-box input").val();
+                    val = val.replace(/\s/g, "");
+                    if (val) {
+                        $.ajax({
+                            url: getUrl("/provin/fuzzy"),
+                            type: "GET",
+                            data: {
+                                name: val
+                            },
+                            success: function (data) {
+                                data = JSON.parse(data);
+                                var fuz = template("fuzzyCity", { data: data });
+                                if (data) {
+                                    $('.search-box>ul').html(fuz).addClass("active");
+                                }
+
+                                $("#header .panel>.search-city .search-box>ul>li").on("click", function () {
+                                    $(".panel").removeClass("panel-active");
+                                    $("#header .area>.name>span:nth-child(2)").html($(this).html());
+                                    $("#header .panel>.search-city .search-box input").val("");
+                                    $(this).parent().html("").removeClass('active');
+                                });
+
+
+                            }
+                        });
+                    } else {
+                        $('.search-box>ul').html("").removeClass("active");
+                    }
+                });
+
+
+                $.get("./html/index_main.html", function (d) {
+                    let render = template.compile(d);
+                    let html = render();
+                    $("#main").html(html);
+                    $("body").css("display", "block");
+                });
+
+                var footerHtml = template("footerTemp", {});
+                $("#footer").html(footerHtml);
+
+                $("#header .area>.point>div>span").click(function () {
+                    $("#header .area>.point .panel").toggleClass("panel-active");
+                    $("#header .panel .select-box .select-cont>div").click(function () {
+                        $(this).children("ul").toggleClass("active");
+                    });
+                    $("#header .panel .select-box .select-cont>div>ul").removeClass("active");
+                });
+            }
+
+            Router.route("/", function () {
+                init();
+            });
+
+            Router.route("/goods",function(){
+                $.ajax({
+                    url:getUrl("/goods/list"),
+                    data:{
+                        index:0,
+                        limit:40
+                    },
+                    type:"GET",
+                    success:function(data){
+                        data = JSON.parse(data);
+                        $.get("./html/goods_list.html",function(d){
+                            var render = template.compile(d);
+                            var goods_ = render({data:data});
+                            $("#main").html(goods_);
+                        });
+                    }
+                });
+            });
+        })
+    </script>
+</body>
+
+</html>
