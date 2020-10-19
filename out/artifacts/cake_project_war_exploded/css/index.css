@@ -384,6 +384,39 @@ body{
     cursor: pointer;
 }
 
+#main .pages-box{
+    width: 1180px;
+    height: 28px;
+    margin: 20px auto;
+}
+
+#main .pages-box ul{
+    float: right;
+    height: 100%;
+    padding: 0 10px;
+}
+
+#main .pages-box ul li{
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    text-align: center;
+    line-height: 28px;
+    background-color: #f2e9d5;
+    color: #636261;
+    font-size: 13px;
+    margin: 0 3px;
+}
+
+#main .pages-box ul li:hover{
+    background-color: #f3d38e;
+    color: #fff;
+}
+
+#main .pages-box ul li.active{
+    background-color: #f3d38e;
+}
+
 #footer{
     height: 90px;
     padding: 24px 0;
