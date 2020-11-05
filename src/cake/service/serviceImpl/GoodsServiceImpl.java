@@ -1,12 +1,12 @@
 package cake.service.serviceImpl;
 
+import cake.bean.Cart;
 import cake.bean.DetailGoods;
 import cake.bean.SmallType;
 import cake.bean.Type;
 import cake.dao.daoImpl.GoodsDaoImpl;
 import cake.service.GoodsService;
 import cake.utils.JSONUtiles;
-
 import java.util.List;
 
 /**
@@ -63,4 +63,55 @@ public class GoodsServiceImpl extends GoodsDaoImpl implements GoodsService {
     public long getCount(int b_id, int s_id) {
         return queryCount(b_id,s_id);
     }
+
+    @Override
+    public String getRecom(int i) {
+        List list = queryRecommend(i);
+        return JSONUtiles.toJson(list);
+
+    }
+
+    @Override
+    public String getFuzzy(String fuzz) {
+        List list = queryGoods(fuzz);
+        return JSONUtiles.toJson(list);
+    }
+
+    @Override
+    public String getCart(int user_id) {
+        List car = queryByCar(user_id);
+        return JSONUtiles.toJson(car);
+    }
+
+    @Override
+    public int saveCart(Cart cart) {
+        Cart cart1 = queryByCartOne(cart.getGoods_id(), cart.getUser_id());
+        if (cart1!=null && cart.getSpecifi().equals(cart1.getSpecifi())){
+            return updateCarCoun(cart1.getCount()+1,cart.getGoods_id(), cart.getUser_id(),cart.getSpecifi());
+        }
+        return saveCar(cart);
+    }
+
+    @Override
+    public int updateCarColl(int coll, int goods_id, int user_id,String specifi) {
+        return updateCartColl(coll, goods_id, user_id,specifi);
+    }
+
+    @Override
+    public int updateCarCoun(int count, int goods_id, int user_id,String specifi) {
+        return updateCartCount(count, goods_id, user_id,specifi);
+    }
+
+    @Override
+    public int deleteCarOne(int goods_id, int user_id,String specifi) {
+        return deleteCar(goods_id,user_id,specifi);
+    }
+
+    @Override
+    public String getCarColl(int user_id) {
+        List list = queryByCarColl(user_id);
+        return JSONUtiles.toJson(list);
+    }
+
+
 }

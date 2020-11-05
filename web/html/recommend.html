@@ -1,0 +1,54 @@
+<!--
+ * @Author: 龙朝敏
+ * @Date: 2020-10-20 21:59:26
+ * @LastEditTime: 2020-10-21 12:31:45
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \web\html\recommend.html
+-->
+<link rel="stylesheet" href="./css/recom.css">
+<div class="recom">
+    <div class="recom-head">
+        <h3>推荐选择</h3>
+    </div>
+    <div class="recomListWrapper">
+        <ul>
+            {{each data value}}
+            <li data-id="{{value.id}}">
+                <a href="#/goods/9080{{value.id}}">
+                    <div class="recom-img"><img src="{{value.index_img}}" alt=""></div>
+                    <div class="text">
+                        <strong>{{value.good_name}}</strong><br>
+                        <p>￥{{value.price}}.00</p>
+                    </div>
+                </a>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>
+<script>
+    $(".recom .recomListWrapper li").click(function () {
+        var url = $(this).children("a").attr("href").slice(1);
+        var that = this;
+        Router.route(url, function () {
+            $.ajax({
+                url: getUrl("/goods/detail"),
+                type: "GET",
+                data: {
+                    id: $(that).attr("data-id")
+                },
+                success: function (data) {
+                    data = JSON.parse(data);
+                    $.get("./html/detail.html", function (h) {
+                        var render = template.compile(h);
+                        var det = render({ data: data });
+                        $("#main").html("");
+                        $("#main").html(det);
+                    })
+                }
+            });
+        });
+    });
+
+</script>

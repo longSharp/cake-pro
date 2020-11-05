@@ -1,0 +1,317 @@
+<!--
+ * @Author: 龙朝敏
+ * @Date: 2020-10-19 14:32:23
+ * @LastEditTime: 2020-11-03 18:42:03
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \web\html\detail.html
+-->
+<link rel="stylesheet" href="./css/detail.css">
+<div id="detail">
+    <div class="beadbars">
+        <a href="" class="r">{{data.type_name}}</a>
+        <span>></span>
+        <a href="" class="r">{{data.s_type_name}}</a>
+        <span>></span>
+        <a href="" class="r">{{data.good_name}}</a>
+    </div>
+    <div class="pro-intro">
+        <div class="imgs">
+            <div class="proBanner main slick-slider">
+                <div class="slick-list draggable">
+                    {{each data.gallery value}}
+                    <img src="{{value.image_url}}" alt="">
+                    {{/each}}
+                </div>
+                <ul class="detail-btn">
+                    {{each data.gallery value}}
+                    <li></li>
+                    {{/each}}
+                </ul>
+            </div>
+            <div class="proBannerNavs list">
+                <ul>
+                    {{each data.gallery value}}
+                    <li>
+                        <img src="{{value.image_url}}" alt="">
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+        <div class="intro">
+            <div class="share">
+                <h2>{{data.good_name}}</h2>
+                <div class="shareIcon">
+                    <i class="iconfont icon-fenxiang_2"></i>
+                    <div>
+                        <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fwww.xfxb.net%2Fproduct%2F7845065&type=2&appkey=1553818743&title=%E5%B9%B8%E7%A6%8F%E8%9B%8B%E7%B3%95&pic=http%3A%2F%2Fww3.sinaimg.cn%2Flarge%2F753464dfgw1f75uoop01oj203c03cmx6.jpg&language=zh_cn&rnd=1603118553329"
+                            target="_blank">
+                            <i class="iconfont icon-weibo"></i>
+                        </a>
+                        <a href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http%3A%2F%2Fconnect.qq.com%2Fintro%2Fshare%2F&showcount=0&desc=%E5%B9%B8%E7%A6%8F%E8%9B%8B%E7%B3%95-desc&summary=%E5%B9%B8%E7%A6%8F%E8%9B%8B%E7%B3%95-%E6%91%98%E8%A6%81&title=%E5%B9%B8%E7%A6%8F%E8%9B%8B%E7%B3%95-title&pics=http%3A%2F%2Fww3.sinaimg.cn%2Flarge%2F753464dfgw1f75uoop01oj203c03cmx6.jpg&style=203&width=98&height=22"
+                            target="_blank">
+                            <i class="iconfont icon-qqkongjian"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="price-d">
+                {{each data.specifications value}}
+                <span>￥{{value.s_price}}.00</span>
+                {{/each}}
+            </div>
+            <div class="garr">
+                <span>选择规格</span>
+                <ul>
+                    {{each data.specifications value}}
+                    <li>{{value.specification}}</li>
+                    {{/each}}
+                </ul>
+            </div>
+            <div class="sele-num">
+                <span>数量</span>
+                <input type="text" value="1">
+                <div>
+                    <i class="iconfont icon-shangjiantou"></i>
+                    <i class="iconfont icon-xiajiantou"></i>
+                </div>
+            </div>
+            <div class="shopp-btn">
+                <div class="shopp" data-goods="{{data.gallery[0].good_id}}">
+                    立即购买
+                </div>
+                <div class="addCar" data-goods="{{data.gallery[0].good_id}}">
+                    <span>加入购物车</span>
+                    <div class="car-item">
+                        <span class="iconfont icon-gou"></span>
+                        <span>添加成功!</span>
+                    </div>
+                </div>
+            </div>
+            <div class="sh">
+                <span>幸福承诺</span>
+                <ul>
+                    <li><strong>就敢退</strong><span>实物不对板,退款不退货!</span></li>
+                    <li><strong>就敢减</strong><span>约定时间!迟到一分钟就减1元!</span></li>
+                    <li><strong>就敢送</strong><span>迟到30分钟免费赠送!</span></li>
+                    <li><strong>就敢赔</strong><span>早到或迟到60分钟以上,双倍赔付!</span></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <div class="pro-detail">
+        <h3>商品详情</h3>
+        <div class="detail-img">
+            <img src="{{data.introduc_img}}" alt="">
+        </div>
+    </div>
+    <div class="distr">
+        <div class="inch">
+            <span>关于英寸，方形蛋糕以对角线折算，圆形蛋糕以直径折算；1英寸≈2.54cm</span>
+        </div>
+        <div class="remind">
+            <p>配送提醒</p>
+            <p>北京暂不实行幸福承诺，暂不实行1小时专车服务；</p>
+            <strong>免费配送范围：东城区、西城区、朝阳区、海淀区、昌平区、丰台区、大兴区、石景山区北京市6环以内。注：顺义区、门头沟区、房山区、朝阳区首都机场不提供配送。</strong>
+            <p>具体配送区域请参考配送地图链接：https://delivery-map.blissmall.net/</p>
+            <strong>当天18点停止接单，每日配送时间：10:00-21:00 ；</strong>
+            <p>特殊说明： 部分产品因做工复杂需要提前5-7小时下单预约。</p>
+            <p>提前5小时预约产品：赤焰莓莓丝绒，汪汪队之阿奇，汪汪队之天天，海绵宝宝沙滩，爱探险的朵拉，三层寿比南山，步步高升15磅，鹏程万里15磅；</p>
+            <p>提前7小时预约产品：初心，步步高升30磅，鹏程万里30磅</p>
+            <p>特殊情况停止实施【幸福承诺】说明：
+                如遇台风、海啸、暴雨、大雾、暴风雪、沙尘暴、山体滑坡或者地面塌陷等不可抗力的自然灾害（以政府和气象台发布预警信息为准）以及城市举办大型活动进行交通管制影响到配送（如马拉松、自行车比赛、G20峰会等特殊活动）；【幸福承诺】则不实施；
+            </p>
+            <p>【幸福承诺】受理期限：签收当日起7天内反馈有效。 </p>
+            <p>北京服务电话：</p>
+            <p>北京售后咨询电话：01053875858</p>
+            <p>服务时间：7:00-20:00</p>
+            <p>温馨提示：</p>
+            <p>以上产品图片仅供参考，具体请以收到实物为准。</p>
+            <p>食用含有榴莲类蛋糕产品后，请禁止饮酒。</p>
+        </div>
+    </div>
+</div>
+<script>
+
+    $(".draggable img").eq(0).addClass("block");
+    $(".proBannerNavs li").eq(0).addClass("active");
+    $(".pro-intro .intro .price-d span").eq(0).addClass("show");
+    $(".pro-intro .intro .garr li").eq(0).addClass("active");
+    $(".pro-intro .imgs .detail-btn li").eq(0).addClass("active");
+
+    $(".pro-intro .intro .shareIcon>i").click(function () {
+        $(".pro-intro .intro .shareIcon>div").toggleClass("visibel");
+    })
+
+    $(".shopp-btn .shopp").click(function () {
+        var that = this;
+        var url = "/goods/cart";
+            shopCar(that,1,url);
+    })
+
+    $(".proBannerNavs li").mouseover(function () {
+        var that = this;
+        $(".proBannerNavs li").removeClass("active");
+        $(this).addClass("active");
+
+        $(".draggable img").removeClass("block");
+        $(".draggable img").eq($(that).index()).addClass("block");
+
+        $(".detail-btn>li").removeClass("active");
+        $(".detail-btn>li").eq($(that).index()).addClass("active");
+    });
+
+    $(".detail-btn>li").click(function () {
+        var that = this;
+        $(".detail-btn>li").removeClass("active");
+        $(this).addClass("active");
+
+        $(".draggable img").removeClass("block");
+        $(".draggable img").eq($(that).index()).addClass("block");
+
+        $(".proBannerNavs li").removeClass("active");
+        $(".proBannerNavs li").eq($(that).index()).addClass("active");
+    });
+
+    $(".pro-intro .intro .garr li").click(function () {
+        var index = parseInt($(this).index());
+        $(".pro-intro .intro .garr li").removeClass("active");
+        $(this).addClass("active");
+
+        $(".pro-intro .intro .price-d span").removeClass("show");
+        $(".pro-intro .intro .price-d span").eq(index).addClass("show");
+
+        $(".pro-intro .intro .sele-num input").val("1");
+    })
+
+    $(".addCar").click(function () {
+        shopCar(this);
+    });
+
+    /**
+     * @description: 添加购物车处理函数
+     * @param {*}
+     * @return {*}
+     */
+    function shopCar(that, isJump,url) {
+        var token = localStorage.getItem("token");
+        $.ajax({
+            url: getUrl("/admin/isLogin"),
+            type: "POST",
+            data: {
+                token: token
+            },
+            success(data) {
+                data = JSON.parse(data);
+                if (data.code == 100) {
+                    let user_id = $(".icon .user-car").attr("data-userid");
+                    let goods_name = $(".pro-intro .intro h2").text();
+                    let price = $(".pro-intro .intro .price-d span.show").text().split(".")[0].slice(1);
+                    let specifi = $(".pro-intro .intro .garr li.active").text();
+                    let collection = 0;
+                    let img_url = $(".draggable img").eq(0).attr("src");
+                    let goods_id = $(that).attr("data-goods");
+
+                    $.ajax({
+                        url: getUrl("/goods/car/add"),
+                        type: "POST",
+                        global: false,
+                        data: {
+                            user_id: user_id,
+                            goods_name: goods_name,
+                            price: price,
+                            specifi: specifi,
+                            collection: collection,
+                            img_url: img_url,
+                            goods_id: goods_id
+                        },
+                        success(data) {
+                            data = parseInt(data);
+                            if (data != -1) {
+                                if (isJump == 1) {
+                                    window.location.href = window.location.href.split("#")[0]+"#"+url;
+                                    Router.route(url,function(){
+                                        $.ajax({
+                                        url: getUrl("/goods/car"),
+                                        type: "GET",
+                                        data: {
+                                            user_id: $(".icon .user-car span").parent().attr("data-userid")
+                                        },
+                                        success(data1) {
+                                            data1 = JSON.parse(data1);
+                                            $.get("./html/car.html", function (d) {
+                                                var render = template.compile(d);
+                                                var html = render({ data: data1 });
+                                                $("#main").html(html);
+                                            })
+                                        }
+                                    });
+                                    })
+                                    
+                                } else {
+                                    $(".car-item").css("display", "flex");
+                                    let timer = setTimeout(function () {
+                                        $(".car-item").css("display", "none");
+                                        clearTimeout(timer);
+                                    }, 2000)
+                                }
+                            }
+                        }
+                    });
+                } else {
+                    $(".user").addClass("user-active").css("z-index", "18");
+                    $(".user .user-contain").addClass("user-show");
+                    $("input").val("");
+                }
+            }
+        });
+    }
+
+    $(".pro-intro .intro .sele-num>div>i").click(function () {
+        var that = this;
+        var index = $(this).index();
+        if (index == 0) {
+            addNum();
+        } else {
+            minusNum();
+        }
+    })
+
+    //添加商品数函数
+    function addNum() {
+        var val = parseInt($(".pro-intro .intro .sele-num input").val());
+        val++;
+        $(".pro-intro .intro .sele-num input").val(val);
+        var value = parseInt($(".pro-intro .intro .sele-num input").val());
+        var priceNum = (parseInt($(".price-d>span.show").text().split(".")[0].slice(1))) / (value - 1);
+        $(".price-d>span.show").text("￥" + priceNum * value + ".00");
+    }
+
+    //删减商品数函数
+    function minusNum() {
+        var val = parseInt($(".pro-intro .intro .sele-num input").val());
+        var priceNum = (parseInt($(".price-d>span.show").text().split(".")[0].slice(1))) / val;
+        val = val == 1 ? val : val - 1;
+        $(".pro-intro .intro .sele-num input").val(val);
+        var value = parseInt($(".pro-intro .intro .sele-num input").val());
+        $(".price-d>span.show").text("￥" + priceNum * value + ".00");
+    }
+
+    $.ajax({
+        url: getUrl("/goods/recom"),
+        type: "GET",
+        data: {
+            i: 5
+        },
+        success: function (data) {
+            data = JSON.parse(data);
+            $.get("./html/recommend.html", function (d) {
+                var render = template.compile(d);
+                var html = render({ data: data });
+                $("#detail").append(html);
+            });
+        }
+    });
+</script>

@@ -1,0 +1,46 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-11-05 09:19:08
+ * @LastEditTime: 2020-11-05 09:27:45
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \web\html\product.html
+-->
+<link rel="stylesheet" href="./css/product.css">
+<div class="page-content">
+        <div class="wrap">
+          <!-- <span class="triangle"></span> -->
+          <div class="page-body">
+            <div class="panel">
+              <div class="banner-wrapper">
+                <h2 class="title"><img src="./static/images/product/title.png" alt="blissMall"></h2>
+                <p class="sub-title">各站点证件资料汇总表</p>
+              </div>
+              <div class="table-wrapper">
+                <table cellpadding="0" cellspacing="0">
+                  <thead>
+                    <th>序号</th>
+                    <th>站点</th>
+                    <th>营业执照</th>
+                    <th>详细地址</th>
+                    <th>法人</th>
+                  </thead>
+                  <tbody>
+                      {{each data value index}}
+                    <tr>
+                      <td>{{index}}</td>
+                      <td>{{value.site}}</td>
+                      <td>{{value.license}}</td>
+                      <td>{{value.address}}</td>
+                      <td>{{value.legal_person}}</td>
+                    </tr>  
+                      {{/each}}     
+                  </tbody>
+                </table>
+              </div>
+              <div class="pager-con" id="pager-con"></div>
+              <div pageNo="1" totalPage="26" id="pageInfo"></div>
+            </div>          
+          </div>
+        </div>
+      </div>

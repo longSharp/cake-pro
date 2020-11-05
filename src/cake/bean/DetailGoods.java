@@ -13,8 +13,8 @@ public class DetailGoods {
     private String introduc_img;
     private String s_type_name;
     private String type_name;
-    private List gallery;
-    private List specifications;
+    private List<Gallery> gallery;
+    private List<Specification> specifications;
 
     public int getId() {
         return id;

@@ -1,0 +1,323 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-11-02 20:44:28
+ * @LastEditTime: 2020-11-03 22:17:42
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \web\html\user.html
+-->
+<link rel="stylesheet" href="./css/user.css">
+<div class="profile">
+    <div class="breadbars">
+        <span class="r">我的幸福</span>
+        <span>></span>
+        <span class="cur">我的信息</span>
+    </div>
+    <div class="profile-container clearfix">
+        <div class="profile-navigation">
+            <div class="avator"><img src="./static/images/avator.jpg" alt="我的头像"></div>
+            <div class="info-con">
+                <div class="user-name">{{data.user_name}}</div>
+                <ul>
+                    <li class="active"><a href="#/user/detail" class="active">个人信息</a></li>
+                    <li><a href="#/user/coll">收藏夹</a></li>
+                    <li><a href="#/user/reset">修改密码</a></li>
+                    <li>联系客服</li>
+                </ul>
+            </div>
+        </div>
+        <div class="profile-content">
+            <ul class="content">
+                <li class="user-detail show">
+                    <ul class="form">
+                        <li class="username"><span>用户名</span><input type="text" class="input"
+                                value="{{data.user_name}}"></li>
+                        <li class="email"><span>邮箱</span><input type="text" class="input" value="{{data.email}}"></li>
+                        <li class="sex relat">
+                            <span>性别</span>
+                            <div class="input">
+                                <span class="text">保密</span>
+                                <i class="iconfont icon-zelvxuanzefeiyongdaosanjiaoxingfandui"></i>
+                                <ul>
+                                    <li>保密</li>
+                                    <li>男</li>
+                                    <li>女</li>
+                                </ul>
+                            </div>
+
+                        </li>
+                        <li class="provinal relat">
+                            <span>省份</span>
+                            <div class="input">
+                                <span class="text">请选择</span>
+                                <i class="iconfont icon-zelvxuanzefeiyongdaosanjiaoxingfandui"></i>
+                                <ul></ul>
+                            </div>
+
+                        </li>
+                        <li class="city relat">
+                            <span>城市</span>
+                            <div class="input">
+                                <span class="text">请选择</span>
+                                <i class="iconfont icon-zelvxuanzefeiyongdaosanjiaoxingfandui"></i>
+                                <ul></ul>
+                            </div>
+
+                        </li>
+                        <li class="addr"><span>地址</span><input type="text" class="input"></li>
+                    </ul>
+                    <div class="submit">保存资料
+                            <div class="car-item">
+                                    <span class="iconfont icon-gou"></span>
+                                    <span>添加成功!</span>
+                                </div>
+                            </div>
+                </li>
+                <li class="coll">
+                    <div class="row">
+                        {{each coll value}}
+                        <div class="col">
+                            <a href="#/product/9080{{value.goods_id}}" data-goods="{{value.goods_id}}">
+                                <img src="{{value.img_url}}" alt="">
+                            </a>
+                            <div class="del">
+                                <span class="name">{{value.goods_name}}</span>
+                                <span class="close" data-specifi="{{value.specifi}}">取消收藏</span>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                    <div class="page">
+                        <span>上一页</span>
+                        <span>下一页</span>
+                    </div>
+                </li>
+                <li class="reset">
+                    <div class="block-wrapper">
+                        <span class="re">设置密码</span>
+                        <div class="passwd0">
+                            <input type="password" placeholder="请输入旧密码">
+                            <div class="massage">
+                                <span class="iconfont icon-quxiao"></span>
+                                <span class="content">密码错误</span>
+                            </div>
+                        </div>
+                        <div class="passwd passwd1">
+                            <input type="password" placeholder="请输入新密码">
+                            <div class="massage">
+                                <span class="iconfont icon-quxiao"></span>
+                                <span class="content">两次密码不一致</span>
+                            </div>
+                        </div>
+                        <div class="passwd passwd2">
+                            <input type="password" placeholder="请再次输入新密码">
+                            <div class="massage">
+                                <span class="iconfont icon-quxiao"></span>
+                                <span class="content">两次密码不一致</span>
+                            </div>
+                        </div>
+                        <div class="sub">提交修改
+                                <div class="car-item">
+                                        <span class="iconfont icon-gou"></span>
+                                        <span>添加成功!</span>
+                                    </div>
+                                </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script>
+    $(".info-con>ul>li").on("click", function () {
+        var index = $(this).index();
+        var that = this;
+        switch (index) {
+            case 0:
+                show(that, index);
+                break;
+            case 1:
+                show(that, index);
+                break;
+            case 2:
+                show(that, index);
+                break;
+            case 3:
+                alert("请联系QQ2900645253");
+        }
+    })
+
+    //用户点击显示指定内容
+    function show(that, index) {
+        $(".info-con>ul>li").removeClass("active");
+        $(that).addClass("active");
+        $(".profile-content .content>li").removeClass("show");
+        $(".profile-content .content>li").eq(index).addClass("show");
+    }
+
+    $(".user-detail .sex .input").on("click", function () {
+        var that = this;
+        $(this).children("ul").toggleClass("show");
+        $(this).children("ul").children("li").click(function () {
+            $(".user-detail .sex .text").text($(this).text());
+        });
+    });
+
+    $(".user-detail .provinal .input").on("click", function () {
+        var that = this;
+        $.ajax({
+            url: getUrl("/provin"),
+            type: "GET",
+            success(data) {
+                data = JSON.parse(data);
+                var pro = "";
+                for (var i = 0; i < data.length; i++) {
+                    pro += "<li data-pid=" + data[i].pid + ">" + data[i].Provincial + "</li>"
+                }
+                $(that).children("ul").html(pro);
+                $(that).children("ul").toggleClass("show");
+                $(that).children("ul").children("li").click(function () {
+                    var that = this;
+                    $(".user-detail .provinal .text").text($(this).text());
+                    $.ajax({
+                        url: getUrl("/provin/city"),
+                        type: "GET",
+                        data: {
+                            pid: $(that).attr("data-pid")
+                        },
+                        success(data) {
+                            data = JSON.parse(data);
+                            var city = "";
+                            for (let index = 0; index < data.length; index++) {
+                                city += "<li>" + data[index].city + "</li>";
+                            }
+                            $(".user-detail .city .input ul").html(city);
+                        }
+                    });
+                });
+            }
+        })
+    })
+
+    $(".user-detail .city .input").on("click", function () {
+        $(this).children("ul").toggleClass("show");
+        $(this).children("ul").children("li").click(function () {
+            $(".user-detail .city .text").text($(this).text());
+        });
+    });
+    
+    $(".user-detail .submit").on("click",function(){
+        var that = this;
+        var id = $(".icon .user-car").attr("data-userid");
+        var user_name = $(".user-detail .username .input").val();
+        var provinal = $(".user-detail .provinal .text").text();
+        var city = $(".user-detail .city .text").text();
+        var addr = $(".user-detail .addr .input").val();
+        var email = $(".user-detail .email .input").val();
+        $.ajax({
+            url:getUrl("/admin/updateInfo"),
+            type:"POST",
+            data:{
+                id:id,
+                user_name:user_name,
+                provinal:provinal,
+                city:city,
+                addr:addr,
+                email:email
+            },
+            success(data){
+                data = JSON.parse(data);
+                if(data!=-1){
+                    $(that).children(".car-item").css("display","block");
+                        var timer = setTimeout(function(){
+                            $(that).children(".car-item").css("display","none");
+                            clearTimeout(timer);
+                        },3000);
+                    $("#header .icon .success>span:nth-child(1)").text(user_name);
+                    $(".profile-navigation .info-con .user-name").text(user_name);
+                }
+            }
+        });
+    })
+
+    $(".coll .close").on("click",function(){
+        var that = this;
+        var coll = 0;
+        var goods_id = $(".coll .col >a").attr("data-goods");
+        var user_id = $(".icon .user-car").attr("data-userid");
+        var specifi = $(this).attr("data-specifi");
+        $.ajax({
+            url:getUrl("/goods/car/update/coll"),
+            type:"POST",
+            data:{
+                coll:coll,
+                goods_id:goods_id,
+                user_id:user_id,
+                specifi:specifi
+            },
+            success(data){
+                if(data!=-1){
+                    $(that).parents(".col").remove();
+                }
+            }
+        });
+    });
+
+    $(".coll .col >a").on("click",function(){
+        var goods_id = $(this).attr("data-goods");
+        var url = $(this).attr("href").split("#")[1];
+        Router.route(url,function(){
+            $.ajax({
+                url:getUrl("/goods/detail"),
+                type:"GET",
+                data:{
+                    id:goods_id
+                },
+                success(data){
+                    data = JSON.parse(data);
+                    $.get("./html/detail.html",function(d){
+                        var render = template.compile(d);
+                        var html = render({data:data});
+                        $("#main").html(html);
+                    })
+                }
+            });
+        });
+    })
+
+    $(".reset .sub").on("click",function(){
+        var that = this;
+        var passwd1 = $(".reset .passwd1>input").val();
+        var passwd2 = $(".reset .passwd2>input").val();
+        var username = $("#header .icon .success>span:nth-child(1)").text();
+        if(passwd1==passwd2){
+            $.ajax({
+                url:getUrl("/admin/resetPassword"),
+                type:"POST",
+                data:{
+                    username:username,
+                    password:passwd1
+                },
+                success(data){
+                    if(data!=-1){
+                        $(that).children(".car-item").css("display","block");
+                        var timer = setTimeout(function(){
+                            $(that).children(".car-item").css("display","none");
+                            clearTimeout(timer);
+                        },3000);
+                        $(".reset .passwd1>input").val("");
+                        $(".reset .passwd2>input").val("");
+                        $(".reset .passwd0>input").val("");
+                    }
+                }
+            })
+        }else{
+            $(".reset .passwd .massage").addClass("show");
+            var timer = setTimeout(function(){
+                $(".reset .passwd .massage").removeClass("show");
+                clearTimeout(timer);
+            },2000);
+        }
+    })
+
+</script>

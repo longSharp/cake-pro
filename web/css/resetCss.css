@@ -15,7 +15,7 @@ textarea{resize:vertical}
 label,button{cursor:pointer}
 .clearfix:after{content:'\20';display:block;height:0;clear:both}
 .clearfix{zoom:1}.clear{clear:both;height:0;line-height:0;font-size:0;visibility:hidden;overflow:hidden}
-body{text-align:center}
 body,form{position:relative}
 td{text-align:left}
 img{border:0}
+input{outline: none;border: none;background-color: transparent;}

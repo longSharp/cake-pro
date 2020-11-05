@@ -1,0 +1,50 @@
+<!--
+ * @Author: 龙朝敏
+ * @Date: 2020-10-22 08:58:02
+ * @LastEditTime: 2020-10-25 10:49:31
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \web\html\provinal.html
+-->
+{{each data value}}
+<li data-provin="{{value.pid}}">{{value.Provincial}}</li>
+{{/each}}
+<script>
+    $.ajax({
+        url: getUrl("/provin/city"),
+        type: "GET",
+        global:false,
+        data: {
+            pid: $("#header .panel .select-box .select-cont>div:nth-child(1)>div>span").attr("data-provin")
+        },
+        success: function (cityData) {
+            cityData = JSON.parse(cityData);
+            $.get("./html/city.html",function(d){
+                var render = template.compile(d);
+                var c = render({data:cityData});
+                $("#header .panel .select-box .select-cont>div:nth-child(2)>div>span").html(cityData[0].city);
+                $("#header .panel .select-box .select-cont>div:nth-child(2) ul").html(c);
+            });
+        }
+    });
+    $(".select-cont>div:nth-child(1) li").on("click", function () {
+        var t = $(this);
+        $.ajax({
+            url: getUrl("/provin/city"),
+            type: "GET",
+            data: {
+                pid: t.attr("data-provin")
+            },
+            success: function (cityData) {
+                cityData = JSON.parse(cityData);
+            $.get("./html/city.html",function(d){
+                var render = template.compile(d);
+                var c = render({data:cityData});
+                $("#header .panel .select-box .select-cont>div:nth-child(2)>div>span").html(cityData[0].city);
+                $("#header .panel .select-box .select-cont>div:nth-child(2) ul").html(c);
+                $("#header .panel .select-box .select-cont>div:nth-child(1)  div span").html(t.html());
+            });
+            }
+        });
+    })
+</script>

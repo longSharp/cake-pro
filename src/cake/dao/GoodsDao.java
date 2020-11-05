@@ -1,5 +1,6 @@
 package cake.dao;
 
+import cake.bean.Cart;
 import cake.bean.DetailGoods;
 
 import java.util.List;
@@ -9,6 +10,12 @@ import java.util.List;
  * @create 2020-10-15-2020/10/15 0015
  */
 public interface GoodsDao {
+
+    /**
+     * 获取所有商品数据
+     * @return 返回一个List集合
+     */
+    public List queryAllGoods();
     /**
      * 获根据商品id取一件商品的信息
      * @param id 商品的id
@@ -76,7 +83,72 @@ public interface GoodsDao {
 
     /**
      * 获取几个商品作为推荐商品
+     * @param i 需要返回几条推荐数据
      * @return 返回一个list集合
      */
-    public List queryRecommend();
+    public List queryRecommend(int i);
+
+    /**
+     * 根据用户输入的模糊字段查询数据,并返回
+     * @param fuzz 模糊查询字符串
+     * @return 返回一个List集合
+     */
+    public List queryGoods(String fuzz);
+
+    /**
+     * 获取用户购物车信息
+     * @param user_id 用户id
+     * @return 返回购物车所有信息
+     */
+    public List queryByCar(int user_id);
+
+    /**
+     * 删除购物车商品信息
+     * @param goods_id 商品id
+     * @param user_id 用户id
+     * @return 若返回-1则代表操作失败,反之亦然
+     */
+    public int deleteCar(int goods_id,int user_id,String specifi);
+
+    /**
+     * 保存购物车商品信息
+     * @param cart 购物车商品信息javaBean
+     * @return 若返回-1则代表操作失败,反之亦然
+     */
+    public int saveCar(Cart cart);
+
+    /**
+     * 修改购物车商品收藏信息
+     * @param coll 是否收藏
+     * @param goods_id 商品id
+     * @param user_id 用户id
+     * @param specifi 商品规格
+     * @return 若返回-1则代表操作失败,反之亦然
+     */
+    public int updateCartColl(int coll,int goods_id,int user_id,String specifi);
+
+    /**
+     * 修改购物车同一商品数量
+     * @param count 商品数量
+     * @param goods_id 商品id
+     * @param user_id 用户id
+     * @param specifi 商品规格
+     * @return 若返回-1则代表操作失败,反之亦然
+     */
+    public int updateCartCount(int count,int goods_id,int user_id,String specifi);
+
+    /**
+     * 查询此商品是否存在购物车当中
+     * @param goods_id 商品id
+     * @param user_id 用户id
+     * @return 返回一个javaBean对象
+     */
+    public Cart queryByCartOne(int goods_id,int user_id);
+
+    /**
+     * 查询用户收藏的商品
+     * @param user_id 用户id
+     * @return 返回商品类集合
+     */
+    public List queryByCarColl(int user_id);
 }

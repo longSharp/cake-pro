@@ -1,0 +1,116 @@
+
+.wrap {
+    margin: 0px auto;
+    display: table;
+    width: 1400px;
+    background-color: #fff;
+    position: relative;
+    table-layout: fixed
+}
+
+
+.wrap .page-body {
+    margin: 70px 0 0 0;
+    height: 820px
+}
+
+/* 滚动条*/
+.panel {
+    width: 100%;
+    font-size: 13px;
+    background-color: #fff;
+    position: relative;
+    height: 670px;
+    overflow-y: auto;
+    overflow: scroll;
+}
+
+
+.panel::-webkit-scrollbar {
+    width: 8px;
+    height: 22px;
+    background-color: #f5f5f5
+}
+
+.panel::-webkit-scrollbar-track {
+    background-color: #f5f5f5;
+    border-radius: 0
+}
+
+.panel::-webkit-scrollbar-thumb {
+    border-radius: 0;
+    background-color: #ccc
+}
+
+
+.page-content {
+    font-size: 12px
+}
+
+.page-content a {
+    text-decoration: underline
+}
+
+.banner-wrapper {
+    height: 46px;
+    width: 100%
+}
+
+.banner-wrapper .title {
+    text-align: center
+}
+
+.banner-wrapper .title img {
+    width: 226px
+}
+
+.banner-wrapper .sub-title {
+    text-align: center;
+    color: #000;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 22px
+}
+
+.table-wrapper {
+    padding-top: 40px;
+    text-align: center;
+    width: 100%;
+    margin: auto
+}
+
+.table-wrapper table {
+    width: 100%;
+    text-align: center
+}
+
+.table-wrapper table th {
+    padding: 12px 10px;
+    border-bottom: 1px solid #ccc;
+    font-weight: 700;
+    font-size: 16px
+}
+
+.table-wrapper table tr td {
+    padding: 20px 10px;
+    text-align: center
+}
+
+.pager-con {
+    margin: 10px 40px 0 0
+}
+
+.page-content {
+    background: url(../static/images/product/bg.png) no-repeat;
+    background-size: 138%;
+    padding: 130px 0 40px 0;
+}
+
+.page-body {
+    height: 1380px !important
+}
+
+.page-body .panel {
+    height: 1341px !important;
+    overflow-y: inherit !important
+}

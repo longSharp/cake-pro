@@ -1,0 +1,56 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-10-24 19:08:33
+ * @LastEditTime: 2020-11-04 14:59:31
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \cake-project\BrandDynamic\BrandDynamic.html
+-->
+<link rel="stylesheet" href="./css/dyn.css">
+<div class="page-content">
+        <div class="wrap">
+          <div class="page-body">
+            <div class="panel">
+              <div class="content-header">
+                <h2 class="title">
+                  <img src="./static/images/tit.png" alt="">
+                  <p class="sub-title">品牌动态</p>
+                </h2>
+              </div>
+              
+              <div class="content-body" id="body1">
+                <ul>
+                    {{each data value}}
+                  <li data-id="{{value.id}}">
+                    <div class="nav-items date">
+                      <a href="" target="_blank">
+                        <div class="item-date">
+                          {{value.d_time}} <br>
+                          {{value.d_year}}
+                        </div>
+                      </a></div>
+                    <a href="" target="_blank">
+                      <p>{{value.d_title}}</p>
+                      <p class="summary">{{value.d_content}}</p>
+                    </a>
+                  </li>
+                  {{/each}}
+                </ul>
+            </div>
+            <div class="content-footer">
+              <div class="pager-con">
+                <div class="page-component">
+                  <button class="page-component-btn" id="prev" disabled="disabled"> < </button> 
+                  <button class="page-component-btn page active" id="active" disabled="disabled">1
+                  </button>
+                  <button class="page-component-btn" id="next" disabled="disabled"> > </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+      
+      </script>

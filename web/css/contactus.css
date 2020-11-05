@@ -1,0 +1,168 @@
+#main{
+    background: url(../static/images/concatcus/bg.png) no-repeat 0 0 /100% 100%;
+}
+
+.contactus-page{
+    background:no-repeat;
+    background-size:cover;
+    
+}
+.page-content {
+    min-height: calc(100vh - 160px - 114px);
+    position: relative;
+    padding: 130px 0 40px 0;
+}
+.wrap {
+    margin: 0px auto;
+    display: table;
+    width: 1175px;
+    background-color: #fff;
+    position: relative;
+    table-layout: fixed;
+}
+.triangle {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 23px;
+    border-color: #fff transparent transparent transparent;
+    position: absolute;
+    bottom: -43px;
+    right: 328px;
+}
+
+/* 左边 */
+.wrap .left {
+    padding: 350px 110px 127px 130px;
+    display: table-cell;
+    width: 550px;
+    vertical-align: top;
+}
+
+.wrap .left .title {
+    font-size: 39px;
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+body, p, form {
+    margin: 0;
+}
+
+table {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: grey;
+}
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+table {
+    border-collapse: separate;
+    border-spacing: 2px;
+}
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+.wrap .left .detail td {
+    padding: 5px;
+    vertical-align: top;
+}
+td {
+    display: table-cell;
+    vertical-align: inherit;
+}
+.wrap .left .icon img {
+    width: 18px;
+    height: 15px;
+}
+.wrap .name {
+    font-weight: 700;
+}
+.wrap .content {
+    position: relative;
+    color: #8d8d8d;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+    -webkit-tap-highlight-color: transparent;
+    background-color: transparent;
+}
+
+
+
+/* 微信扫码 */
+
+
+.wx:hover .qrcode-wrap{
+    visibility: visible;
+    opacity: 1;
+    -webkit-transform: translate3d(0,0,0) perspective(800);
+    transform: translate3d(0,0,0) perspective(800);
+    
+}
+.wrap .qrcode-wrap {
+    visibility: hidden;
+    position: absolute;
+    bottom: 20px;
+    left: -27px;
+    opacity: 0;
+    -webkit-transform: translate3d(0,12px,0) perspective(800);
+    transform: translate3d(0,12px,0) perspective(800);
+    transition: all .2s;
+    padding-bottom: 12px;
+}
+.wrap .qrcode-inner {
+    position: relative;
+    background: #fff;
+    box-sizing: border-box;
+    border: 1px solid #eee;
+    border-bottom-color: transparent;
+    border-radius: 4px;
+    box-shadow: 0 0 7px rgba(0,0,0,.18);
+}
+
+.wrap .qrcode-inner p {
+    margin-top: -1px;
+    padding: 0 0 4px;
+    text-align: center;
+    -webkit-transform: scale(.95);
+    -ms-transform: scale(.95);
+    transform: scale(.95);
+    color: #000;
+}
+.wrap .qrcode-inner:after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: transparent;
+    border-width: 5px 5px 0;
+    border-top-color: #fff;
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    margin-left: -5px;
+}
+
+
+
+
+/* 右边 */
+.wrap .right {
+    padding: 160px 119px 127px 10px;
+    display: table-cell;
+    width: 700px;
+    height: 710px;
+    vertical-align: top;
+}    
+
+.wrap .right .map img {
+    width: 579px;
+    height: 423px;
+}

@@ -1,7 +1,7 @@
 <!--
  * @Author: 龙朝敏
  * @Date: 2020-10-13 20:35:04
- * @LastEditTime: 2020-10-19 10:51:41
+ * @LastEditTime: 2020-11-04 17:34:52
  * @LastEditors: Please set LastEditors
  * @Description: 网站的入口文件
  * @FilePath: \web\index.html
@@ -21,7 +21,7 @@
     <title>幸福西饼</title><!-- title标签之间存放的是网页的名字 -->
     <link rel="stylesheet" href="./css/nprogress.css">
     <link rel="stylesheet" href="./css/resetCss.css">
-    <link rel="stylesheet" href="http://at.alicdn.com/t/font_2132364_va5xlwuteg.css">
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_2132364_8gqjdqf4t2j.css">
     <link rel="stylesheet" href="./css/index.css">
 </head>
 
@@ -104,8 +104,18 @@
                     </div>
                     <div class="icon">
                         <span class="iconfont icon-search"></span>
-                        <a href=""><span class="iconfont icon-gouwuche"></span></a>
-                        <a href=""><span class="iconfont icon-yonghu"></span></a>
+                        <a href="#/goods/cart" class="user-car"><span class="iconfont icon-gouwuche"></span></a>
+                        <span class="iconfont icon-yonghu"></span>
+                        <div class="success">
+                            <span>幸福用户1178</span>
+                            <span class="iconfont icon-xiajiantou"></span>
+                            <ul>
+                                <li class="admin">
+                                    <a href="#/user/detail">我的幸福</a>
+                                </li>
+                                <li class="exit">退出登入</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="small-type">
@@ -113,13 +123,103 @@
                 </div>
                 <div class="search">
                     <div class="con">
-                        <input type="text">
-                        <span class="iconfont icon-search"></span>
+                        <input type="text" placeholder="请输入...">
+                        <a href="#/goods/fuzzy"><span class="iconfont icon-search"></span></a>
                     </div>
                 </div>
             </nav>
         </header>
-        <div id="user"></div>
+        <div class="user">
+            <div class="user-contain">
+                <div class="close"><span class="iconfont icon-quxiao"></span></div>
+                <div class="show con login-contain">
+                    <h3>账号登入</h3>
+                    <div class="input input-login">
+                        <div class="username">
+                            <div class="input-placeholder">用户名</div>
+                            <input type="text" placeholder="请输入用户名">
+                            <div class="massage">
+                                <span class="iconfont icon-quxiao"></span>
+                                <span class="content">用户名不存在</span>
+                            </div>
+                        </div>
+                        <div class="password">
+                            <div class="input-placeholder">密&nbsp&nbsp&nbsp码</div>
+                            <input type="password" placeholder="请输入用户密码">
+                            <div class="massage">
+                                <span class="iconfont icon-quxiao"></span>
+                                <span class="content">密码错误</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sele-pass">
+                        <label for="">
+                            <input type="checkbox">
+                            记住我
+                        </label>
+                    </div>
+                    <div class="submit login-sub">
+                        <button>登入</button>
+                    </div>
+                    <p class="regist">
+                        快速注册
+                    </p>
+                </div>
+                <div class="con regist-contain">
+                    <h3>注册新账号</h3>
+                    <div class="input input-regist">
+                        <div class="username">
+                            <input type="text" placeholder="请输入用户名">
+                            <div class="massage">
+                                <span class="iconfont icon-quxiao"></span>
+                                <span class="content">用户名已存在</span>
+                            </div>
+                        </div>
+                        <div class="password1">
+                            <input type="password" placeholder="请输入用户密码">
+                            <div class="massage">
+                                <span class="iconfont icon-quxiao"></span>
+                                <span class="content">密码不一致或者密码长度小于10</span>
+                            </div>
+                        </div>
+                        <div class="password2">
+                            <input type="password" placeholder="请再次输入用户密码">
+                            <div class="massage">
+                                <span class="iconfont icon-quxiao"></span>
+                                <span class="content">密码不一致或者密码长度小于10</span>
+                            </div>
+                        </div>
+                        <div class="email">
+                            <input type="text" placeholder="请输入邮箱地址">
+                            <div class="massage">
+                                <span class="iconfont icon-quxiao"></span>
+                                <span class="content">请输入正确的邮箱</span>
+                            </div>
+                        </div>
+                        <div class="verification">
+                            <div class="vertifi">
+                                <span>A</span>
+                                <span>B</span>
+                                <span>C</span>
+                                <span>D</span>
+                            </div>
+                            <input type="text" placeholder="请输入验证码">
+                            <div class="massage">
+                                <span class="iconfont icon-quxiao"></span>
+                                <span class="content">验证码错误</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="submit regist-sub">
+                        <button>快速注册</button>
+                    </div>
+                    <p class="login">
+                        账号登入
+                    </p>
+                </div>
+            </div>
+        </div>
         <div id="main">
 
         </div>
@@ -137,8 +237,8 @@
         <li data-type="{{value.id}}"><a href="#/goods/{{value.type_name.charCodeAt()}}/1">{{value.type_name}}</a></li>
         {{/each}}
         <li><a href="">团购预约</a></li>
-        <li><a href="">关于我们</a></li>
-        <li><a href="">开店咨询</a></li>
+        <li><a href="#/about">关于我们</a></li>
+        <li><a href="#/consulting">开店咨询</a></li>
     </script>
     <script id="footerTemp" type="text/html">
         <div class="foo">
@@ -219,17 +319,85 @@
                 return baseUrl + url;
             }
 
+            /**
+             * @description: 生成随机数
+             * @param min 随机数最低取值
+             * @param max 随机数最高取值
+             * @return 返回所取得的随机数
+             */
+            function rand(min, max) {
+                return Math.floor(Math.random() * (max - min) + min);
+            }
+
+            /**
+             * @description: 注册页面验证码生成函数
+             * @param ele 装验证码的元素
+             * @return {*}
+             */
+            function verification(ele) {
+                //验证码字体颜色
+                var color = ["#0097A7", "#B2EBF2", "#FFFFFF", "#FFEB3B", "#8BC34A", "#C8E6C9", "#388E3C", "#795548", "#757575", "#512DA8", "#D1C4E9"];
+                var verifi = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "A", "S", "D", "F", "G", "H", "J", "K", "L", "Z", "X", "C", "V", "B", "N", "M"];
+                var sym = ["-", "+"];
+                var symLen = sym.length;
+                var colorLen = color.length;
+                var vLen = verifi.length;
+                ele.children("span").each(function () {
+                    $(this).css({
+                        "color": color[rand(0, colorLen)],
+                        "fontSize": rand(22, 36) + "px",
+                        "fontWeight": rand(300, 900),
+                        "transform": "translateY(" + sym[rand(0, symLen)] + rand(0, 6) + "px)" + " " + "rotate(" + sym[rand(0, symLen)] + rand(0, 60) + "deg)"
+                    });
+                    $(this).text(verifi[rand(0, vLen)]);
+                });
+            }
+
+            /**
+             * @description: 验证验证码是否输入正确
+             * @param target 验证码元素
+             * @param input 用户输入的验证码元素
+             * @return 相等返回true,否则返回false
+             */
+            function isEqul(target, input) {
+                var v = "";
+                var value = input.val();
+                target.children("span").each(function () {
+                    v += $(this).html();
+                });
+                return value.toLocaleLowerCase() == v.toLocaleLowerCase();
+            };
+
+            /**
+             * @description: 邮箱验证函数
+             * @param 需验证的邮箱
+             * @return 验证通过返回true,否则返回false
+             */
+            function fChkMail(szMail) {
+                var szReg = /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,5}$/;
+                var bChk = szReg.test(szMail);
+                return bChk;
+            }
+
             let NP = NProgress;
+
             /**
              * @description: 设置全局的ajax
              */
             $.ajaxSetup({
                 beforeSend: function () {
-                    NProgress.start();
+                    // NProgress.start();
+                    // $("#main").css("opacity", "0");
+                    // $("#footer").css("opacity", "0");
                 }
             });
             $(document).ajaxSuccess(function () {
-                NProgress.done();
+                // NProgress.done();
+                // var timer = setTimeout(function () {
+                //     $("#main").css("opacity", "1");
+                //     $("#footer").css("opacity", "1");
+                // }, 10);
+                // $("html").animate({ scrollTop: 0 }, 0);
             });
 
             /**
@@ -241,7 +409,7 @@
                 for (let i = 0; i < data.length; i++) {
                     var ele = "<ul data-type=" + data[i].id + ">";
                     for (let j = 0; j < data[i].smallType.length; j++) {
-                        var liEle = "<li><a href='#/goods/"+data[i].smallType[j].s_type_name.charCodeAt()+"/1' data-type=" + data[i].smallType[j].b_id + " data-typesmall=" + data[i].smallType[j].id + "><img src=" + data[i].smallType[j].type_img + ">" + "<br>" + "<span>" + data[i].smallType[j].s_type_name + "</span>" + "</a><li>";
+                        var liEle = "<li><a href='#/goods/" + data[i].smallType[j].s_type_name.charCodeAt() + "/1' data-type=" + data[i].smallType[j].b_id + " data-typesmall=" + data[i].smallType[j].id + "><img src=" + data[i].smallType[j].type_img + ">" + "<br>" + "<span>" + data[i].smallType[j].s_type_name + "</span>" + "</a><li>";
                         ele += liEle;
                     }
                     ele += "</ul>";
@@ -259,104 +427,28 @@
                     type: "GET",
                     success: function (data) {
                         data = JSON.parse(data);
-                        var html = template("navList", { data: data });
-                        $("#header .nav-list").html(html);
-                        addEle(data);
-
-                        $("#header .small-type ul li").click(function(){
-                            var route = $(this).children("a").children("span").html().charCodeAt();
-                            Router.route("/goods/"+route+"/1",function(){
-                                
-                            })
-                        });
-                        
-                        var toggle = false;
-                        $("#header .nav-list li").mouseover(function () {
-                            if (!($("#header .search").is(".seach-active"))) {
-                                var that = $(this);
-                                if (that.attr("data-type")) {
-                                    $("#header .small-type").addClass("type-active");
-                                    $("#header .small-type ul").hide();
-                                    $("#header .small-type ul").each(function () {
-                                        if ($(this).attr("data-type") == that.attr("data-type")) {
-                                            $(this).show();
-                                            toggle = true;
-                                        }
-                                    });
-                                }
-                            }
-                        }).mouseout(function () {
-                            if (toggle) {
-                                $("#header .small-type").removeClass("type-active");
-                                $("#header .small-type").mouseover(function () {
-                                    $(this).addClass("type-active");
-                                }).mouseout(function () {
-                                    $(this).removeClass("type-active");
-                                });
-                            }
-                        });
-
-                        var flag = true;
-                        $("#header .icon .icon-search").click(function () {
-                            if (flag) {
-                                $("#header .nav div.search").addClass("seach-active");
-                                flag = false;
-                            } else {
-                                $("#header .nav div.search").removeClass("seach-active");
-                                flag = true;
-                            }
-                        });
-
+                        $.get("./html/navList.html", function (d) {
+                            var render = template.compile(d);
+                            var nav = render({ data: data });
+                            $("#header .nav-list").html(nav);
+                            addEle(data);
+                            $("#header .small-type ul li").click(function () {
+                                s_type(this);
+                            });
+                        })
                     }
                 });
 
                 $.ajax({
                     url: getUrl("/provin"),
                     type: "GET",
+                    global: false,
                     success: function (data) {
                         data = JSON.parse(data);
-                        var p = template("provinal", { data: data });
-                        $("#header .panel .select-box .select-cont>div:nth-child(1) ul").html(p);
-                        $.ajax({
-                            url: getUrl("/provin/city"),
-                            type: "GET",
-                            data: {
-                                pid: $("#header .panel .select-box .select-cont>div:nth-child(1)>div>span").attr("data-provin")
-                            },
-                            success: function (cityData) {
-                                cityData = JSON.parse(cityData);
-                                var c = template("city", { data: cityData });
-                                $("#header .panel .select-box .select-cont>div:nth-child(2)>div>span").html(cityData[0].city);
-                                $("#header .panel .select-box .select-cont>div:nth-child(2) ul").html(c);
-                                $(".select-cont>div:nth-child(2) li").on("click", function () {
-                                    $(".select-cont>div:nth-child(2) div span").html($(this).html());
-                                    $("#header .area>.name>span").html($(this).html());
-                                    $(".panel").removeClass("panel-active");
-                                })
-                            }
-                        });
-                        $(".select-cont>div:nth-child(1) li").on("click", function () {
-                            var t = $(this);
-                            $.ajax({
-                                url: getUrl("/provin/city"),
-                                type: "GET",
-                                data: {
-                                    pid: t.attr("data-provin")
-                                },
-                                success: function (cityData) {
-                                    cityData = JSON.parse(cityData);
-                                    var c = template("city", { data: cityData });
-                                    $("#header .panel .select-box .select-cont>div:nth-child(2)>div>span").html(cityData[0].city);
-                                    $("#header .panel .select-box .select-cont>div:nth-child(2) ul").html(c);
-                                    $("#header .panel .select-box .select-cont>div:nth-child(1)  div span").html(t.html());
-                                    
-                                    $(".select-cont>div:nth-child(2) li").on("click", function () {
-                                    $(".select-cont>div:nth-child(2) div span").html($(this).html());
-                                    $("#header .area>.name>span:nth-child(2)").html($(this).html());
-                                    $(".panel").removeClass("panel-active");
-                                })
-                                }
-                            });
+                        $.get("./html/provinal.html", function (d) {
+                            var render = template.compile(d);
+                            var p = render({ data: data });
+                            $("#header .panel .select-box .select-cont>div:nth-child(1) ul").html(p);
                         })
                     }
                 });
@@ -368,24 +460,20 @@
                         $.ajax({
                             url: getUrl("/provin/fuzzy"),
                             type: "GET",
+                            global: false,
                             data: {
                                 name: val
                             },
                             success: function (data) {
                                 data = JSON.parse(data);
-                                var fuz = template("fuzzyCity", { data: data });
-                                if (data) {
-                                    $('.search-box>ul').html(fuz).addClass("active");
-                                }
+                                $.get("./html/fuzzyCity.html", function (d) {
+                                    var render = template.compile(d);
+                                    if (data) {
+                                        var fuz = render({ data: data });
+                                        $('.search-box>ul').html(fuz).addClass("active");
+                                    }
 
-                                $("#header .panel>.search-city .search-box>ul>li").on("click", function () {
-                                    $(".panel").removeClass("panel-active");
-                                    $("#header .area>.name>span:nth-child(2)").html($(this).html());
-                                    $("#header .panel>.search-city .search-box input").val("");
-                                    $(this).parent().html("").removeClass('active');
-                                });
-
-
+                                })
                             }
                         });
                     } else {
@@ -395,123 +483,484 @@
 
 
                 $.get("./html/index_main.html", function (d) {
-                    let render = template.compile(d);
-                    let html = render();
-                    $("#main").html(html);
-                    $("body").css("display", "block");
+                    $.ajax({
+                        url: getUrl("/goods/Ibanner"),
+                        type: "GET",
+                        success: function (data) {
+                            data = JSON.parse(data);
+                            var render = template.compile(d);
+                            var html = render({ data: data });
+                            $("#main").html(html);
+                        }
+                    });
                 });
 
-                var footerHtml = template("footerTemp", {});
-                $("#footer").html(footerHtml);
+                $.get("./html/footerTemp.html", function (d) {
+                    var render = template.compile(d);
+                    var footerHtml = render({});
+                    $("#footer").html(footerHtml);
+                })
 
+                var f = true;
                 $("#header .area>.point>div>span").click(function () {
-                    $("#header .area>.point .panel").toggleClass("panel-active");
-                    $("#header .panel .select-box .select-cont>div").click(function () {
-                        $(this).children("ul").toggleClass("active");
-                    });
+                    if (f) {
+                        $("#header .area>.point .panel").addClass("panel-active");
+                        f = false;
+                    } else {
+                        $("#header .area>.point .panel").removeClass("panel-active");
+                        f = true;
+                    }
+
                     $("#header .panel .select-box .select-cont>div>ul").removeClass("active");
                 });
+
+                var t = true;
+                $("#header .panel .select-box .select-cont>div").click(function () {
+                    if (t) {
+                        $(this).children("ul").addClass("active");
+                        t = false;
+                    } else {
+                        $(this).children("ul").removeClass("active");
+                        t = true;
+                    }
+
+                });
+
+                $(".user").css("z-index", "-1");
+
+                $("header .icon .icon-yonghu").on("click", function () {
+                    $(".user").addClass("user-active").css("z-index", "18");
+                    $(".user .user-contain").addClass("user-show");
+                    $(".user input").val("");
+                });
+
+                $(".user .user-contain .close").on("click", function () {
+                    $(".user").removeClass("user-active");
+                    $(".user .user-contain").removeClass("user-show");
+                    $(".user input").val("");
+                    var timer = setTimeout(function () {
+                        $(".user").css("z-index", "-1");
+                        clearTimeout(timer);
+                    }, 500);
+                });
+
+                $(".user .login").on("click", function () {
+                    $(".user .regist-contain").css("display", "none");
+                    $(".user .login-contain").css("display", "block");
+                    $(".user input").val("");
+                });
+
+                $(".user .regist").on("click", function () {
+                    $(".user .regist-contain").css("display", "block");
+                    $(".user .login-contain").css("display", "none");
+                    verification($(".vertifi"));
+                    $(".user input").val("");
+                });
+
+                $(".vertifi").on("click", function () {
+                    verification($(this));
+                });
+
+                $(".regist-sub").on("click", function () {
+                    $(".user .input>div>div.massage").removeClass("mass-show");
+                    var username = $(".input-regist>.username>input").val();
+                    var password1 = $(".input-regist>.password1>input").val();
+                    var password2 = $(".input-regist>.password2>input").val();
+                    var email = $(".input-regist>.email>input").val();
+                    var verifiVal = $(".verification>input");
+                    var verifiTartget = $(".verification>.vertifi");
+                    if ((password1 == password2) && password1.length >= 6) {
+                        if (fChkMail(email)) {
+                            if (isEqul(verifiTartget, verifiVal)) {
+                                $.ajax({
+                                    url: getUrl("/admin/regist"),
+                                    type: "POST",
+                                    data: {
+                                        username: username,
+                                        password: password1,
+                                        email: email
+                                    },
+                                    success: function (data) {
+                                        data = parseInt(data);
+                                        if (data != -1) {
+                                            alert("注册成功");
+                                            $(".user .regist-contain").css("display", "none");
+                                            $(".user .login-contain").css("display", "block");
+                                        } else {
+                                            $(".input-regist>.username>div.massage").addClass("mass-show");
+                                        }
+                                    }
+                                });
+                            } else {
+                                $(".verification>div.massage").addClass("mass-show");
+                                verification($(".vertifi"));
+                            }
+                        } else {
+                            $(".input-regist>.email>div.massage").addClass("mass-show");
+                        }
+                    } else {
+                        $(".input-regist>.password1>div.massage").addClass("mass-show");
+                        $(".input-regist>.password2>div.massage").addClass("mass-show");
+                    }
+                });
+
+                $(".login-sub").on("click", function () {
+                    $(".user .input>div>div.massage").removeClass("mass-show");
+                    var username = $(".input-login .username input").val().trim();
+                    var password = $(".input-login .password input").val().trim();
+                    if (username != "" && password != "") {
+                        $.ajax({
+                            url: getUrl("/admin/login"),
+                            type: "POST",
+                            data: {
+                                username: username,
+                                password: password
+                            },
+                            success: function (data) {
+                                data = JSON.parse(data);
+                                switch (data.code) {
+                                    case 100:
+                                        $(".user").removeClass("user-active");
+                                        $(".user .user-contain").removeClass("user-show");
+                                        $(".user input").val("");
+                                        var timer = setTimeout(function () {
+                                            $("#header .icon .success").addClass("active");
+                                            $("#header .icon span.icon-yonghu").addClass("hiden");
+                                            $("#header .icon .success>span:nth-child(1)").html(data.data.user_name);
+                                            $(".icon .user-car").attr("data-userId", data.data.user_id);
+                                                localStorage.setItem("token", data.data.tokenStr);
+                                            $(".user").css("z-index", "-1");
+                                            clearTimeout(timer);
+                                        }, 500);
+                                        break;
+                                    case 102:
+                                        $(".input-login .password div.massage").addClass("mass-show");
+                                        break;
+                                    case 103:
+                                        $(".input-login .username div.massage").addClass("mass-show");
+                                }
+
+                            }
+                        });
+                    }
+                });
+
+                $(".exit").on("click", function () {
+                    var token = localStorage.getItem("token");
+                    $.ajax({
+                        url: getUrl("/admin/delete"),
+                        type: 'POST',
+                        data: {
+                            token: token
+                        },
+                        success: function (data) {
+                            data = parseInt(data);
+                            if (data != -1) {
+                                localStorage.removeItem("token");
+                                $("#header .icon .success").removeClass("active");
+                                $("#header .icon span.icon-yonghu").removeClass("hiden");
+                                var reUrl = window.location.href;
+                                if(reUrl.includes("user")!=-1 || reUrl.includes("cart")!=-1){
+                                    window.location.href = reUrl.split("#")[0];
+                                }
+                            }
+                        }
+                    });
+
+                });
+            
+                $("#header .icon .success>ul>li.admin").on("click",function(){
+                    var username = $("#header .icon .success>span:nth-child(1)").text();
+                    Router.route("/user/detail",function(){
+                        $.ajax({
+                            url:getUrl("/admin/info"),
+                            type:"GET",
+                            data:{
+                                username:username
+                            },
+                            success(data){
+                                data = JSON.parse(data);
+                                var user_id = $(".icon .user-car").attr("data-userid");
+                                $.ajax({
+                                    url:getUrl("/goods/car/collection"),
+                                    type:"GET",
+                                    data:{
+                                        user_id:user_id
+                                    },
+                                    success(coll){
+                                        coll = JSON.parse(coll);
+                                        $.get("./html/user.html",function(d){
+                                        var render = template.compile(d);
+                                        var html = render({data:data,coll:coll});
+                                        $("#main").html(html);
+                                })
+                                    }
+                                });
+                                
+                            }
+                        });
+                    })
+                });
+            
+                $(".foo .foo-list .dyn").on("click",function(){
+                    
+                })
+            
             }
 
             //主页路由
             Router.route("/", function () {
                 init();
+                var token = localStorage.getItem("token");
+                if (token != null) {
+                    $.ajax({
+                        url: getUrl("/admin/isLogin"),
+                        type: "POST",
+                        data: {
+                            token: token
+                        },
+                        success: function (data) {
+                            data = JSON.parse(data);
+                            if (data.code == 100) {
+                                $("#header .icon .success").addClass("active");
+                                $("#header .icon span.icon-yonghu").addClass("hiden");
+                                $("#header .icon .success>span:nth-child(1)").html(data.data.user_name);
+                                $(".icon .user-car").attr("data-userId", data.data.user_id);
+                            }
+
+                        }
+                    });
+                }
             });
+
+            Router.route("/goods/cart", function () {
+                var that = this;
+                var token = localStorage.getItem("token");
+                $.ajax({
+                    url: getUrl("/admin/isLogin"),
+                    type: "POST",
+                    data: {
+                        token: token
+                    },
+                    success(data) {
+                        data = JSON.parse(data);
+                        if (data.code == 100) {
+                            $.ajax({
+                                url: getUrl("/goods/car"),
+                                type: "GET",
+                                data: {
+                                    user_id: $(".icon .user-car span").parent().attr("data-userid")
+                                },
+                                success(data1) {
+                                    data1 = JSON.parse(data1);
+                                    $.get("./html/car.html", function (d) {
+                                        var render = template.compile(d);
+                                        var html = render({ data: data1 });
+                                        $("#main").html(html);
+                                    })
+                                }
+                            });
+                        } else {
+                            $(".user").addClass("user-active").css("z-index", "18");
+                            $(".user .user-contain").addClass("user-show");
+                            $("input").val("");
+                            var url = window.location.href;
+                            window.location.href=url.split("#")[0]+"#/login";
+                        }
+                    }
+                });
+
+            });
+
+            Router.route("/dynamics",function(){
+                $.ajax({
+                    url:getUrl("/dynamics"),
+                    type:"GET",
+                    success(data){
+                        data = JSON.parse(data);
+                        $.get("./html/dyn.html",function(d){
+                            var render = template.compile(d);
+                            var dyn = render({data:data});
+                            $("#main").html(dyn);
+                        })
+                    }
+                });
+            })
+
+            Router.route("/about",function(){
+                $.get("./html/about.html",function(d){
+                    var render = template.compile(d);
+                    var about = render({});
+                    $("#main").html(about);
+                })
+            })
+
+            Router.route("/consulting",function(){
+                $.get("./html/comtult.html",function(d){
+                    var render = template.compile(d);
+                    var co = render({});
+                    $("#main").html(co);
+                })
+            })
+            
+            Router.route("/applyinvoice",function(){
+                $.get("./html/applyinvoice.html",function(d){
+                    var render = template.compile(d);
+                    var a = render({});
+                    $("#main").html(a);
+                })
+            })
+
+            Router.route("/rules",function(){
+                $.get("./html/rules.html",function(d){
+                    var render = template.compile(d);
+                    var rules = render({});
+                    $("#main").html(rules);
+                })
+            });
+
+            Router.route("/cooper",function(){
+                $.get("./html/cooper.html",function(d){
+                    var render = template.compile(d);
+                    var cooper = render({});
+                    $("#main").html(cooper);
+                })
+            })
+
+            Router.route("/contactus",function(){
+                $.get("./html/contactus.html",function(d){
+                    var render = template.compile(d);
+                    var cont = render({});
+                    $("#main").html(cont);
+                })
+            })
 
             /**
              * @description: 商品列表页函数
              * @param data 商品数据 
              * @param type_id 商品类型id
              */
-            function goodsEn(data,b_id,s_id){
-                $.get("./html/goods_list.html",function(d){
-                            var render = template.compile(d);
-                            var cake = render({data:data});
-                            $("#main").html(cake);
-
-                            $.ajax({
-                                url:getUrl("/goods/count"),
-                                type:"GET",
-                                data:{
-                                    b_id:b_id?b_id:0,
-                                    s_id:s_id?s_id:0
-                                },
-                                success:function(data1){
-                                    var data1 = parseInt(data1);
-                                    data1 = Math.ceil(data1/40);
-                                    var arr = new Array(data1);
-                                    var page = template("pages",{data:arr});
-                                    $("#main").append(page);
-
-                                    $("#main .pages-box ul li").eq(1).addClass("active");
-                                    $("#main .pages-box ul li").slice(1,data1+1).click(function(){
-                                        var that = this;
-                                        Router.route("/goods/"+$(that).children("a").html(),function(){
-                                            if(!$(that).hasClass("active")){
-                                            $("#main .pages-box ul li").removeClass("active");
-                                            $(that).addClass("active");
-                                            var index = (parseInt($(that).children("a").html())-1)*40;
-                                            $.ajax({
-                                                url:getUrl("/goods/list"),
-                                                type:"GET",
-                                                data:{
-                                                    b_id:b_id?b_id:0,
-                                                    s_id:0,
-                                                    index:index,
-                                                    limit:40
-                                                },
-                                                success:function(data2){
-                                                    data2 = JSON.parse(data2);
-                                                    $.get("./html/goods_list.html",function(d1){
-                                                        var render = template.compile(d);
-                                                        var ht = render({data:data2});
-                                                        $("#goods_list").remove();
-                                                        $("#main").prepend(ht);
-                                                    })
-                                                }
-                                            });
-                                        }
-                                        });
-                                    });
-                                }
+            function goodsEn(data, b_id, s_id) {
+                $.get("./html/goods_list.html", function (d) {
+                    var render = template.compile(d);
+                    var cake = render({ data: data });
+                    $("#main").html(cake);
+                    $.ajax({
+                        url: getUrl("/goods/count"),
+                        type: "GET",
+                        data: {
+                            b_id: b_id ? b_id : 0,
+                            s_id: s_id ? s_id : 0
+                        },
+                        success: function (data1) {
+                            var data1 = parseInt(data1);
+                            data1 = Math.ceil(data1 / 40);
+                            var arr = new Array(data1);
+                            var page = template("pages", { data: arr });
+                            var u = window.location.href.split("#")[1];
+                            var index = u.lastIndexOf("/");
+                            var hre = u.slice(0, index + 1);
+                            $("#main").append(page);
+                            $("#main .pages-box ul li").each(function () {
+                                $(this).children("a").attr("href", "#" + hre + $(this).index());
                             });
-                        })
+
+                            $("#main .pages-box ul li").eq(1).addClass("active");
+                            $("#main .pages-box ul li").slice(1, data1 + 1).click(function () {
+                                var that = this;
+                                var route = u.slice(0, index + 1) + $(that).children("a").html();
+                                Router.route(route, function () {
+                                    if (!$(that).hasClass("active")) {
+                                        $("#main .pages-box ul li").removeClass("active");
+                                        $(that).addClass("active");
+                                        var index = (parseInt($(that).children("a").html()) - 1) * 40;
+                                        $.ajax({
+                                            url: getUrl("/goods/list"),
+                                            type: "GET",
+                                            data: {
+                                                b_id: b_id ? b_id : 0,
+                                                s_id: 0,
+                                                index: index,
+                                                limit: 40
+                                            },
+                                            success: function (data2) {
+                                                data2 = JSON.parse(data2);
+                                                $.get("./html/goods_list.html", function (d1) {
+                                                    var render = template.compile(d);
+                                                    var ht = render({ data: data2 });
+                                                    $("#goods_list").remove();
+                                                    $("#main").prepend(ht);
+                                                })
+                                            }
+                                        });
+                                    }
+                                });
+                            });
+                        }
+                    });
+                })
             }
-            
+
             /**
              * @description: 商品大类型函数
              * @param b_id_index 大类型所在元素的下标 
              */
-            function b_type(b_id_index){
-                var b_id = $("#header .nav-list>li:nth-child("+b_id_index+")").attr("data-type");
+            function b_type(b_id_index) {
+                var b_id = $("#header .nav-list>li:nth-child(" + b_id_index + ")").attr("data-type");
                 $.ajax({
-                    url:getUrl("/goods/list"),
-                    type:"GET",
-                    data:{
-                        b_id:b_id,
-                        s_id:0,
-                        index:0,
-                        limit:40
+                    url: getUrl("/goods/list"),
+                    type: "GET",
+                    data: {
+                        b_id: b_id,
+                        s_id: 0,
+                        index: 0,
+                        limit: 40
                     },
-                    success:function(data){
+                    success: function (data) {
                         data = JSON.parse(data);
-                        goodsEn(data,b_id,0);
+                        goodsEn(data, b_id, 0);
                     }
                 })
             }
-            
+
+            /**
+             * @description: 商品小类型函数
+             * @param {type} 
+             * @return {type} 
+             */
+            function s_type(that) {
+                var route = $(that).children("a").children("span").html().charCodeAt();
+                var s_id = $(that).children("a").attr("data-typesmall");
+                Router.route("/goods/" + route + "/1", function () {
+                    $.ajax({
+                        url: getUrl("/goods/list"),
+                        type: "GET",
+                        data: {
+                            b_id: 0,
+                            s_id: s_id,
+                            index: 0,
+                            limit: 40
+                        },
+                        success: function (data) {
+                            data = JSON.parse(data);
+                            goodsEn(data, 0, s_id);
+                        }
+                    })
+                })
+            };
+
             //全部商品路由
-            Router.route("/goods/1",function(){
+            Router.route("/goods/1", function () {
                 $.ajax({
-                    url:getUrl("/goods/list"),
-                    data:{
-                        b_id:0,
-                        s_id:0,
-                        index:0,
-                        limit:40
+                    url: getUrl("/goods/list"),
+                    data: {
+                        b_id: 0,
+                        s_id: 0,
+                        index: 0,
+                        limit: 40
                     },
-                    type:"GET",
-                    success:function(data){
+                    type: "GET",
+                    success: function (data) {
                         data = JSON.parse(data);
                         goodsEn(data);
                     }
@@ -519,19 +968,51 @@
             });
 
             //蛋糕类商品路由
-            Router.route("/goods/"+"蛋糕".charCodeAt()+"/1",function(){
+            Router.route("/goods/" + "蛋糕".charCodeAt() + "/1", function () {
                 b_type(2);
             })
 
             //下午茶类商品路由
-            Router.route("/goods/"+"下午茶".charCodeAt()+"/1",function(){
+            Router.route("/goods/" + "下午茶".charCodeAt() + "/1", function () {
                 b_type(3);
             });
 
             //手信类商品路由
-            Router.route("/goods/"+"手信".charCodeAt()+"/1",function(){
+            Router.route("/goods/" + "手信".charCodeAt() + "/1", function () {
                 b_type(4);
             });
+
+            $("#header .search span").click(function () {
+                var val = $("#header .search input").val();
+                val = val.replace(/\s/g, "");
+                if (val) {
+                    Router.route("/goods/fuzzy", function () {
+                        $.ajax({
+                            url: getUrl("/goods/fuzzy"),
+                            type: "GET",
+                            data: {
+                                fuzz: val
+                            },
+                            success: function (data) {
+                                data = JSON.parse(data);
+                                $.get("./html/goods_list.html", function (d) {
+                                    var rend = template.compile(d);
+                                    var html = rend({ data: data });
+                                    $("#main").html("");
+                                    $("#main").html(html);
+                                    $("#header .search input").val();
+                                    $("#header .search").removeClass("seach-active");
+                                    var arr = new Array(1);
+                                    var page = template("pages", { data: arr });
+                                    $("#main").append(page);
+                                    $("#main .pages-box ul li").eq(1).addClass("active");
+                                })
+                            }
+                        });
+                    });
+                }
+            });
+
 
         })
     </script>

@@ -1,0 +1,19 @@
+<!--
+ * @Author: 龙朝敏
+ * @Date: 2020-10-22 14:40:03
+ * @LastEditTime: 2020-10-22 14:45:45
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \web\html\fuzzyCity.html
+-->
+{{each data value}}
+<li data-type="{{value.pid}}">{{value.city}}</li>
+{{/each}}
+<script>
+    $("#header .panel>.search-city .search-box>ul>li").on("click", function () {
+        $(".panel").removeClass("panel-active");
+        $("#header .area>.name>span:nth-child(2)").html($(this).html());
+        $("#header .panel>.search-city .search-box input").val("");
+        $(this).parent().html("").removeClass('active');
+    });
+</script>

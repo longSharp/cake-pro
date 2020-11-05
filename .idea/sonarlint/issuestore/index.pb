@@ -29,8 +29,6 @@ G
 src/cake/bean/City.java,2\2\22593e8e259c4e4b004409509f8de320b913db16
 D
 web/css/resetCss.css,a\2\a2d2381bbceae0720a5b1985220119ead057a489
-?
-web/index1.html,a\4\a4a28b2d24c6091028926587272174a811d33867
 G
 src/cake/bean/Type.java,3\8\38b0938d371f4aa61811f0e07e4d276aca91720b
 I
@@ -47,16 +45,12 @@ Q
 !src/cake/dao/ProvinceCityDao.java,c\a\ca7da1c5e2fa5e2321b67fa925d1138fb544467a
 Y
 )src/cake/service/ProvinceCityService.java,7\0\70b15b404b3f96bbbb618d0ce5bbf06030514505
-U
-%src/cake/web/service/BaseServlet.java,b\3\b369cef823c4d3177d8ef6bd2a2d473cdb4c46bc
 K
 src/cake/test/UserTest.java,8\a\8a0d6b14d6e01db6ba1f1f9a3b166e27d6340af5
 ]
 -src/cake/dao/daoImpl/ProvinceCityDaoImpl.java,7\8\780d476c434274bc237383db50b1e673a9f716a2
 C
 src/jdbc.properties,a\b\ab9ddd57a0ce5240900d398a9243a219d8269480
-R
-"src/cake/utils/ResponseHeader.java,9\f\9fa31182f9bdbcc19ddec9719c12f2a99b7f5a9b
 C
 web/WEB-INF/web.xml,c\d\cdcc12da5c4054f6995aab32914d7e0243194c05
 Y

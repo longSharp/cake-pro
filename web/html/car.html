@@ -1,0 +1,298 @@
+<link rel="stylesheet" href="./css/car.css">
+<div class="cart-container">
+    <div class="cart-header">
+        <div class="submit">
+            <h3>幸福商城购物车</h3>
+            <div class="right">
+                <span class="delivery-cost">总金额 (已包含运费金额￥ 00.00 )</span>
+                <strong class="total-price">￥00.00</strong>
+                <button class="submit-btn" disabled>下单结算</button>
+            </div>
+        </div>
+        <div class="titles">
+            <ul class="row">
+                <li class="col-checkbox">
+                    <input type="checkbox">
+                    <label>
+
+                        全选
+                    </label>
+                </li>
+                <li class="col-product-detail">商品信息</li>
+                <li class="col-product-price">单价</li>
+                <li class="col-product-num">数量</li>
+                <li class="col-product-total">合计</li>
+                <li class="col-operate">操作</li>
+            </ul>
+        </div>
+    </div>
+    <div class="cart-products">
+        <ul>
+            {{each data value}}
+            <li class="cake-list" data-goods-id="{{value.goods_id}}">
+                <ul class="list-item">
+                    <li class="col-checkbox">
+                        <input type="checkbox">
+                    </li>
+                    <li class="col-product-detail">
+                        <div class="det-img"><img src="{{value.img_url}}" alt=""></div>
+                        <div class="txt">
+                            <p><a href="#/goods/detail/8090{{value.goods_id}}">{{value.goods_name}}</a></p>
+                            <p>规格: {{value.specifi}}</p>
+                        </div>
+                    </li>
+                    <li class="col-product-price">
+                        <span>￥{{value.price}}.00</span>
+                    </li>
+                    <li class="col-product-num">
+                        <div>-</div>
+                        <div>{{value.count}}</div>
+                        <div>+</div>
+                    </li>
+                    <li class="col-product-total">
+                        <span>￥{{value.count*value.price}}.00</span>
+                    </li>
+                    <li class="col-operate">
+                        <span class="iconfont" data-colle={{value.collection}}></span>
+                        <span class="iconfont icon-quxiao"></span>
+                    </li>
+                </ul>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+    <div class="cart-footer">
+
+        <label>
+            <input type="checkbox" class="checkall">全选
+        </label>
+        <div class="total-right">
+            <span>合计 </span>
+            <span>￥00.00</span>
+            <button class="submit-order-btn" disabled>下单结算</button>
+        </div>
+    </div>
+</div>
+<script>
+    $(".cart-products .cake-list").each(function () {
+        var that0 = this;
+        var coll = $(this).find(".col-operate span:eq(0)").attr("data-colle");
+        var className = coll == 0 ? "icon-aixin1" : "icon-aixin";
+        $(this).find(".col-operate span:eq(0)").addClass(className);
+
+        $(this).find(".col-operate span:eq(0)").on("click", function () {
+            var that = this;
+            var coll = $(that).attr("data-colle");
+            var goods_id = $(that0).attr("data-goods-id");
+            var user_id = $(".icon .user-car").attr("data-userid");
+            var specifi = $(that0).find(".txt p").eq(1).text().split(":")[1].trim();
+            if (coll == 0) {
+                $(that).removeClass("icon-aixin1");
+                $(that).addClass("icon-aixin");
+                coll = 1;
+                $(that).attr("data-colle", coll);
+            } else {
+                $(that).removeClass("icon-aixin");
+                $(that).addClass("icon-aixin1");
+                coll = 0;
+                $(that).attr("data-colle", coll);
+            }
+            $.ajax({
+                url: getUrl("/goods/car/update/coll"),
+                type: "POST",
+                data: {
+                    coll: coll,
+                    goods_id: goods_id,
+                    user_id: user_id,
+                    specifi: specifi
+                },
+                success(data) {
+                    data = parseInt(data);
+                }
+            });
+        });
+
+        $(this).find(".col-operate span:eq(1)").on("click", function () {
+            var goods_id = $(that0).attr("data-goods-id");
+            var user_id = $(".icon .user-car").attr("data-userid");
+            var specifi = $(that0).find(".txt p").eq(1).text().split(":")[1].trim();
+            $.ajax({
+                url: getUrl("/goods/car/delete"),
+                type: "POST",
+                data: {
+                    goods_id: goods_id,
+                    user_id: user_id,
+                    specifi: specifi
+                },
+                success(data) {
+                    data = parseInt(data);
+                    if (data != -1 || data != 0) {
+                        $(that0).remove();
+                    }
+                }
+            })
+        });
+
+        $(this).find(".col-product-num div").on("click", function () {
+            var index = $(this).index();
+            var goods_id = $(that0).attr("data-goods-id");
+            var user_id = $(".icon .user-car").attr("data-userid");
+            var specifi = $(that0).find(".txt p").eq(1).text().split(":")[1].trim();
+            var price = parseInt($(that0).find(".col-product-price span").text().split(".")[0].slice(1));
+            var pre = parseInt($(that0).find(".col-product-num div").eq(1).text());
+            if (index == 0) {
+                var count = pre - 1;
+                if (pre > 1) {
+                    $.ajax({
+                        url: getUrl("/goods/car/update/count"),
+                        type: "POST",
+                        data: {
+                            count: count,
+                            goods_id: goods_id,
+                            user_id: user_id,
+                            specifi: specifi
+                        },
+                        success(data) {
+                            data = parseInt(data);
+                            if (data != -1 && data != 0) {
+                                $(that0).find(".col-product-num div").eq(1).text(count);
+                                $(that0).find(".col-product-total span").text("￥" + (price * count) + ".00");
+                                if ($(that0).find(".col-checkbox input").prop("checked")) {
+                                    var pr = parseInt($(that0).find(".col-product-price span").text().split(".")[0].slice(1));
+                                    var preTotal = parseInt($(".cart-header .total-price").text().split(".")[0].slice(1));
+                                    $(".cart-header .total-price").text("￥" + (preTotal - pr) + ".00");
+                                    $(".cart-footer .total-right span:nth-child(2)").text("￥" + (preTotal - pr) + ".00");
+                                }
+                            }
+                        }
+                    });
+                }
+            } else if (index == 2) {
+                var count = pre + 1;
+                $.ajax({
+                    url: getUrl("/goods/car/update/count"),
+                    type: "POST",
+                    data: {
+                        count: count,
+                        goods_id: goods_id,
+                        user_id: user_id,
+                        specifi: specifi
+                    },
+                    success(data) {
+                        data = parseInt(data);
+                        if (data != -1 && data != 0) {
+                            $(that0).find(".col-product-num div").eq(1).text(count);
+                            $(that0).find(".col-product-total span").text("￥" + (price * count) + ".00");
+                            if ($(that0).find(".col-checkbox input").prop("checked")) {
+                                var pr = parseInt($(that0).find(".col-product-price span").text().split(".")[0].slice(1));
+                                var preTotal = parseInt($(".cart-header .total-price").text().split(".")[0].slice(1));
+                                $(".cart-header .total-price").text("￥" + (preTotal + pr) + ".00");
+                                $(".cart-footer .total-right span:nth-child(2)").text("￥" + (preTotal + pr) + ".00");
+                            }
+                        }
+                    }
+                });
+            }
+        });
+
+        $(this).find(".col-checkbox input").on("change", function () {
+            var total = parseInt($(that0).find(".col-product-total span").text().split(".")[0].slice(1));
+            var priceTotal = parseInt($(".cart-header .total-price").text().split(".")[0].slice(1));
+            if ($(this).prop("checked")) {
+                priceTotal = priceTotal + total;
+                if (priceTotal > 0) {
+                    $(".cart-header .submit-btn").removeAttr("disabled");
+                    $(".cart-footer .submit-order-btn").removeAttr("disabled")
+                }
+            } else {
+                priceTotal = priceTotal - total;
+                if (priceTotal == 0) {
+                    $(".cart-header .submit-btn").attr("disabled", "disabled");
+                    $(".cart-footer .submit-order-btn").attr("disabled", "disabled")
+                }
+                $(".cart-header .titles .col-checkbox input").prop("checked", false);
+                $(".cart-footer label input").prop("checked", false);
+            }
+            $(".cart-header .total-price").text("￥" + priceTotal + ".00");
+            $(".cart-footer .total-right span:nth-child(2)").text("￥" + priceTotal + ".00");
+        })
+
+        $(this).find(".col-product-detail .txt p:eq(0)").on("click",function(){
+            var url = $(this).children("a").attr("href").split("#")[1];
+            Router.route(url,function(){
+                var id = $(that0).attr("data-goods-id");
+                $.ajax({
+                    url:getUrl("/goods/detail"),
+                    type:"GET",
+                    data:{
+                        id:id
+                    },
+                    success(data){
+                        data = JSON.parse(data);
+                        $.get("./html/detail.html",function(d){
+                            var render = template.compile(d);
+                            var html = render({data:data});
+                            $("#main").html(html);
+                        })
+                    }
+                })
+            })
+        })
+    });
+
+    $(".cart-header .titles .col-checkbox input").on("change", function () {
+        change(this, ".cart-footer label input");
+    })
+
+    $(".cart-footer label input").on("change", function () {
+        change(this, ".cart-header .titles .col-checkbox input");
+    });
+
+    /**
+     * @description: 全选按钮处理函数
+     * @param that 同是全选按钮元素选择器
+     * @return {*}
+     */
+    function change(that, check) {
+        if ($(that).prop("checked")) {
+            var total = 0;
+            $(".cart-products .cake-list").each(function () {
+                var t = parseInt($(this).find(".col-product-total span").text().split(".")[0].slice(1));
+                total += t;
+                $(this).find(".col-checkbox input").prop("checked", true);
+            })
+            if (total > 0) {
+                $(".cart-header .total-price").text("￥" + total + ".00");
+                $(".cart-footer .total-right span:nth-child(2)").text("￥" + total + ".00");
+                $(".cart-header .submit-btn").removeAttr("disabled");
+                $(".cart-footer .submit-order-btn").removeAttr("disabled")
+            }
+            $(check).prop("checked", true);
+        } else {
+            $(".cart-products .cake-list").each(function () {
+                $(this).find(".col-checkbox input").prop("checked", false);
+            })
+            $(".cart-header .total-price").text("￥" + 0 + ".00");
+            $(".cart-footer .total-right span:nth-child(2)").text("￥" + 0 + ".00");
+            $(".cart-header .submit-btn").attr("disabled", "disabled");
+            $(".cart-footer .submit-order-btn").attr("disabled", "disabled");
+            $(check).prop("checked", false);
+        }
+    }
+
+    $.ajax({
+        url: getUrl("/goods/recom"),
+        type: "GET",
+        data: {
+            i: 5
+        },
+        success: function (data) {
+            data = JSON.parse(data);
+            $.get("./html/recommend.html", function (d) {
+                var render = template.compile(d);
+                var html = render({ data: data });
+                $(".cart-container").append(html);
+            });
+        }
+    });
+</script>

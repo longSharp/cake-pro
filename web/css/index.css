@@ -1,6 +1,4 @@
-body{
-    display: none;
-}
+
 #header{
     position: fixed;
     width: 100%;
@@ -299,13 +297,75 @@ body{
 }
 
 #header .icon{
+    display: flex;
+    align-items: center;
     width: 288px;
     height: 100%;
-    line-height: 72px;
 }
 #header .icon span{
     font-size: 26px !important;
+    padding: 0 10px;
+    cursor: pointer;
+}
+
+#header .icon span.hiden{
+    display: none;
+}
+
+#header .icon .success{
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    height: 100%;
+    line-height: 70px;
+    margin-left: 10px;
+}
+
+#header .icon div.active{
+    display: flex;
+}
+
+#header .icon .success>span{
+    font-size: 14px !important;
     padding: 0 5px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+#header .icon .success>span:nth-child(1){
+    display: inline-block;
+    width: 50px;
+}
+
+#header .icon .success>ul{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 11;
+    width: 100%;
+    background-color: #fff;
+    display: none;
+}
+
+#header .icon .success:hover >span{
+    color: #d4b675;
+}
+
+#header .icon .success:hover >ul{
+    display: block;
+}
+
+#header .icon .success>ul>li{
+    text-align: center;
+    padding: 22px 0;
+    line-height: 0;
+    cursor: pointer;
+}
+
+#header .icon .success>ul>li:hover{
+    background-color: #eee;
 }
 
 #header .small-type{
@@ -316,8 +376,10 @@ body{
     height: 0;
     background-color: #fff;
     border-top: 1px #ccc solid;
+    border-bottom: 1px #ccc solid;
     transition: 0.3s;
     overflow: hidden;
+    
 }
 
 #header div.type-active{
@@ -337,6 +399,7 @@ body{
     padding: 10px 30px 0 30px;
     box-sizing: border-box;
     height: 100%;
+    text-align: center;
 }
 
 #header .small-type ul li img{
@@ -381,6 +444,175 @@ body{
     font-size: 26px;
     font-weight: bold;
     color: #fff;
+    cursor: pointer;
+}
+
+.user{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0);
+    transition:background-color 0.5s;
+}
+
+.user-active{
+    background-color: rgba(0,0,0,0.6);
+}
+
+.user .user-contain{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 670px;
+    height: 100%;
+    background-color: #fff;
+    transform: translateX(100%);
+    transition: 0.5s;
+}
+
+.user div.user-show{
+    transform:translateX(0%);
+}
+
+.user .user-contain .close{
+    position: absolute;
+    top: 20px;
+    right: 34px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    line-height: 18px;
+    text-align: center;
+}
+
+.user .user-contain div.con{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 510px;
+    margin: 110px auto;
+    font-size: 14px;
+    display: none;
+    transform: translateX(-50%);
+}
+
+.user .user-contain div.show{
+    display: block;
+}
+
+.user .con h3{
+    text-align: center;
+    font-size: 21px;
+    color: #3d2d23;
+    display: block;
+    height: 56px;
+    line-height: 1;
+}
+
+.user .con .input>div{
+    position: relative;
+    margin: 40px auto 10px;
+    width: 510px;
+    height: 50px;   
+}
+
+.user .input-login>div>div.input-placeholder{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 120px;
+    height: 100%;
+    line-height: 50px;
+    text-align: center;
+    color: #bdbcbc;
+    border-left: 1px #bdbcbc solid;
+    font-size: 16px;
+}
+
+.user .input>div>div.massage{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    padding: 6px 4px;
+    display: none;
+}
+
+.user .input>div>div.mass-show{
+    display: block;
+}
+
+.user .input>div>div.massage>.iconfont{
+    font-size: 12px !important;
+    color: rgb(245, 118, 118);
+}
+
+.user .input>div>div.massage>.content{
+    color: #3d2d23;
+}
+
+.user .input>div>input{
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-indent: 1em;
+    border: 1px #bdbcbc solid;
+    font-size: 16px;
+}
+
+.user div.verification div.vertifi{
+    display: flex;
+    justify-content: space-around;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 30%;
+    height: 100%;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #FFCDD2;
+    padding: 10px 6px 0;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.user .input>div.verification>input{
+    width: 68%;
+}
+
+.user .sele-pass{
+    margin-top: 28px;
+}
+
+.user .sele-pass label{
+    outline: none;
+}
+
+.user .submit{
+    margin-top: 28px;
+}
+
+.user .submit>button{
+    outline: none;
+    border: none;
+    background-color: #3d2d23;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 18px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.user p{
+    text-align: center;
+    color: #d4b675;
+    text-decoration: underline;
+    margin-top: 30px;
     cursor: pointer;
 }
 

@@ -12,6 +12,12 @@ import java.util.List;
  */
 public class GoodsDaoImpl extends BaseDao implements GoodsDao {
     @Override
+    public List queryAllGoods() {
+        String sql = "select goods.id,goods.good_name,goods.price,goods.introduc,goods.index_img from goods";
+        return queryForList(IndexGoods.class,sql,null);
+    }
+
+    @Override
     public DetailGoods queryDetailGoodsByOne(int id) {
         String sql = "select goods.id,goods.good_name,goods.introduc_img,c_type.type_name,c_small_type.s_type_name\n" +
                 "from goods \n" +
@@ -74,13 +80,13 @@ public class GoodsDaoImpl extends BaseDao implements GoodsDao {
 
     @Override
     public List querySpecificationsByList(int id) {
-        String sql = "select * from specifications where good_s_id=?";
+        String sql = "select * from good_specifications where good_s_id=?";
         return queryForList(Specification.class,sql,id);
     }
 
     @Override
     public List queryGalleryByList(int id) {
-        String sql = "select * from gallery where good_id=?";
+        String sql = "select * from good_gallery where good_id=?";
         return queryForList(Gallery.class,sql,id);
     }
 
@@ -104,7 +110,57 @@ public class GoodsDaoImpl extends BaseDao implements GoodsDao {
     }
 
     @Override
-    public List queryRecommend() {
-        return null;
+    public List queryRecommend(int i) {
+        String sql = "select goods.id,goods.good_name,goods.price,goods.introduc,goods.index_img from goods ORDER BY RAND() limit ?";
+        return queryForList(IndexGoods.class,sql,i);
+    }
+
+    @Override
+    public List queryGoods(String fuzz) {
+        String sql = "select goods.id,goods.good_name,goods.price,goods.introduc,goods.index_img from goods where goods.good_name like ?";
+        fuzz = "%"+fuzz+"%";
+        return queryForList(IndexGoods.class,sql,fuzz);
+    }
+
+    @Override
+    public List queryByCar(int user_id) {
+        String sql = "select * from c_cart where user_id=?";
+        return queryForList(Cart.class,sql,user_id);
+    }
+
+    @Override
+    public int deleteCar(int goods_id, int user_id,String specifi) {
+        String sql = "delete from c_cart where goods_id=? and user_id=? and specifi=?";
+        return update(sql,goods_id,user_id,specifi);
+    }
+
+    @Override
+    public int saveCar(Cart cart) {
+        String sql = "insert into c_cart values(null,?,?,?,?,?,?,?,?)";
+        return update(sql,cart.getUser_id(),cart.getGoods_name(),cart.getPrice(),cart.getCount(),cart.getSpecifi(),cart.getCollection(),cart.getImg_url(),cart.getGoods_id());
+    }
+
+    @Override
+    public int updateCartColl(int coll,int goods_id,int user_id,String specifi) {
+        String sql = "update c_cart set collection=? where goods_id=? and user_id=? and specifi=?";
+        return update(sql,coll,goods_id,user_id,specifi);
+    }
+
+    @Override
+    public int updateCartCount(int count,int goods_id,int user_id,String specifi) {
+        String sql = "update c_cart set count=? where goods_id=? and user_id=? and specifi=?";
+        return update(sql,count,goods_id,user_id,specifi);
+    }
+
+    @Override
+    public Cart queryByCartOne(int goods_id, int user_id) {
+        String sql = "select * from c_cart where goods_id=? and user_id=?";
+        return queryForOne(Cart.class,sql,goods_id,user_id);
+    }
+
+    @Override
+    public List queryByCarColl(int user_id) {
+        String sql = "select * from c_cart where user_id=? and collection=1";
+        return queryForList(Cart.class,sql,user_id);
     }
 }

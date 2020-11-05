@@ -3,14 +3,109 @@
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
       <artifact name="cake-project:war exploded" />
+      <artifact name="cake:war" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a0cb9b86-2b28-44de-9333-3bfdd78fd685" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/cake_war.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cake/bean/StateCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cake/bean/Token.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cake/web/admin/DeleteTokenServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cake/web/admin/IsLoginServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cake/web/admin/LoginServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cake/web/admin/ResetPasswordServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cake/web/admin/UpdateInfoServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cake/web/admin/UserInfoServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cake/web/goods/AddCarServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cake/web/goods/CarCollectionServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cake/web/goods/CarServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cake/web/goods/DeleteCarServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cake/web/goods/FuzzyServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cake/web/goods/RecomServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cake/web/goods/UpdateCollServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cake/web/goods/UpdateCountServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/f/9fa31182f9bdbcc19ddec9719c12f2a99b7f5a9b" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/4/a4a28b2d24c6091028926587272174a811d33867" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/3/b369cef823c4d3177d8ef6bd2a2d473cdb4c46bc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cake-project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/cake-project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cake.sql" beforeDir="false" afterPath="$PROJECT_DIR$/cake.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/WEB-INF/classes/cake/bean/Cart.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/WEB-INF/classes/cake/bean/Cart.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/WEB-INF/classes/cake/bean/DetailGoods.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/WEB-INF/classes/cake/bean/DetailGoods.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/WEB-INF/classes/cake/bean/Provin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/WEB-INF/classes/cake/bean/Provin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/WEB-INF/classes/cake/bean/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/WEB-INF/classes/cake/bean/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/WEB-INF/classes/cake/dao/GoodsDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/WEB-INF/classes/cake/dao/GoodsDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/WEB-INF/classes/cake/dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/WEB-INF/classes/cake/dao/UserDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/WEB-INF/classes/cake/dao/daoImpl/GoodsDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/WEB-INF/classes/cake/dao/daoImpl/GoodsDaoImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/WEB-INF/classes/cake/dao/daoImpl/UserDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/WEB-INF/classes/cake/dao/daoImpl/UserDaoImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/WEB-INF/classes/cake/service/GoodsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/WEB-INF/classes/cake/service/GoodsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/WEB-INF/classes/cake/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/WEB-INF/classes/cake/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/WEB-INF/classes/cake/service/serviceImpl/GoodsServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/WEB-INF/classes/cake/service/serviceImpl/GoodsServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/WEB-INF/classes/cake/service/serviceImpl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/WEB-INF/classes/cake/service/serviceImpl/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/WEB-INF/classes/cake/test/UserTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/WEB-INF/classes/cake/utils/HttpServiceUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/WEB-INF/classes/cake/utils/HttpServiceUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/WEB-INF/classes/cake/web/admin/RegistServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/WEB-INF/classes/cake/web/admin/RegistServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/css/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/css/resetCss.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/css/resetCss.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/html/goods_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/html/goods_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/html/index_main.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/html/index_main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/images/banner/0.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/images/banner/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/images/banner/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/images/banner/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/images/banner/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/images/banner/5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/images/cakes/strawberry/details/xcy.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/index1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/cake_project_war_exploded/static/images/index_bg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cake-project/cake/bean/Cart.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cake-project/cake/bean/Cart.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cake-project/cake/bean/DetailGoods.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cake-project/cake/bean/DetailGoods.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cake-project/cake/bean/Provin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cake-project/cake/bean/Provin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cake-project/cake/bean/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cake-project/cake/bean/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cake-project/cake/dao/GoodsDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cake-project/cake/dao/GoodsDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cake-project/cake/dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cake-project/cake/dao/UserDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cake-project/cake/dao/daoImpl/GoodsDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cake-project/cake/dao/daoImpl/GoodsDaoImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cake-project/cake/dao/daoImpl/UserDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cake-project/cake/dao/daoImpl/UserDaoImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cake-project/cake/service/GoodsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cake-project/cake/service/GoodsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cake-project/cake/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cake-project/cake/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cake-project/cake/service/serviceImpl/GoodsServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cake-project/cake/service/serviceImpl/GoodsServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cake-project/cake/service/serviceImpl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cake-project/cake/service/serviceImpl/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cake-project/cake/test/UserTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cake-project/cake/utils/HttpServiceUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cake-project/cake/utils/HttpServiceUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cake-project/cake/web/admin/RegistServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cake-project/cake/web/admin/RegistServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cake/bean/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cake/bean/Cart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cake/bean/DetailGoods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cake/bean/DetailGoods.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cake/bean/Provin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cake/bean/Provin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cake/bean/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cake/bean/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cake/dao/GoodsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cake/dao/GoodsDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cake/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cake/dao/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cake/dao/daoImpl/GoodsDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cake/dao/daoImpl/GoodsDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cake/dao/daoImpl/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cake/dao/daoImpl/UserDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cake/service/GoodsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cake/service/GoodsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cake/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cake/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cake/service/serviceImpl/GoodsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cake/service/serviceImpl/GoodsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cake/service/serviceImpl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cake/service/serviceImpl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cake/test/UserTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cake/utils/HttpServiceUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cake/utils/HttpServiceUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cake/web/admin/RegistServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cake/web/admin/RegistServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/css/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/css/resetCss.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/css/resetCss.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/html/goods_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/html/goods_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/html/index_main.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/html/index_main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/images/banner/0.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/images/banner/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/images/banner/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/images/banner/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/images/banner/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/images/banner/5.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/web/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/static/images/index_bg.jpg" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,6 +115,20 @@
   </component>
   <component name="CodeStyleSettingsInfer">
     <option name="done" value="true" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -58,19 +167,20 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="hive" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="F:/tool/androidSDK" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/web/css" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/web" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -187,6 +297,10 @@
         </option>
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.UserTest" />
+      <item itemvalue="Tomcat Server.Tomcat 8.5.57" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.UserTest" />
@@ -207,7 +321,10 @@
       <workItem from="1601886314460" duration="7919000" />
       <workItem from="1602157565866" duration="846000" />
       <workItem from="1602158895188" duration="51939000" />
-      <workItem from="1602685182283" duration="64373000" />
+      <workItem from="1602685182283" duration="67407000" />
+      <workItem from="1603171817336" duration="24583000" />
+      <workItem from="1603625487431" duration="10509000" />
+      <workItem from="1603775430642" duration="58220000" />
     </task>
     <servers />
   </component>
@@ -219,7 +336,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

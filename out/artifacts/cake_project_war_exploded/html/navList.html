@@ -1,0 +1,48 @@
+<!--
+ * @Author: 龙朝敏
+ * @Date: 2020-10-22 08:37:09
+ * @LastEditTime: 2020-11-04 17:39:46
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \web\html\navList.html
+-->
+<li>
+    <a href="#/goods/1">全部</a>
+</li>
+{{each data as value index}}
+<li data-type="{{value.id}}"><a href="#/goods/{{value.type_name.charCodeAt()}}/1">{{value.type_name}}</a></li>
+{{/each}}
+<li><a href="#/about">关于我们</a></li>
+<li><a href="#/consulting">开店咨询</a></li>
+<script>
+
+    var toggle = false;
+    $("#header .nav-list li").mouseover(function () {
+        if (!($("#header .search").is(".seach-active"))) {
+            var that = $(this);
+            if (that.attr("data-type")) {
+                $("#header .small-type").addClass("type-active");
+                $("#header .small-type ul").hide();
+                $("#header .small-type ul").each(function () {
+                    if ($(this).attr("data-type") == that.attr("data-type")) {
+                        $(this).show();
+                        toggle = true;
+                    }
+                });
+            }
+        }
+    }).mouseout(function () {
+        if (toggle) {
+            $("#header .small-type").removeClass("type-active");
+            $("#header .small-type").mouseover(function () {
+                $(this).addClass("type-active");
+            }).mouseout(function () {
+                $(this).removeClass("type-active");
+            });
+        }
+    });
+
+    $("#header .icon .icon-search").click(function () {
+        $("#header .nav div.search").toggleClass("seach-active");
+    });
+</script>

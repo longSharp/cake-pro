@@ -1,0 +1,18 @@
+<!--
+ * @Author: 龙朝敏
+ * @Date: 2020-10-22 09:03:15
+ * @LastEditTime: 2020-10-22 09:19:34
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \web\html\city.html
+-->
+{{each data value}}
+<li>{{value.city}}</li>
+{{/each}}
+<script>
+    $(".select-cont>div:nth-child(2) li").on("click", function () {
+        $(".select-cont>div:nth-child(2) div span").html($(this).html());
+        $("#header .area>.name>.conx").html($(this).html());
+        $(".panel").removeClass("panel-active");
+    })
+</script>

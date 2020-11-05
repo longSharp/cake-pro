@@ -1,0 +1,377 @@
+
+#detail {
+    padding-top: 4px;
+    width: 1140px;
+    margin: 0 auto;
+    position: relative;
+}
+
+#detail a{
+    color: #7e7e7e;
+}
+
+.beadbars {
+    padding: 158px 0 0;
+    font-size: 16px;
+    text-align: left;
+}
+
+.breadbars .r {
+    color: #aaa;
+}
+
+.car-item{
+    display: none;
+    justify-content: space-around;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    padding: 0 14px;
+    height: 100%;
+    width: 104px;
+}
+
+.car-item span{
+    color: #76ee86;
+}
+
+.car-item span:nth-child(1){
+    font-size: 18px !important;
+}
+
+.pro-intro {
+    margin: 80px 105px 30px;
+}
+
+.pro-intro::after{
+    content: "";
+    display: block;
+    clear: both;
+    overflow: hidden;
+}
+
+.pro-intro .imgs {
+    width: 510px;
+    float: left;
+}
+
+.pro-intro .intro {
+    float: right;
+    width: 280px;
+    font-size: 13px;
+}
+
+.pro-intro .imgs .main {
+    margin-bottom: 30px;
+    height: 510px;
+    line-height: 510px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.slick-slider {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    -ms-touch-action: pan-y;
+    touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.draggable{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.draggable img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: 1s;
+    opacity: 0;
+}
+
+.draggable img.block{
+    opacity: 1;
+}
+
+.detail-btn{
+    display: flex;
+    justify-content: space-around;
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    width: 110px;
+    height: 10px;
+    transform: translateX(-50%);
+}
+.detail-btn>li{
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    border: 2px #fff solid;
+    cursor: pointer;
+}
+.detail-btn>li.active{
+    background-color: #fff;
+}
+
+.proBannerNavs{
+    width: 510px;
+    height: 80px;
+}
+.proBannerNavs ul{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+    list-style: none;
+    padding: 0;
+}
+
+.proBannerNavs li{
+    width: 80px;
+    height: 100%;
+    cursor: pointer;
+    padding: 2px;
+    box-sizing: border-box;
+    border: 2px transparent solid;
+}
+
+.proBannerNavs li.active{
+    border-color: rgb(245, 64, 64);
+}
+
+.proBannerNavs li img{
+    width: 100%;
+    height: 100%;
+}
+
+.pro-intro .intro .share{
+    display: flex;
+    justify-content: space-between;
+}
+
+.pro-intro .intro h2{
+    padding: 0;
+    font-size: 20px;
+    color: #191919;
+    margin: 0;
+}
+
+.pro-intro .intro .shareIcon{
+    position: relative;
+}
+
+.pro-intro .intro .shareIcon i{
+    font-size: 20px !important;
+    color: #7e7e7e;
+    cursor: pointer;
+}
+
+.pro-intro .intro .shareIcon i:hover{
+    color: #191919;
+}
+
+.pro-intro .intro .shareIcon>div{
+    position: absolute;
+    background-color: #fff;
+    top: -40%;
+    right: 0;
+    width: 200px;
+    opacity: 0;
+    transition: 0.5s;
+    padding: 6px;
+    box-shadow: 1px 1px 8px 2px rgba(25,25,25,.2);
+    text-align: center;
+    transform: translateY(-100%);
+}
+
+.pro-intro .intro .shareIcon>div.visibel{
+    opacity: 1;
+}
+
+.pro-intro .intro .shareIcon>div i{
+    font-size: 26px !important;
+    margin: 0 6px;
+}
+
+.pro-intro .intro .price-d{
+    position: relative;
+    font-size: 16px;
+    color: #874e3d;
+    margin-top: 20px;
+    text-align: left;
+}
+
+.pro-intro .intro .price-d span{
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+}
+
+.pro-intro .intro .price-d span.show{
+    display: block;
+}
+
+.pro-intro .intro .garr{
+    margin-top: 64px;
+    text-align: left;
+}
+
+.pro-intro .intro .garr ul{
+    margin-top: 24px;
+    padding: 18px 0;
+    border-top: 1px #874e3d solid;
+    border-bottom: 1px #874e3d solid;
+}
+
+.pro-intro .intro .garr li{
+    padding: 4px 0;
+    text-align: left;
+    color: #874e3d;
+    cursor: pointer;
+    background-color: #eee;
+    margin: 6px 0;
+    transition: 0.3s;
+    text-indent: 1em;
+}
+
+.pro-intro .intro .garr li:hover{
+    background-color: rgb(212, 211, 211);
+}
+
+.pro-intro .intro .garr li.active{
+    background-color: rgb(212, 211, 211);
+}
+
+.pro-intro .intro .sele-num{
+    display: flex;
+    height: 50px;
+    padding: 60px 0 10px;
+}
+
+.pro-intro .intro .sele-num>span{
+    color: #874e3d;
+    font-size: 13px;
+    display: inline-block;
+    height: 100%;
+    line-height: 30px;
+}
+
+.pro-intro .intro .sele-num input{
+    width: 50px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    outline: none;
+    border: 1px rgb(138, 137, 137) solid;
+    text-align: center;
+    margin: 0 12px 0 28px;
+}
+
+.pro-intro .intro .sele-num>div{
+    display: inline-block;
+    width: 12px;
+    height: 100%;
+}
+
+.pro-intro .intro .sele-num>div>i{
+    color: #874e3d;
+    font-size: 12px !important;
+    border: 1px #ccc solid;
+    cursor: pointer;
+}
+
+.pro-intro .intro .shopp-btn{
+    padding: 10px 0;
+}
+
+.pro-intro .intro .shopp-btn>div{
+    height: 45px;
+    font-size: 18px;
+    border: 1px #503b2e solid;
+    text-align: center;
+    line-height: 45px;
+    
+    cursor: pointer;
+}
+
+#detail .pro-intro .intro .shopp-btn>div:nth-child(1)>a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: #503b2e;
+    transition: 0.3s;
+}
+
+.pro-intro .intro .shopp-btn div:nth-child(1){
+    margin-bottom: 20px;
+}
+#detail .pro-intro .intro .shopp-btn div:nth-child(1):hover a{
+    background-color: #503b2e;
+    color: #fff;
+}
+.pro-intro .intro .shopp-btn>div:nth-child(2){
+    position: relative;
+    color: #fff;
+    background-color: #503b2e;
+}
+.pro-intro .intro .sh{
+    margin-top: 36px;
+}
+.pro-intro .intro .sh ul{
+    float: right;
+    width: 200px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.pro-intro .intro .sh ul li{
+    margin-bottom: 6px;
+}
+.pro-intro .intro .sh ul li strong{
+    padding-right: 6px;
+}
+.pro-detail {
+    margin: 80px 70px 0;
+}
+.pro-detail>h3 {
+    font-size: 16px;
+    margin-left: 30px;
+    font-weight: 400;
+    margin-bottom: 40px;
+}
+.pro-detail>.detail-img{
+    margin-bottom: 38px;
+}
+.pro-detail>.detail-img img{
+    width: 100%;
+}
+.distr .inch{
+    font-size: 16px;
+    text-align: center;
+}
+
+.distr .remind{
+    padding: 30px;
+    border: 1px solid #9b9b9b;
+    margin-bottom: 110px;
+    margin-top: 60px;
+}
+
+.distr .remind{
+    font-size: 14px;
+    text-align: left;
+    line-height: 30px;
+}

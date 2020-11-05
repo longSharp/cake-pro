@@ -3,6 +3,8 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+
+<!--    用户接口-->
     <servlet>
         <servlet-name>RegistServlet</servlet-name>
         <servlet-class>cake.web.admin.RegistServlet</servlet-class>
@@ -12,6 +14,62 @@
         <url-pattern>/admin/regist</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>cake.web.admin.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/admin/login</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>IsLoginServlet</servlet-name>
+        <servlet-class>cake.web.admin.IsLoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>IsLoginServlet</servlet-name>
+        <url-pattern>/admin/isLogin</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UserInfoServlet</servlet-name>
+        <servlet-class>cake.web.admin.UserInfoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserInfoServlet</servlet-name>
+        <url-pattern>/admin/info</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UpdateInfoServlet</servlet-name>
+        <servlet-class>cake.web.admin.UpdateInfoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateInfoServlet</servlet-name>
+        <url-pattern>/admin/updateInfo</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ResetPasswordServlet</servlet-name>
+        <servlet-class>cake.web.admin.ResetPasswordServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ResetPasswordServlet</servlet-name>
+        <url-pattern>/admin/resetPassword</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteTokenServlet</servlet-name>
+        <servlet-class>cake.web.admin.DeleteTokenServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteTokenServlet</servlet-name>
+        <url-pattern>/admin/delete</url-pattern>
+    </servlet-mapping>
+
+
+<!--    省份城市接口-->
     <servlet>
         <servlet-name>ProvinServlet</servlet-name>
         <servlet-class>cake.web.provin.ProvinServlet</servlet-class>
@@ -34,6 +92,9 @@
         <servlet-name>IndexBannerServlet</servlet-name>
         <servlet-class>cake.web.goods.IndexBannerServlet</servlet-class>
     </servlet>
+
+
+<!--    商品信息接口-->
     <servlet-mapping>
         <servlet-name>IndexBannerServlet</servlet-name>
         <url-pattern>/goods/Ibanner</url-pattern>
@@ -64,6 +125,60 @@
     <servlet-mapping>
         <servlet-name>GoodsTypeServlet</servlet-name>
         <url-pattern>/goods/type</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CarServlet</servlet-name>
+        <servlet-class>cake.web.goods.CarServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CarServlet</servlet-name>
+        <url-pattern>/goods/car</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AddCarServlet</servlet-name>
+        <servlet-class>cake.web.goods.AddCarServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddCarServlet</servlet-name>
+        <url-pattern>/goods/car/add</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UpdateCollServlet</servlet-name>
+        <servlet-class>cake.web.goods.UpdateCollServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateCollServlet</servlet-name>
+        <url-pattern>/goods/car/update/coll</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UpdateCountServlet</servlet-name>
+        <servlet-class>cake.web.goods.UpdateCountServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateCountServlet</servlet-name>
+        <url-pattern>/goods/car/update/count</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteCarServlet</servlet-name>
+        <servlet-class>cake.web.goods.DeleteCarServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteCarServlet</servlet-name>
+        <url-pattern>/goods/car/delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CarCollectionServlet</servlet-name>
+        <servlet-class>cake.web.goods.CarCollectionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CarCollectionServlet</servlet-name>
+        <url-pattern>/goods/car/collection</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -109,5 +224,23 @@
     <servlet-mapping>
         <servlet-name>CountServlet</servlet-name>
         <url-pattern>/goods/count</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RecomServlet</servlet-name>
+        <servlet-class>cake.web.goods.RecomServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RecomServlet</servlet-name>
+        <url-pattern>/goods/recom</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>FuzzyServlet</servlet-name>
+        <servlet-class>cake.web.goods.FuzzyServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FuzzyServlet</servlet-name>
+        <url-pattern>/goods/fuzzy</url-pattern>
     </servlet-mapping>
 </web-app>

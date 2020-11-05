@@ -11,10 +11,10 @@
  Target Server Version : 80019
  File Encoding         : 65001
 
- Date: 18/10/2020 21:59:23
+ Date: 05/11/2020 08:20:42
 */
 
-SET NAMES utf8mb4;
+SET NAMES utf8;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
@@ -22,13 +22,31 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `c_cart`;
 CREATE TABLE `c_cart`  (
-  `user_name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `good_id` int(0) NULL DEFAULT NULL,
-  INDEX `user_name`(`user_name`) USING BTREE,
-  INDEX `good_id`(`good_id`) USING BTREE,
-  CONSTRAINT `c_cart_ibfk_1` FOREIGN KEY (`user_name`) REFERENCES `c_user` (`user_name`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `c_cart_ibfk_2` FOREIGN KEY (`good_id`) REFERENCES `goods` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `user_id` int(0) NULL DEFAULT NULL,
+  `goods_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `price` int(0) NULL DEFAULT NULL,
+  `count` int(0) NULL DEFAULT NULL,
+  `specifi` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `collection` int(0) NULL DEFAULT NULL,
+  `img_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `goods_id` int(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 33 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of c_cart
+-- ----------------------------
+INSERT INTO `c_cart` VALUES (6, 8, '水镜红宝石', 198, 5, '2磅', 1, 'http://localhost:8080/cake/images/cakes/Mirror/index.jpg', 2);
+INSERT INTO `c_cart` VALUES (18, 7, '榴莲饼', 39, 4, '1盒', 0, 'http://localhost:8080/cake/images/Souvenir/DurianCake/banner/1.png', 68);
+INSERT INTO `c_cart` VALUES (21, 7, '全心全意	', 158, 5, '1磅', 0, 'http://localhost:8080/cake/images/cakes/Wholeheartedly/banner/1.jpg', 35);
+INSERT INTO `c_cart` VALUES (25, 7, '草莓迷宫', 368, 1, '2磅', 1, 'http://localhost:8080/cake/images/cakes/StrawberryMaze/banner/1.jpg', 24);
+INSERT INTO `c_cart` VALUES (27, 7, '雪天鹅', 198, 1, '1.5磅', 1, 'http://localhost:8080/cake/images/cakes/SnowSwan/banner/1.jpg', 5);
+INSERT INTO `c_cart` VALUES (28, 7, '帅气满满', 228, 1, '2磅', 1, 'http://localhost:8080/cake/images/cakes/Handsome/banner/1.jpg', 13);
+INSERT INTO `c_cart` VALUES (29, 7, '【芒果季】冰语琥珀', 129, 1, '1盒', 1, 'http://localhost:8080/cake/images/AfternoonTea/IceAmber/banner/1.jpg', 49);
+INSERT INTO `c_cart` VALUES (30, 7, '汪汪队之天天（戚风款）', 228, 1, '1磅', 0, 'http://localhost:8080/cake/images/cakes/WoofTeam/banner/1.jpg', 28);
+INSERT INTO `c_cart` VALUES (31, 7, '依恋', 149, 1, '1盒', 0, 'http://localhost:8080/cake/images/AfternoonTea/Attachment/banner/1.jpg', 54);
+INSERT INTO `c_cart` VALUES (32, 7, '提拉米苏', 198, 1, '2磅', 0, 'http://localhost:8080/cake/images/cakes/Tiramisu/banner/1.jpg', 34);
 
 -- ----------------------------
 -- Table structure for c_dynamic
@@ -36,11 +54,11 @@ CREATE TABLE `c_cart`  (
 DROP TABLE IF EXISTS `c_dynamic`;
 CREATE TABLE `c_dynamic`  (
   `id` int(0) NULL DEFAULT NULL,
-  `d_title` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `d_content` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `d_year` varchar(6) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `d_time` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+  `d_title` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `d_content` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `d_year` varchar(6) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `d_time` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of c_dynamic
@@ -60,12 +78,12 @@ INSERT INTO `c_dynamic` VALUES (8, '携手古天乐，探索新未来', '2020年
 DROP TABLE IF EXISTS `c_qual`;
 CREATE TABLE `c_qual`  (
   `id` int(0) NOT NULL AUTO_INCREMENT,
-  `site` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `license` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `address` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `legal_person` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `site` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `license` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `address` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `legal_person` varchar(5) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 46 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 46 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of c_qual
@@ -123,12 +141,12 @@ DROP TABLE IF EXISTS `c_small_type`;
 CREATE TABLE `c_small_type`  (
   `id` int(0) NOT NULL AUTO_INCREMENT,
   `b_id` int(0) NULL DEFAULT NULL,
-  `s_type_name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `type_img` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `s_type_name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `type_img` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `b_id`(`b_id`) USING BTREE,
   CONSTRAINT `c_small_type_ibfk_1` FOREIGN KEY (`b_id`) REFERENCES `c_type` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of c_small_type
@@ -148,9 +166,9 @@ INSERT INTO `c_small_type` VALUES (8, 3, '全国包邮', 'http://localhost:8080/
 DROP TABLE IF EXISTS `c_type`;
 CREATE TABLE `c_type`  (
   `id` int(0) NOT NULL AUTO_INCREMENT,
-  `type_name` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `type_name` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of c_type
@@ -164,18 +182,23 @@ INSERT INTO `c_type` VALUES (3, '手信');
 -- ----------------------------
 DROP TABLE IF EXISTS `c_user`;
 CREATE TABLE `c_user`  (
-  `user_id` int(0) NOT NULL AUTO_INCREMENT,
-  `user_name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `user_password` varchar(13) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `user_email` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`user_id`) USING BTREE,
-  UNIQUE INDEX `user_name`(`user_name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `password` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `email` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `provinal` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `city` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `addr` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of c_user
 -- ----------------------------
-INSERT INTO `c_user` VALUES (1, '龙朝敏', 'kmjh', '2900645253');
+INSERT INTO `c_user` VALUES (7, '奶炮炮.king', '123456', '290064525@qq.com', '上海', '上海市', '凯里');
+INSERT INTO `c_user` VALUES (8, 'admin', '123456', '2361142124@qq.com', '贵州省', '黔东南', '贵州省黔东南州');
+INSERT INTO `c_user` VALUES (9, '460649487', 'ai123456789', '460649487@qq.com', NULL, NULL, NULL);
+INSERT INTO `c_user` VALUES (10, 'admin1', '123456', '4751142124@qq.com', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for city
@@ -183,12 +206,12 @@ INSERT INTO `c_user` VALUES (1, '龙朝敏', 'kmjh', '2900645253');
 DROP TABLE IF EXISTS `city`;
 CREATE TABLE `city`  (
   `cid` int(0) NOT NULL,
-  `city` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `city` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `pid` int(0) NULL DEFAULT NULL,
   PRIMARY KEY (`city`) USING BTREE,
   INDEX `pid`(`pid`) USING BTREE,
   CONSTRAINT `city_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `provincial` (`pid`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of city
@@ -591,10 +614,10 @@ INSERT INTO `city` VALUES (8, '龙岩市', 14);
 DROP TABLE IF EXISTS `good_gallery`;
 CREATE TABLE `good_gallery`  (
   `good_id` int(0) NOT NULL,
-  `image_url` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `image_url` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   INDEX `good_id`(`good_id`) USING BTREE,
   CONSTRAINT `good_gallery_ibfk_1` FOREIGN KEY (`good_id`) REFERENCES `goods` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of good_gallery
@@ -710,7 +733,7 @@ INSERT INTO `good_gallery` VALUES (29, 'http://localhost:8080/cake/images/cakes/
 INSERT INTO `good_gallery` VALUES (30, 'http://localhost:8080/cake/images/cakes/Adventurer/banner/1.jpg');
 INSERT INTO `good_gallery` VALUES (30, 'http://localhost:8080/cake/images/cakes/Adventurer/banner/2.jpg');
 INSERT INTO `good_gallery` VALUES (30, 'http://localhost:8080/cake/images/cakes/Adventurer/banner/3.jpg');
-INSERT INTO `good_gallery` VALUES (30, 'http://localhost:8080/cake/images/cakes/Adventurer/banner/44.jpg');
+INSERT INTO `good_gallery` VALUES (30, 'http://localhost:8080/cake/images/cakes/Adventurer/banner/4.jpg');
 INSERT INTO `good_gallery` VALUES (31, 'http://localhost:8080/cake/images/cakes/Three-year/banner/1.jpg');
 INSERT INTO `good_gallery` VALUES (31, 'http://localhost:8080/cake/images/cakes/Three-year/banner/2.jpg');
 INSERT INTO `good_gallery` VALUES (31, 'http://localhost:8080/cake/images/cakes/Three-year/banner/3.jpg');
@@ -783,10 +806,10 @@ INSERT INTO `good_gallery` VALUES (48, 'http://localhost:8080/cake/images/Aftern
 INSERT INTO `good_gallery` VALUES (48, 'http://localhost:8080/cake/images/AfternoonTea/MangoLayer/banner/2.jpg');
 INSERT INTO `good_gallery` VALUES (48, 'http://localhost:8080/cake/images/AfternoonTea/MangoLayer/banner/3.jpg');
 INSERT INTO `good_gallery` VALUES (48, 'http://localhost:8080/cake/images/AfternoonTea/MangoLayer/banner/4.jpg');
-INSERT INTO `good_gallery` VALUES (49, 'http://localhost:8080/cake/images/AfternoonTea/IceAmber/details/1.jpg');
-INSERT INTO `good_gallery` VALUES (49, 'http://localhost:8080/cake/images/AfternoonTea/IceAmber/details/2.jpg');
-INSERT INTO `good_gallery` VALUES (49, 'http://localhost:8080/cake/images/AfternoonTea/IceAmber/details/3.jpg');
-INSERT INTO `good_gallery` VALUES (49, 'http://localhost:8080/cake/images/AfternoonTea/IceAmber/details/4.jpg');
+INSERT INTO `good_gallery` VALUES (49, 'http://localhost:8080/cake/images/AfternoonTea/IceAmber/banner/1.jpg');
+INSERT INTO `good_gallery` VALUES (49, 'http://localhost:8080/cake/images/AfternoonTea/IceAmber/banner/2.jpg');
+INSERT INTO `good_gallery` VALUES (49, 'http://localhost:8080/cake/images/AfternoonTea/IceAmber/banner/3.jpg');
+INSERT INTO `good_gallery` VALUES (49, 'http://localhost:8080/cake/images/AfternoonTea/IceAmber/banner/4.jpg');
 INSERT INTO `good_gallery` VALUES (50, 'http://localhost:8080/cake/images/AfternoonTea/ClearWindJade/banner/1.jpg');
 INSERT INTO `good_gallery` VALUES (50, 'http://localhost:8080/cake/images/AfternoonTea/ClearWindJade/banner/2.jpg');
 INSERT INTO `good_gallery` VALUES (50, 'http://localhost:8080/cake/images/AfternoonTea/ClearWindJade/banner/3.jpg');
@@ -893,11 +916,11 @@ INSERT INTO `good_gallery` VALUES (75, 'http://localhost:8080/cake/images/Souven
 DROP TABLE IF EXISTS `good_specifications`;
 CREATE TABLE `good_specifications`  (
   `good_s_id` int(0) NOT NULL,
-  `specification` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `specification` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `s_price` int(0) NULL DEFAULT NULL,
   INDEX `good_s_id`(`good_s_id`) USING BTREE,
   CONSTRAINT `good_specifications_ibfk_1` FOREIGN KEY (`good_s_id`) REFERENCES `goods` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of good_specifications
@@ -991,7 +1014,7 @@ INSERT INTO `good_specifications` VALUES (44, '3磅', 268);
 INSERT INTO `good_specifications` VALUES (44, '4磅', 318);
 INSERT INTO `good_specifications` VALUES (44, '6磅', 468);
 INSERT INTO `good_specifications` VALUES (45, '2磅', 218);
-INSERT INTO `good_specifications` VALUES (45, '2磅', 278);
+INSERT INTO `good_specifications` VALUES (45, '3磅', 278);
 INSERT INTO `good_specifications` VALUES (46, '2磅', 198);
 INSERT INTO `good_specifications` VALUES (46, '3磅', 258);
 INSERT INTO `good_specifications` VALUES (46, '4磅', 298);
@@ -1027,8 +1050,8 @@ INSERT INTO `good_specifications` VALUES (72, '6枚', 49);
 INSERT INTO `good_specifications` VALUES (72, '9枚', 69);
 INSERT INTO `good_specifications` VALUES (72, '12枚', 79);
 INSERT INTO `good_specifications` VALUES (73, '6枚', 39);
-INSERT INTO `good_specifications` VALUES (73, '6枚', 59);
-INSERT INTO `good_specifications` VALUES (73, '6枚', 69);
+INSERT INTO `good_specifications` VALUES (73, '12枚', 59);
+INSERT INTO `good_specifications` VALUES (73, '24枚', 69);
 INSERT INTO `good_specifications` VALUES (74, '2包', 68);
 INSERT INTO `good_specifications` VALUES (74, '3包', 88);
 INSERT INTO `good_specifications` VALUES (74, '4包', 108);
@@ -1042,24 +1065,24 @@ INSERT INTO `good_specifications` VALUES (75, '4包', 108);
 DROP TABLE IF EXISTS `goods`;
 CREATE TABLE `goods`  (
   `id` int(0) NOT NULL AUTO_INCREMENT,
-  `good_name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `good_name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `small_type` int(0) NULL DEFAULT NULL,
   `type` int(0) NULL DEFAULT NULL,
   `price` int(0) NULL DEFAULT NULL,
-  `introduc` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `index_img` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `introduc_img` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `introduc` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `index_img` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `introduc_img` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `small_type`(`small_type`) USING BTREE,
   INDEX `type`(`type`) USING BTREE,
   CONSTRAINT `goods_ibfk_1` FOREIGN KEY (`small_type`) REFERENCES `c_small_type` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `goods_ibfk_2` FOREIGN KEY (`type`) REFERENCES `c_type` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 76 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 76 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of goods
 -- ----------------------------
-INSERT INTO `goods` VALUES (1, '莓莓红宝石', 1, 1, 188, '灼灼繁华红宝石，莓莓白雪映成趣莓', 'http://localhost:8080/cake/images/cakes/strawberry/index.jpg', 'http://localhost:8080/cake/images/cakes/strawberry/details/1.jpg');
+INSERT INTO `goods` VALUES (1, '莓莓红宝石', 1, 1, 188, '灼灼繁华红宝石，莓莓白雪映成趣莓', 'http://localhost:8080/cake/images/cakes/StrawBerry/index.jpg', 'http://localhost:8080/cake/images/cakes/StrawBerry/details/1.jpg');
 INSERT INTO `goods` VALUES (2, '水镜红宝石', 1, 1, 198, '秋日尚飨红宝石，冰封水镜环翠云', 'http://localhost:8080/cake/images/cakes/Mirror/index.jpg', 'http://localhost:8080/cake/images/cakes/Mirror/details/1.jpg');
 INSERT INTO `goods` VALUES (3, '【芒果季】暖阳芒芒', 1, 1, 198, '新鲜芒果汁甜如蜜，满满一口阳光味道！', 'http://localhost:8080/cake/images/cakes/Warming/index.jpg', 'http://localhost:8080/cake/images/cakes/Warming/details/1.jpg');
 INSERT INTO `goods` VALUES (4, '快乐鹿比', 1, 1, 208, '快乐鹿比 儿童蛋糕', 'http://localhost:8080/cake/images/cakes/DeerThan/index.jpg', 'http://localhost:8080/cake/images/cakes/DeerThan/details/1.jpg');
@@ -1103,7 +1126,7 @@ INSERT INTO `goods` VALUES (41, '寿比南山', 4, 1, 218, '寿比南山', 'http
 INSERT INTO `goods` VALUES (42, ' 榴芒双拼', 1, 1, 198, '当你在纠结于榴莲香雪或芒果茫茫时，我们为您推出一款特别的榴芒双拼。', 'http://localhost:8080/cake/images/cakes/DoubleSpell/index.jpg', 'http://localhost:8080/cake/images/cakes/DoubleSpell/details/1.jpg');
 INSERT INTO `goods` VALUES (43, '榴莲香雪	', 1, 1, 198, '醇香泰国金枕榴莲', 'http://localhost:8080/cake/images/cakes/DurianIncense/index.jpg', 'http://localhost:8080/cake/images/cakes/DurianIncense/details/1.jpg');
 INSERT INTO `goods` VALUES (44, '四重奏蛋糕', 3, 1, 208, '四重奏', 'http://localhost:8080/cake/images/cakes/Quarte	t/index.jpg', 'http://localhost:8080/cake/images/cakes/Quartet/details/1.jpg');
-INSERT INTO `goods` VALUES (45, '鲜果嘉年华', 1, 1, 0, '鲜果嘉年华', 'http://localhost:8080/cake/images/cakes/FruitCarnival/index.jpg', 'http://localhost:8080/cake/images/cakes/FruitCarnival/details/1.webp');
+INSERT INTO `goods` VALUES (45, '鲜果嘉年华', 1, 1, 198, '鲜果嘉年华', 'http://localhost:8080/cake/images/cakes/FruitCarnival/index.jpg', 'http://localhost:8080/cake/images/cakes/FruitCarnival/details/1.webp');
 INSERT INTO `goods` VALUES (46, '森林果乐', 1, 1, 198, '森林果乐', 'http://localhost:8080/cake/images/cakes/Forest_Fruit/index.jpg', 'http://localhost:8080/cake/images/cakes/Forest_Fruit/details/1.jpg');
 INSERT INTO `goods` VALUES (47, '红宝石黑巧巧	', 7, 2, 129, '红宝石黑巧巧	', 'http://localhost:8080/cake/images/AfternoonTea/RubyBlack/index.jpg', 'http://localhost:8080/cake/images/AfternoonTea/RubyBlack/details/1.jpg');
 INSERT INTO `goods` VALUES (48, '芒果千层（6英寸）', 7, 2, 129, '大颗果肉沁甜多汁，层层香软入口丝滑', 'http://localhost:8080/cake/images/AfternoonTea/MangoLayer/index.jpg', 'http://localhost:8080/cake/images/AfternoonTea/MangoLayer/details/1.jpg');
@@ -1124,7 +1147,7 @@ INSERT INTO `goods` VALUES (62, '圆形现煎皮榴莲千层', 7, 2, 149, '手�
 INSERT INTO `goods` VALUES (63, '花镜', 7, 2, 159, '六味臻享，轻焙芝士 & 精研慕斯的丝滑', 'http://localhost:8080/cake/images/AfternoonTea/ConvexGlass/index.jpg', 'http://localhost:8080/cake/images/AfternoonTea/ConvexGlass/details/1.jpg');
 INSERT INTO `goods` VALUES (64, '英式下午茶', 7, 2, 198, '情迷英格兰风雅，午后把茶言欢。钟敲四下，一切为下午茶停下。省去高额旅费', 'http://localhost:8080/cake/images/AfternoonTea/EnglishAfternoonTea/index.jpg', 'http://localhost:8080/cake/images/AfternoonTea/EnglishAfternoonTea/details/1.jpg');
 INSERT INTO `goods` VALUES (65, '雪顶榴心', 7, 2, 129, '温暖的午后，来一份浓郁的榴莲，一杯红茶，有个美好的下午茶时光。', 'http://localhost:8080/cake/images/AfternoonTea/Pomegranate/index.jpg', 'http://localhost:8080/cake/images/AfternoonTea/Pomegranate/details/1.jpg');
-INSERT INTO `goods` VALUES (66, '芒果拿破仑', 7, 2, 109, '绵密的奶油与香甜的芒果邂逅，举世无双', 'http://localhost:8080/cake/images/AfternoonTea/MangoNapoleon/index.jpg', 'http://localhost:8080/cake/images/AfternoonTea/MangoNapoleon/index.jpg');
+INSERT INTO `goods` VALUES (66, '芒果拿破仑', 7, 2, 109, '绵密的奶油与香甜的芒果邂逅，举世无双', 'http://localhost:8080/cake/images/AfternoonTea/MangoNapoleon/index.jpg', 'http://localhost:8080/cake/images/AfternoonTea/MangoNapoleon/details/index.jpg');
 INSERT INTO `goods` VALUES (67, '幸福茶油酥', 8, 3, 39, '幸福茶油酥', 'http://localhost:8080/cake/images/Souvenir/HappinessTea/index.jpg', 'http://localhost:8080/cake/images/Souvenir/HappinessTea/details/1.jpg');
 INSERT INTO `goods` VALUES (68, '榴莲饼', 8, 3, 39, '专为榴莲控打造的榴莲饼', 'http://localhost:8080/cake/images/Souvenir/DurianCake/index.png', 'http://localhost:8080/cake/images/Souvenir/DurianCake/details/1.jpg');
 INSERT INTO `goods` VALUES (69, '幸福大礼盒', 8, 3, 188, '幸福大礼盒', 'http://localhost:8080/cake/images/Souvenir/HappinessGift/index.png', 'http://localhost:8080/cake/images/Souvenir/HappinessGift/details/1.jpg');
@@ -1141,10 +1164,10 @@ INSERT INTO `goods` VALUES (75, '软糖瓜', 8, 3, 68, '软糖瓜', 'http://loca
 DROP TABLE IF EXISTS `index_banner`;
 CREATE TABLE `index_banner`  (
   `good_id` int(0) NULL DEFAULT NULL,
-  `img_url` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `img_url` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   INDEX `good_id`(`good_id`) USING BTREE,
   CONSTRAINT `index_banner_ibfk_1` FOREIGN KEY (`good_id`) REFERENCES `goods` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of index_banner
@@ -1152,8 +1175,9 @@ CREATE TABLE `index_banner`  (
 INSERT INTO `index_banner` VALUES (35, 'http://localhost:8080/cake/images/cakes/Wholeheartedly/index.jpg');
 INSERT INTO `index_banner` VALUES (45, 'http://localhost:8080/cake/images/cakes/FruitCarnival/index.jpg');
 INSERT INTO `index_banner` VALUES (46, 'http://localhost:8080/cake/images/cakes/Forest_Fruit/index.jpg');
-INSERT INTO `index_banner` VALUES (63, 'http://localhost:8080/cake/images/AfternoonTea/ConvexGlass/index.jpg');
+INSERT INTO `index_banner` VALUES (63, 'http://localhost:8080/cake/images/AfternoonTea/Pomegranate/index.jpg');
 INSERT INTO `index_banner` VALUES (49, 'http://localhost:8080/cake/images/AfternoonTea/IceAmber/index.jpg');
+INSERT INTO `index_banner` VALUES (2, 'http://localhost:8080/cake/images/cakes/Mirror/index.jpg');
 
 -- ----------------------------
 -- Table structure for provincial
@@ -1161,9 +1185,9 @@ INSERT INTO `index_banner` VALUES (49, 'http://localhost:8080/cake/images/Aftern
 DROP TABLE IF EXISTS `provincial`;
 CREATE TABLE `provincial`  (
   `pid` int(0) NOT NULL,
-  `Provincial` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `Provincial` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`pid`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of provincial
@@ -1202,5 +1226,22 @@ INSERT INTO `provincial` VALUES (31, '新疆维吾尔自治区');
 INSERT INTO `provincial` VALUES (32, '内蒙古自治区');
 INSERT INTO `provincial` VALUES (33, '澳门特别行政区');
 INSERT INTO `provincial` VALUES (34, '香港特别行政区');
+
+-- ----------------------------
+-- Table structure for token
+-- ----------------------------
+DROP TABLE IF EXISTS `token`;
+CREATE TABLE `token`  (
+  `tokenStr` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `user_id` int(0) NULL DEFAULT NULL,
+  `user_name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  INDEX `user_id`(`user_id`) USING BTREE,
+  CONSTRAINT `token_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `c_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of token
+-- ----------------------------
+INSERT INTO `token` VALUES ('43adb86e-55a4-4ce5-ab16-f2ec87a8a607', 7, '奶炮炮.king');
 
 SET FOREIGN_KEY_CHECKS = 1;

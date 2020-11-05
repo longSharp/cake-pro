@@ -1,264 +1,49 @@
 <!--
  * @Author: 龙朝敏
  * @Date: 2020-10-15 23:18:53
- * @LastEditTime: 2020-10-18 12:14:18
+ * @LastEditTime: 2020-11-01 10:38:52
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit.con
  * @FilePath: \web\html\index_main.html
 -->
-<style>
-    .index_bann {
-        position: relative;
-        background: url("./static/images/index_bg.jpg") 0 0/100% 100% no-repeat;
-    }
-
-    #Tz_wrap {
-        position: absolute;
-        top: 52%;
-        left: 50%;
-        width: 800px;
-        height: 700px;
-        border-radius: 5px;
-        transform: translate(-50%, -50%);
-    }
-
-    #Tz_wrap .pic {
-        width: 800px;
-        height: 700px;
-        perspective: 800px;
-        overflow: hidden;
-    }
-
-    #Tz_wrap .pic ul {
-        width: 800px;
-        height: 700px;
-        box-shadow: 0 0 2px rgba(114, 114, 118, 0.54);
-        overflow: hidden;
-        position: absolute;
-        transform-style: preserve-3d;
-        border-radius: 12px;
-        z-index: -1;
-    }
-
-    #Tz_wrap .pic ul.now {
-        z-index: 2;
-    }
-
-    #Tz_wrap .pic ul.next {
-        z-index: 1;
-    }
-
-    #Tz_wrap .pic ul li {
-        list-style: none;
-        position: absolute;
-        transform: translate(0px, 0px) rotateX(0deg);
-        border: 1px solid transparent;
-        background-origin: border-box;
-        opacity: 1;
-    }
-
-    #Tz_wrap .pic ul li.on {
-        transform: translate(-50px, -50px) rotateX(720deg);
-        border: 1px solid #000;
-        opacity: 0;
-    }
-
-    #Tz_wrap .pic ul li.move {
-        transition: 1.5s transform, 1.5s opacity;
-    }
-
-    #Tz_wrap .pic ul li.last {
-        transform: translate(0px, 0px) rotateX(0deg);
-        border: 1px solid transparent;
-        opacity: 1;
-    }
-
-    #Tz_wrap .btn {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 790px;
-        height: 69px;
-        transform: translate(-50%, -50%);
-    }
-
-    #Tz_wrap .btn div {
-        width: 40px;
-        height: 69px;
-        cursor: pointer;
-        background-color: rgba(0, 0, 0, 0.6);
-        border-radius: 4px;
-        color: aliceblue;
-        font-weight: bold;
-        text-align: center;
-        line-height: 69px;
-    }
-
-    #Tz_wrap .btn div>span {
-        font-size: 30px !important;
-    }
-
-    #Tz_wrap .btn div:nth-child(1) {
-        float: left;
-    }
-
-    #Tz_wrap .btn div:nth-child(2) {
-        float: right;
-    }
-
-    #Tz_wrap .btn div#left {
-        left: 15px;
-        background-position: 0px 0px;
-    }
-
-    #Tz_wrap .btn div#right {
-        right: 15px;
-        background-position: -42px 0px;
-    }
-
-    #Tz_wrap .btn-list {
-        display: flex;
-        justify-content: space-around;
-        position: absolute;
-        top: 103%;
-        left: 50%;
-        width: 260px;
-        height: 36px;
-        background-color: #f3c99e;
-        border-radius: 15px;
-        transform: translateX(-50%);
-    }
-
-    #Tz_wrap .btn-list div {
-        width: 30px;
-        height: 30px;
-        padding: 3px;
-        border-radius: 50%;
-        cursor: pointer;
-        
-    }
-
-    #Tz_wrap .btn-list div i {
-        font-size: 30px !important;
-        transition: 1s;
-    }
-
-    #Tz_wrap .btn-list div i.icon-Ovalx {
-        color: #f78913;
-    }
-
-    .category {
-        display: flex;
-        width: 100%;
-        height: 632px;
-    }
-
-    .category>div {
-        flex: 1;
-        height: 100%;
-    }
-
-    .category .tea {
-        background-color: #EEE2C8;
-    }
-
-    .category .cake {
-        background-color: #ddc591;
-    }
-
-    .category .souenir {
-        background-color: #e9daba;
-    }
-
-    .category .iwrap {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 416px;
-    }
-
-    .category .iwrap>div {
-        width: 312px;
-        height: 248px;
-    }
-
-    .category .iwrap>div>a {
-        display: block;
-        width: 100%;
-        height: 100%;
-    }
-
-    .category .iwrap>div img {
-        width: 100%;
-        height: 100%;
-    }
-
-    .category .info {
-        height: 30%;
-        text-align: center;
-    }
-
-    .category .info>a {
-        border-bottom: 1px #000 solid;
-        padding: 12px 0;
-    }
-
-    .category .info>a>span:nth-child(1) {
-        font-size: 24px;
-        padding: 0 6px;
-    }
-
-    .category .info>a>span:nth-child(2) {
-        font-size: 18px;
-        padding: 0 6px;
-    }
-
-    .category .info>p {
-        font-size: 14px;
-        padding: 30px 0;
-    }
-</style>
+<link rel="stylesheet" href="./css/index_main.css">
 <div class="index_main">
     <div class="index_bann">
-        <div id="Tz_wrap">
-            <!--pic start-->
-            <div class="pic">
-                <ul class="ul5"></ul>
-                <ul class="ul1 next"></ul>
-                <ul class="ul2"></ul>
-                <ul class="ul3"></ul>
-                <ul class="ul4"></ul>
-                <ul class="ul5"></ul>
-                <ul class="ul1"></ul>
+        <div id="Tz_box">
+            <div class="bg">
+                <div class="bg1"></div>
+                <div class="bg2"></div>
+                <div class="bg3"></div>
             </div>
-            <!--pic end-->
-            <!--btn start-->
-            <div class="btn">
-                <div id="left">
-                    <span class="iconfont icon-jiantou-copy"></span>
+            <!--Tz_wrap start-->
+            <div id="Tz_wrap">
+                <ul class="slider">
+                    {{each data value index}}
+                    <li><a data-id="{{value.good_id}}" href="#/goods/detail/8090{{value.good_id}}"><img
+                                src="{{value.img_url}}" alt=""></a></li>
+                    {{/each}}
+                </ul>
+                <div class="btn">
+                    <span class="prev"></span>
+                    <span class="next"></span>
                 </div>
-                <div id="right">
-                    <span class="iconfont icon-arrow-right"></span>
-                </div>
+                <ul class="thumbnails">
+                    {{each data value index}}
+                    <li><img src="{{value.img_url}}"></li>
+                    {{/each}}
+
+                </ul>
             </div>
-            <!--btn end-->
-            <div class="btn-list">
-                <div><i class="iconfont icon-Ovalx"></i></div>
-                <div><i class="iconfont icon-biaoqing-dai-tianchong"></i></div>
-                <div><i class="iconfont icon-biaoqing-dai-tianchong"></i></div>
-                <div><i class="iconfont icon-biaoqing-dai-tianchong"></i></div>
-                <div><i class="iconfont icon-biaoqing-dai-tianchong"></i></div>
-            </div>
+            <!--Tz_wrap end-->
         </div>
     </div>
     <div class="category">
         <div class="tea">
             <div class="iwrap">
-                <div><a href=""><img src="./static/images/tea.png" alt=""></a></div>
+                <div><a href="#/goods/19979/1"><img src="./static/images/tea.png" alt=""></a></div>
             </div>
             <div class="info">
-                <a href="">
+                <a href="#/goods/19979/1">
                     <span>AFTERNOON TEA</span>
                     <span>下午茶</span>
                 </a>
@@ -268,10 +53,10 @@
 
         <div class="cake">
             <div class="iwrap">
-                <div><a href=""><img src="./static/images/cake.png" alt=""></a></div>
+                <div><a href="#/goods/34507/1"><img src="./static/images/cake.png" alt=""></a></div>
             </div>
             <div class="info">
-                <a href="">
+                <a href="#/goods/34507/1">
                     <span>CAKE</span>
                     <span>蛋糕</span>
                 </a>
@@ -281,10 +66,10 @@
 
         <div class="souenir">
             <div class="iwrap">
-                <div><a href=""><img src="./static/images/souvenir.png" alt=""></a></div>
+                <div><a href="#/goods/25163/1"><img src="./static/images/souvenir.png" alt=""></a></div>
             </div>
             <div class="info">
-                <a href="">
+                <a href="#/goods/25163/1">
                     <span>SOUVENIR</span>
                     <span>手信</span>
                 </a>
@@ -297,181 +82,113 @@
 
 <script>
     $(function () {
-        fn(10, 10);
-        //参数1:行 参数2:列
-        function fn(numX, numY) {
-            $.ajax({
-                url: getUrl("/goods/Ibanner"),
-                type: "GET",
-                success: function (data) {
-                    data = JSON.parse(data);
-                    for (let i = 0; i < data.length; i++) {
-                        $("#Tz_wrap .pic .ul" + (i + 1) + " li").css("background-image", "url(" + data[i].img_url + ")");
-                        $("#Tz_wrap .pic .ul" + (i + 1)).attr("data-goodID", data[i].good_id);
-                    }
-                }
-            });
-            var dW = $(document).width();
-            var dH = $(document).height();
-            var $ul = $('.pic ul');
-            var $btn = $('.btn div');
-            var ulW = $ul.width(), ulH = $ul.height();
-            var $li;
-            var $btnList = $(".btn-list div");
-            var liW = ulW / numX, liH = ulH / numY;
-            //定义初始 ul为 第二个
-            var ulIndex = 1;
-            var onOff = true;
-            $(".index_bann").css({ "width": dW + "px", "height": dH + "px" });
-            //遍历ul在每个ul中根参数行和列生成li 并且添加到各个ul中
-            $ul.each(function () {
-                var s = '';
-                for (var i = 0; i < numX * numY; i++) {
-                    s += '<li></li>'
-                }
-                $(this).append(s);
-            });
-            //获取ul下的li
-            $li = $('.pic ul li');
-            //遍历li
-            $li.each(function (i) {
-                //根据行和列确定每个li的位置
-                i %= numX * numY;
-                var iX = i % numX;
-                var iY = parseInt(i / numX);
-                //给每个li赋予属性 x y
-                this.x = iX;
-                this.y = iY;
-                //根据x和y确定每个小图片li的位置和背景图片定位
+        var wW = $(document).width();
+        var num = 6;
+        var pW = 760;
+        var btnP = (wW - pW) / 2;
+        var index = 0;
+        var $slider = $('.slider');
+        var $bg = $('.bg div');
+        var $sLi = $('.slider li');
+        var $thum = $('.thumbnails');
+        var $thumLi = $('.thumbnails li');
+        var $btn = $('.btn span');
+        //初始化
+        function init() {
+            $slider.css({ 'width': num * wW + 'px' });
+            $sLi.css({ 'width': wW + 'px' });
+            $bg.css({ 'width': num * wW + 'px' })
+            $thum.css({ 'width': 630+ 'px'});
+            $btn.eq(0).css({ 'left': btnP + 'px' });
+            $btn.eq(1).css({ 'right': btnP + 'px' });
+        }
+
+        (function () {
+            init();
+            $thum.find('li').each(function () {
+                var angle = Math.floor(Math.random() * 41);
                 $(this).css({
-                    width: liW - 1 + 'px',
-                    height: liH - 1 + 'px',
-                    backgroundPosition: (-liW * iX) + 'px ' + (-liH * iY) + 'px',
-                    left: liW * iX + 'px',
-                    top: liH * iY + 'px'
+
+                    '-moz-transform': 'rotate(' + angle + 'deg)',
+                    '-webkit-transform': 'rotate(' + angle + 'deg)',
+                    'transform': 'rotate(' + angle + 'deg)',
+                });
+            }).hover(function () {
+                $(this).stop().animate({
+                    marginTop: -10+"px"
+                }, 30)
+            }, function () {
+                $(this).stop().animate({
+                    marginTop: 0
+                }, 30)
+            })
+            //改变窗口时自适应
+            $(window).resize(function () {
+                wW = $(document).width();
+                pW = 760;
+                btnP = (wW - pW) / 2;
+                init();
+                move(index, 30);
+            })
+        })();
+        $thumLi.click(function () {
+            index = $(this).index();
+            move(index, 1000);
+        })
+        $btn.hover(function () {
+            $(this).css({ 'opacity': 1 })
+        }, function () {
+            $(this).css({ 'opacity': 0.6 })
+        });
+        $btn.eq(0).click(function () {
+            index--;
+            index = index < 0 ? num - 1 : index;
+            move(index, 1000)
+        })
+        $btn.eq(1).click(function () {
+            index++;
+            index %= num;
+            index %= num;
+            move(index, 1000)
+        })
+        //运动函数
+        function move(i, speed) {
+            $thumLi.eq(i).find('img').css({ 'opacity': 1 }).parent().siblings().find('img').css({ 'opacity': 0.7 })
+            $slider.stop().animate({
+                left: -i * (wW) + 'px'
+            }, speed, 'swing');
+            $bg.eq(0).stop().animate({
+                left: -i * (wW / 8) + 'px'
+            }, speed, 'swing');
+            $bg.eq(1).stop().animate({
+                left: -i * (wW / 4) + 'px'
+            }, speed, 'swing');
+            $bg.eq(2).stop().animate({
+                left: -i * (wW / 2) + 'px'
+            }, speed, 'swing')
+        };
+
+        $("#Tz_wrap ul.slider>li img").click(function () {
+            let id = $(this).parent().attr("data-id");
+            console.log(id)
+            Router.route("/goods/detail/8090" + id, function () {
+                $.ajax({
+                    url: getUrl("/goods/detail"),
+                    type: "GET",
+                    data: {
+                        id: id
+                    },
+                    success: function (data) {
+                        data = JSON.parse(data);
+                        $.get("./html/detail.html", function (h) {
+                            var render = template.compile(h);
+                            var det = render({ data: data });
+                            $("#main").html("");
+                            $("#main").html(det);
+                        })
+                    }
                 });
             });
-            //点击事件
-            $btn.click(function () {
-                clearInterval(interval);
-                if (onOff) {
-                    onOff = !onOff;
-                    var index = $(this).index();
-                    var $ulLi;
-                    if (index) {
-                        zIndexNext();
-                        var sum = numX + numY - 2; //sum是从1开始 我们的li下标是从0开始 所以-2
-                        $ulLi = $ul.eq(ulIndex).find('li');
-                        ulIndex++;
-                        btnList(ulIndex - 1);
-                        //每过30毫秒
-                        var timer = setInterval(function () {
-                            $ulLi.each(function () {
-                                //遍历所有li 如果他的 他的 x属性(行) + y属性(列) =sum 就执行动画
-                                if (this.x + this.y == sum) {
-                                    $(this).removeClass('last move').addClass('on move');
-                                }
-                            });
-                            sum--;
-                            if (sum < 0) {
-                                clearInterval(timer);
-                                setTimeout(function () {
-                                    onOff = !onOff;
-                                    if (ulIndex == $ul.length - 1) {
-                                        $li.removeClass('on last move');
-                                        $ul.removeClass('next now');
-                                        $ul.eq(1).addClass('next');
-                                        ulIndex = 1;
-                                    }
-                                }, 1500);
-                            };
-                        }, 50);
-                    }
-                    else {
-                        zIndexLast();
-                        ulIndex--;
-                        btnList(ulIndex - 1);
-                        $ulLi = $ul.eq(ulIndex).find('li');
-                        $ulLi.removeClass('move').addClass('on');
-                        var sum = 0;
-                        var timer = setInterval(function () {
-                            $ulLi.each(function () {
-                                if (this.x + this.y == sum) {
-                                    $(this).addClass('last move');
-                                }
-                            });
-                            sum++;
-                            if (sum > numX + numY - 2) {
-                                clearInterval(timer);
-                                setTimeout(function () {
-                                    onOff = !onOff;
-                                    if (ulIndex == 0) {
-                                        $li.removeClass('on last');
-                                        $ul.removeClass('next now');
-                                        $ul.eq($ul.length - 2).addClass('next');
-                                        ulIndex = $ul.length - 2;
-                                    };
-                                }, 1500);
-                            };
-                        }, 50);
-                    };
-                };
-            });
-            var interval = setInterval(function () {
-                if (onOff) {
-                    onOff = !onOff;
-                    btnList(ulIndex);
-                    zIndexNext();
-                    var sum = numX + numY - 2; //sum是从1开始 我们的li下标是从0开始 所以-2
-                    $ulLi = $ul.eq(ulIndex).find('li');
-                    ulIndex++;
-                    //每过30毫秒
-                    var timer = setInterval(function () {
-                        $ulLi.each(function () {
-                            //遍历所有li 如果他的 他的 x属性(行) + y属性(列) =sum 就执行动画
-                            if (this.x + this.y == sum) {
-                                $(this).removeClass('last move').addClass('on move');
-                            }
-                        });
-                        sum--;
-                        if (sum < 0) {
-                            clearInterval(timer);
-                            setTimeout(function () {
-                                onOff = !onOff;
-                                if (ulIndex == $ul.length - 1) {
-                                    $li.removeClass('on last move');
-                                    $ul.removeClass('next now');
-                                    $ul.eq(1).addClass('next');
-                                    ulIndex = 1;
-                                }
-                            }, 1500);
-                        };
-                    }, 50);
-                }
-
-            }, 4000);
-
-            //小按钮事件
-            function btnList(index) {
-                index = index == 5 ? 0 : index;
-                $("#Tz_wrap .btn-list div i").removeClass("icon-Ovalx").addClass("icon-biaoqing-dai-tianchong");
-                $("#Tz_wrap .btn-list div").eq(index).children("i").removeClass("icon-biaoqing-dai-tianchong").addClass("icon-Ovalx");
-            }
-            
-
-            //左点击函数
-            function zIndexNext() {
-                var i = ulIndex + 1;
-                $ul.eq(ulIndex).addClass('now').siblings().removeClass('now');
-                $ul.eq(i).addClass('next').siblings().removeClass('next');
-            }
-            //右点击函数
-            function zIndexLast() {
-                var i = ulIndex - 1;
-                $ul.eq(ulIndex).addClass('next').siblings().removeClass('next');
-                $ul.eq(i).addClass('now').siblings().removeClass('now');
-            }
-
-        }
+        });
     })
 </script>
